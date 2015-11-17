@@ -16,7 +16,25 @@
 //= require_tree .
 
 $(document).on('ready page:load', function () {
-  // $('#writesomething').on('keyup', function(e) {
-  //     $('#appear').html($(this).val().draggable());
-  //  });
+  // document.getElementById('case_image').addEventListener('change', readURL, true);
+  $('#case_image').on('change', function() {
+    readURL(this);
+    $('.case_img').draggable();
+  });
+
+  function readURL(){
+      // var file = document.getElementById("case_image").files[0];
+      var file = $('#case_image').prop('files')[0];
+      var reader = new FileReader();
+      var content = '<img class="case_img" src="#" />';
+      $('#case').html(content);
+      reader.onloadend = function(e){
+        // document.getElementById('case').style.backgroundImage = "url(" + reader.result + ")";
+        $('.case_img').attr('src', e.target.result);
+      };
+      if(file){
+          reader.readAsDataURL(file);
+      }else{
+      }
+  }
 });

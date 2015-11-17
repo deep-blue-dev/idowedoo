@@ -1,0 +1,14 @@
+<%= form_for @case do |f| %>
+  <div class="field">
+    <%= f.select :type, options_for_select([["Choose Case", ""], "Iphone", "Ipad", "Android"]),
+                        id: "file", placeholder: "Case Type"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
