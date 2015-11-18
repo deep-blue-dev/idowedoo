@@ -15,10 +15,10 @@ class CasesController < ApplicationController
       File.open(Rails.root.join('app', 'assets', 'images', file.original_filename), 'wb') do |f|
         f.write(file.read)
       end
-      @case.image = "/app/assets/images" + file.original_filename
+      @case.image = "/app/assets/images/" + file.original_filename
     end
     if @case.save
-      redirect @case, notice: "Case was successfully created"
+      redirect_to @case, notice: "Case was successfully created"
     end
   end
 
@@ -29,6 +29,6 @@ class CasesController < ApplicationController
   end
 
   def case_params
-    params.require(:case).permit(:type, :image)
+    params.require(:case).permit(:ipad, :iphone, :android, :image)
   end
 end

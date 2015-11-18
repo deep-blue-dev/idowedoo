@@ -27,5 +27,20 @@
 .case_img {
   display: block;
   max-width: 100%;
+}
 
+.ui {
+  display: inline-block;
+}
+
+.ui-resizable-handle {
+  background: black;
+  border: 1px solid #FFF;
+  width: 9px;
+  height: 9px;
+  z-index: 2;
+}
+
+.ui-resizable-handle {
+background-image: none;
 }

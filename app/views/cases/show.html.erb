@@ -1,0 +1,15 @@
+<% if @case.ipad %>
+  <p>
+    Ipad: <%= check_box_tag :ipad, "1", @case.ipad, disabled: true %>
+  </p>
+<% elsif @case.android %>
+  <p>
+    Android: <%= check_box_tag :android, "1", @case.android, disabled: true %>
+  </p>
+<% elsif @case.iphone %>
+  <p>
+    Iphone: <%= check_box_tag :iphone, "1", @case.iphone, disabled: true %>
+  </p>
+<% end %>
+
+<%= image_tag @case.image %>

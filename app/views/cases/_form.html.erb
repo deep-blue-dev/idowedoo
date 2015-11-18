@@ -1,7 +1,12 @@
 <%= form_for @case do |f| %>
   <div class="field">
-    <%= f.select :type, options_for_select([["Choose Case", ""], "Iphone", "Ipad", "Android"]),
-                        id: "file", placeholder: "Case Type"%>
+    <h3>Choose a case</h3>
+    <%= f.check_box :ipad %>
+    <%= f.label :ipad %>
+    <%= f.check_box :iphone %>
+    <%= f.label :iphone %>
+    <%= f.check_box :android %>
+    <%= f.label :android %>
   </div>
 
   <div class="field">

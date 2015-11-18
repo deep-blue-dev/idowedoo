@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require_tree .
 
@@ -19,7 +20,13 @@ $(document).on('ready page:load', function () {
   // document.getElementById('case_image').addEventListener('change', readURL, true);
   $('#case_image').on('change', function() {
     readURL(this);
-    $('.case_img').draggable();
+    // $('.case_img').resizable().parent('.ui-wrapper').draggable();
+    // $('.case_img').resizable();
+    $('.ui').draggable({ containment: $('#case')});
+    $('.size').resizable({
+      aspectRatio: true,
+      handles: "ne, se, sw, nw"
+    });
   });
 
   function readURL(){
@@ -27,7 +34,7 @@ $(document).on('ready page:load', function () {
       var file = $('#case_image').prop('files')[0];
       var reader = new FileReader();
       var content = '<img class="case_img" src="#" />';
-      $('#case').html(content);
+      $('.size').html(content);
       reader.onloadend = function(e){
         // document.getElementById('case').style.backgroundImage = "url(" + reader.result + ")";
         $('.case_img').attr('src', e.target.result);
