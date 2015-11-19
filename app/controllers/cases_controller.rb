@@ -12,10 +12,10 @@ class CasesController < ApplicationController
     @case = Case.new(case_params)
     if params[:case].present?
       file = params[:case][:image]
-      File.open(Rails.root.join('app', 'assets', 'images', file.original_filename), 'wb') do |f|
+      File.open(Rails.root.join('public', 'uploads', file.original_filename), 'wb') do |f|
         f.write(file.read)
       end
-      @case.image = "/app/assets/images/" + file.original_filename
+      @case.image = "/uploads/" + file.original_filename
     end
     if @case.save
       redirect_to @case, notice: "Case was successfully created"
