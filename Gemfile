@@ -51,4 +51,12 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'thin' # Light Web Server
+  gem 'better_errors' # Debuggers
+  gem 'binding_of_caller'
+  gem 'awesome_print'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'quiet_assets' # Shhh.. we don't need to see the assets
 end
