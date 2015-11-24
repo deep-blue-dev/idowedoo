@@ -1,11 +1,95 @@
-<aside class="form_box">
-  <%= render 'form' %>
-</aside>
-<br>
-<article id="case">
-  <div class="ui">
-    <div class="size">
+
+
+
+<div class="row">
+
+  <div class="col-lg-3">
+    <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#text" aria-controls="text" role="tab" data-toggle="tab">Text</a></li>
+        <li role="presentation"><a href="#art" aria-controls="art" role="tab" data-toggle="tab">Art</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="text">
+
+          <!--textEnter-->
+          <p>
+            <label for="textEnter">Enter Text Below</label>
+            <input type="text" value="Helloo.. nurse">
+          </p>
+
+          <!--chooseFont-->
+          <p>
+            <label for="chooseFont">Choose a font</label>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Helvetica
+              <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">HTML</a></li>
+              <li><a href="#">CSS</a></li>
+              <li><a href="#">JavaScript</a></li>
+            </ul>
+          </div>
+          </p>
+
+          <!--textOutline-->
+          <p>
+            <label for="textOutline">Add an outline</label>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">No Outline
+              <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">HTML</a></li>
+              <li><a href="#">CSS</a></li>
+              <li><a href="#">JavaScript</a></li>
+            </ul>
+          </div>
+          </p>
+
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="art">Art</div>
+      </div>
 
     </div>
   </div>
-</article>
+
+  <div class="col-lg-6">
+    <h2><img width="16" height="16" alt="star" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" />
+    </h2>
+
+
+
+    <div class="canvas-container" style="width: 300px; height: 300px; position: relative; -webkit-user-select: none;">
+      <canvas class="upper-canvas " width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none; cursor: default;">
+      </canvas>
+      <canvas id="c" width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none;" class="lower-canvas"></canvas>
+
+    </div>
+
+    <div class="controls">
+      <p>
+        <label><span>Angle:</span> <input type="range" id="angle-control" value="0" min="-90" max="90"></label>
+      </p>
+      <p>
+        <label><span>Left:</span> <input type="range" id="left-control" value="150" min="0" max="300"></label>
+      </p>
+      <p>
+        <label><span>Top:</span> <input type="range" id="top-control" value="150" min="0" max="300"></label>
+      </p>
+      <p>
+        <label><span>Scale:</span> <input type="range" id="scale-control" value="1" min="0.1" max="4" step="0.1">
+        </label>
+        <input type="number" id="scaleValue" value="1" min="0.1" max="4" step="0.1">
+
+      </p>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="text-center" style="background: blue">left</div>
+  </div>
+</div>
