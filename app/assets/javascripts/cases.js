@@ -34,18 +34,35 @@ $(document).on('ready page:load', function() {
     canvas.add(oImg);
   },{top: 100, left: 100});
 
+
+  // Text Input
+
+  var $textInput = $('#TextInput');
+
+  $textInput.keyup(function(){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.text = this.value;
+      canvas.renderAll();
+    }
+  });
+
+
+  //
+  // Advanced Controls
+  //
+
+  // Angle
   var angleControl = $('#angle-control');
-    //angleControl.onchange = function() {
-    //
-    //};
 
-    angleControl.on('change', function () {
-          var activeObject = canvas.getActiveObject();
-          activeObject.setAngle(parseInt(this.value, 10)).setCoords();
-          canvas.renderAll();
-      }
-    );
+  angleControl.on('change', function () {
+        var activeObject = canvas.getActiveObject();
+        activeObject.setAngle(parseInt(this.value, 10)).setCoords();
+        canvas.renderAll();
+    }
+  );
 
+  // Scale
   var scaleControl = $('scale-control');
   scaleControl.onchange = function() {
     scaleValue.value = parseFloat(this.value); rect.scale(parseFloat(this.value)).setCoords();
