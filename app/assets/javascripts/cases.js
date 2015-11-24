@@ -34,11 +34,17 @@ $(document).on('ready page:load', function() {
     canvas.add(oImg);
   },{top: 100, left: 100});
 
-  var angleControl = $('angle-control');
-  angleControl.onchange = function() {
-    rect.setAngle(parseInt(this.value, 10)).setCoords();
-    canvas.renderAll();
-  };
+  var angleControl = $('#angle-control');
+    //angleControl.onchange = function() {
+    //
+    //};
+
+    angleControl.on('change', function () {
+          var activeObject = canvas.getActiveObject();
+          activeObject.setAngle(parseInt(this.value, 10)).setCoords();
+          canvas.renderAll();
+      }
+    );
 
   var scaleControl = $('scale-control');
   scaleControl.onchange = function() {
@@ -66,13 +72,16 @@ $(document).on('ready page:load', function() {
   };
 
   function updateControls() {
-    scaleControl.value = rect.getScaleX();
-    scaleValue.value = parseFloat(rect.getScaleX());
-    angleControl.value = rect.getAngle();
+    var activeObject = canvas.getActiveObject();
+    scaleControl.value = activeObject.getScaleX();
+    scaleValue.value = parseFloat(activeObject.getScaleX());
+    angleControl.val(
+        activeObject.getAngle());
     leftControl.value = rect.getLeft();
     topControl.value = rect.getTop();
   }
   canvas.on({
+    'object:selected': updateControls,
     'object:moving': updateControls,
     'object:scaling': updateControls,
     'object:resizing': updateControls,
