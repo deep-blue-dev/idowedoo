@@ -19,43 +19,61 @@
 
           <!--textEnter-->
           <p>
-            <label for="TextInput">Enter Text Below</label>
-            <input id="TextInput" type="text" value="Helloo.. nurse">
+            <label for="textInput">Enter Text Below</label>
+            <div class="input-group">
+              <input id="textInput" type="text" type="text" class="form-control" placeholder="I Do We Do">
+              <span class="input-group-btn">
+                <button id="textAdd" class="btn btn-default" type="button">Add Text</button>
+              </span>
+            </div>
           </p>
 
           <!--chooseFont-->
           <p>
             <label for="chooseFont">Choose a font</label>
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Helvetica
-              <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#">HTML</a></li>
-              <li><a href="#">CSS</a></li>
-              <li><a href="#">JavaScript</a></li>
-            </ul>
-          </div>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Helvetica
+                <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+              </ul>
+            </div>
           </p>
 
           <!--textOutline-->
           <p>
             <label for="textOutline">Add an outline</label>
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">No Outline
-              <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#">HTML</a></li>
-              <li><a href="#">CSS</a></li>
-              <li><a href="#">JavaScript</a></li>
-            </ul>
-          </div>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                No Outline
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+              </ul>
+            </div>
           </p>
 
 
         </div>
         <div role="tabpanel" class="tab-pane" id="art">
           <button type="button" class="btn btn-primary btn-lg btn-block">Browse Artwork</button>
+          <hr>
           <button type="button" class="btn btn-default btn-lg btn-block">Upload your own</button>
+
+          <div class="drop-container">
+            <div class="drop-area">
+              <div class="lead text-center">Drag Here to Upload</div>
+              <button type="button" class="btn btn-default btn-lg btn-block">Click Here to Upload</button>
+              <small><em class="text-center">
+                By uploading an image you agree that you hold the right to reproduce and sell the design.</em></small>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -81,14 +99,16 @@
 
   <!--canvas-->
   <div class="col-lg-6">
-    <h2><img width="16" height="16" alt="star" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" />
-    </h2>
-    <div class="canvas-container" style="width: 300px; height: 300px; position: relative; -webkit-user-select: none;">
-      <canvas class="upper-canvas " width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none; cursor: default;">
-      </canvas>
-      <canvas id="c" width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none;" class="lower-canvas"></canvas>
+    <section class="canvas-area">
+      <h2><img width="16" height="16" alt="star" src="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7" />
+      </h2>
+      <div class="canvas-container" style="width: 300px; height: 300px; position: relative; -webkit-user-select: none;">
+        <canvas class="upper-canvas " width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none; cursor: default;">
+        </canvas>
+        <canvas id="c" width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none;" class="lower-canvas"></canvas>
 
-    </div>
+      </div>
+    </section>
   </div>
 
   <!--caseSelector-->
