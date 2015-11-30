@@ -36,7 +36,7 @@ $(document).on('ready page:load', function() {
   },{top: 100, left: 100});
 
   //
-  // Text
+  // Text Controls
   //
 
 
@@ -87,11 +87,6 @@ $(document).on('ready page:load', function() {
 
   var $textItalic = $('#textItalic');
 
-  function setItalic($control, canvasObject){
-
-
-  }
-
   // Set Object to Italics and toggle button
   $textItalic.on('click', function(e){
     var activeObject = canvas.getActiveObject();
@@ -101,6 +96,22 @@ $(document).on('ready page:load', function() {
       canvas.renderAll();
     }
   });
+
+  // Text Bold
+  //
+
+  var $textBold= $('#textBold');
+
+  // Set Object to Italics and toggle button
+  $textBold.on('click', function(e){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.fontWeight = (activeObject.fontWeight == "normal" ? "bold" : "normal");
+      (activeObject.fontWeight == "bold" ? $textBold.addClass('active') : $textBold.removeClass('active'));
+      canvas.renderAll();
+    }
+  });
+
 
 
   //
@@ -213,6 +224,11 @@ $(document).on('ready page:load', function() {
       (activeObject.fontStyle == "italic" ? $textItalic.addClass('active') : $textItalic.removeClass('active'))
     }
 
+    // Toggle Bold
+    if (activeObject && activeObject.type == "text"){
+      (activeObject.fontWeight == "bold" ? $textBold.addClass('active') : $textBold.removeClass('active'))
+    }
+
     // Advanced Controls
     scaleControl.value = activeObject.getScaleX();
     scaleValue.value = parseFloat(activeObject.getScaleX());
@@ -232,7 +248,7 @@ $(document).on('ready page:load', function() {
     'object:rotating': updateControls
   });
 
-  // Simple logger
+  // log if debugging
   function debug (theArgs){
     if (window.debug === true) {
       console.log(theArgs);
