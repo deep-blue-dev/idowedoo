@@ -9,9 +9,9 @@ $(document).on('ready page:load', function() {
   // Tabs
 
   $('.tab-content div').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-  })
+    e.preventDefault();
+    $(this).tab('show');
+  });
 
   // Builder
 
@@ -35,8 +35,12 @@ $(document).on('ready page:load', function() {
     canvas.add(oImg);
   },{top: 100, left: 100});
 
+  //
+  // Text
+  //
 
-  // Text Input
+
+  //  Input
   //
 
   var $textInput = $('#textInput');
@@ -73,6 +77,27 @@ $(document).on('ready page:load', function() {
     var activeObject = canvas.getActiveObject();
     if (activeObject && activeObject.type === 'text') {
       activeObject.text = this.value;
+      canvas.renderAll();
+    }
+  });
+
+
+  // Text Italize
+  //
+
+  var $textItalic = $('#textItalic');
+
+  function setItalic($control, canvasObject){
+
+
+  }
+
+  // Set Object to Italics and toggle button
+  $textItalic.on('click', function(e){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.fontStyle = (activeObject.fontStyle == "normal" ? "italic" : "normal");
+      (activeObject.fontStyle == "italic" ? $textItalic.addClass('active') : $textItalic.removeClass('active'));
       canvas.renderAll();
     }
   });
@@ -183,6 +208,11 @@ $(document).on('ready page:load', function() {
 
     $textInput.val(activeObject.text);
 
+    // Toggle Italics
+    if (activeObject && activeObject.type == "text"){
+      (activeObject.fontStyle == "italic" ? $textItalic.addClass('active') : $textItalic.removeClass('active'))
+    }
+
     // Advanced Controls
     scaleControl.value = activeObject.getScaleX();
     scaleValue.value = parseFloat(activeObject.getScaleX());
@@ -190,6 +220,7 @@ $(document).on('ready page:load', function() {
         activeObject.getAngle());
     leftControl.value = rect.getLeft();
     topControl.value = rect.getTop();
+
   }
 
   // Pass values from canvas events
