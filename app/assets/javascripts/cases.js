@@ -18,22 +18,22 @@ $(document).on('ready page:load', function() {
   var canvas = this.__canvas = new fabric.Canvas('c');
   fabric.Object.prototype.transparentCorners = false;
 
+  //
+  //var rect = new fabric.Rect({
+  //  width: 100,
+  //  height: 100,
+  //  top: 100,
+  //  left: 100,
+  //  fill: 'rgba(255,0,0,0.5)'
+  //});
 
-  var rect = new fabric.Rect({
-    width: 100,
-    height: 100,
-    top: 100,
-    left: 100,
-    fill: 'rgba(255,0,0,0.5)'
-  });
+  //canvas.add(rect).setActiveObject(rect);
+  //var text = new fabric.Text('Hello.. Nurse!', { left: 100, top: 100 });
 
-  canvas.add(rect).setActiveObject(rect);
-  var text = new fabric.Text('Hello.. Nurse!', { left: 100, top: 100 });
-
-  canvas.add(text);
-  fabric.Image.fromURL('data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7', function(oImg) {
-    canvas.add(oImg);
-  },{top: 100, left: 100});
+  //canvas.add(text);
+  //fabric.Image.fromURL('data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7', function(oImg) {
+  //  canvas.add(oImg);
+  //},{top: 100, left: 100});
 
   //
   // Text Controls
