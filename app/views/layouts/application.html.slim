@@ -26,6 +26,8 @@ html lang='en'
 
   body id=params[:controller] class=params[:action]
 
+    = render 'partials/nav'
+
     .container
 
       = yield
