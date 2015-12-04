@@ -181,33 +181,38 @@ $(document).on('ready page:load', function() {
   );
 
   // Scale
-  var scaleControl = $('scale-control');
-  scaleControl.onchange = function() {
-    scaleValue.value = parseFloat(this.value); rect.scale(parseFloat(this.value)).setCoords();
+  var scaleControl = $('#scale-control');
+  scaleControl.on('change', function(){
+    var activeObject = canvas.getActiveObject();
+    scaleValue.value = parseFloat(this.value);
+    activeObject.scale(parseFloat(this.value)).setCoords();
     canvas.renderAll();
-  };
+  });
 
   // Scale Input
-  var scaleValue = $('scaleValue');
-  scaleValue.onchange = function(){
+  var scaleValue = $('#scaleValue');
+  scaleValue.on('change', function(){
+    var activeObject = canvas.getActiveObject();
     scaleControl.value = parseFloat(this.value);
-    rect.scale(parseFloat(this.value)).setCoords();
+    activeObject.scale(parseFloat(this.value)).setCoords();
     canvas.renderAll();
-  };
+  });
 
   // Top Control
-  var topControl = $('top-control');
-  topControl.onchange = function() {
-    rect.setTop(parseInt(this.value, 10)).setCoords();
+  var topControl = $('#top-control');
+  topControl.on('change', function(){
+    var activeObject = canvas.getActiveObject();
+    activeObject.setTop(parseInt(this.value, 10)).setCoords();
     canvas.renderAll();
-  };
+  });
 
   // Left Control
-  var leftControl = $('left-control');
-  leftControl.onchange = function() {
-    rect.setLeft(parseInt(this.value, 10)).setCoords();
+  var leftControl = $('#left-control');
+  leftControl.on('change', function(){
+    var activeObject = canvas.getActiveObject();
+    activeObject.setLeft(parseInt(this.value, 10)).setCoords();
     canvas.renderAll();
-  };
+  });
 
   //
   // Utilities
@@ -230,12 +235,21 @@ $(document).on('ready page:load', function() {
     }
 
     // Advanced Controls
-    scaleControl.value = activeObject.getScaleX();
-    scaleValue.value = parseFloat(activeObject.getScaleX());
+    scaleControl.val(
+        parseFloat(activeObject.getScaleX())
+    );
+    scaleValue.val(
+        parseFloat(activeObject.getScaleX())
+    );
     angleControl.val(
-        activeObject.getAngle());
-    leftControl.value = rect.getLeft();
-    topControl.value = rect.getTop();
+        parseFloat(activeObject.getAngle())
+    );
+    leftControl.val(
+        parseFloat(activeObject.getLeft())
+    );
+    topControl.val(
+        parseFloat(activeObject.getTop())
+    );
 
   }
 
