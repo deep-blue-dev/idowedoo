@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+
+
   resources :users, only: [:new, :show, :edit]
   resources :cases, only: [:new, :show, :create]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  get 'learn' => 'pages#learn', as: :learn
   get '/' => 'pages#coming-soon'
-  get '/pages/index' => 'pages#index'
+  get 'index' => 'pages#index', as: :index
+
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+
+  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
