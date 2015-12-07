@@ -48,6 +48,7 @@ $(document).on('ready page:load', function() {
 
   // Add text from input
 
+
   $textAdd.on('click', function() {
 
         // Get text from input
@@ -113,7 +114,6 @@ $(document).on('ready page:load', function() {
   });
 
 
-
   //
   // File Drop
   //
@@ -159,10 +159,6 @@ $(document).on('ready page:load', function() {
   }
 
 
-
-
-
-
   //
   // Advanced Controls
   //
@@ -173,10 +169,9 @@ $(document).on('ready page:load', function() {
   var angleControl = $('#angle-control');
 
   angleControl.on('change', function () {
-
-        var activeObject = canvas.getActiveObject();
-        activeObject.setAngle(parseInt(this.value, 10)).setCoords();
-        canvas.renderAll();
+      var activeObject = canvas.getActiveObject();
+      activeObject.setAngle(parseInt(this.value, 10)).setCoords();
+      canvas.renderAll();
     }
   );
 
@@ -277,4 +272,21 @@ $(document).on('ready page:load', function() {
     debug([e])
   }
 
+
+
+  $('#next').on('click', function(e){
+
+    if (!fabric.Canvas.supports('toDataURL')) {
+      alert("This browser doesn\'t provide means to serialize canvas to an image" );
+    }
+    else {
+      // Deselect the objects os that the handles aren't present when exported.
+      canvas.deactivateAll().renderAll();
+      // Convert canvas to png
+      window.open(canvas.toDataURL('png'));
+    }
+  })
+
+
 });
+
