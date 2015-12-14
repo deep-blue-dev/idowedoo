@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'pg'
+group :production do
+gem 'pg', '0.18.4'
 
 gem 'rails_12factor'
-
+end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
@@ -45,6 +46,9 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
+  #sqlite 3
+  gem 'sqlite3'
+  
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
