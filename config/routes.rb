@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
 
+  get 'orders/index'
+
+  get 'orders/create'
+
+  get 'orders/show'
+
+  resources :products
   devise_for :users
 
   devise_scope :user do

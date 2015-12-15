@@ -283,10 +283,9 @@ $(document).on('ready page:load', function() {
       // Deselect the objects os that the handles aren't present when exported.
       canvas.deactivateAll().renderAll();
       // Convert canvas to png
-      window.open(canvas.toDataURL('png'));
+      window.open(canvas.toDataURL(0));
     }
   })
 
 
 });
-
