@@ -39,13 +39,15 @@
           <!--chooseFont-->
           <p>
             <label for="chooseFont">Choose a font</label>
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Helvetica
+            <div class="dropdown" id="font_drop">
+              <button id="fontFamily" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" >
+                <span class="selection">Helvetica</span>
                 <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
+                <li><a href="#" >Helvetica</a></li>
+                <li><a href="#" >Comic Sans MS</a></li>
+                <li><a href="#" >Arial</a></li>
+                <li><a href="#" >Times New Roman</a></li>
               </ul>
             </div>
           </p>
@@ -71,18 +73,25 @@
         <div role="tabpanel" class="tab-pane" id="art">
           <button type="button" class="btn btn-primary btn-lg btn-block">Browse Artwork</button>
           <hr>
-          <button type="button" class="btn btn-default btn-lg btn-block">Upload your own</button>
+          <label class="btn btn-default btn-lg btn-block" for="my-file-selector">
+              <input type="file" style="display:none;">
+              Upload your own
+          </label>
 
           <div class="drop-container">
             <div class="drop-area">
               <div class="lead text-center">Drag Here to Upload</div>
-              <button type="button" class="btn btn-default btn-lg btn-block">Click Here to Upload</button>
+              <label class="btn btn-default btn-lg btn-block upload" for="my-file-selector">
+                  <input type="file" style="display:none;">
+                  Click Here to Upload
+              </label>
               <small><em class="text-center">
                 By uploading an image you agree that you hold the right to reproduce and sell the design.</em></small>
             </div>
           </div>
 
         </div>
+
       </div>
 
       <div class="advanced-controls">
@@ -150,11 +159,11 @@
             <div class="media">
               <div class="media-left">
                 <a href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="...">
+                  <img class="media-object" src="https://i.imgur.com/FgjwPME.png" alt="...">
                 </a>
               </div>
               <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
+                <h4 class="media-heading">Iphone 6s</h4>
                 ...
               </div>
             </div>
@@ -163,11 +172,11 @@
             <div class="media">
               <div class="media-left">
                 <a href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="...">
+                  <img class="media-object" src="https://i.imgur.com/vtKZwB1.png" alt="...">
                 </a>
               </div>
               <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
+                <h4 class="media-heading">Ipad Air 2</h4>
                 ...
               </div>
             </div>
@@ -176,11 +185,11 @@
             <div class="media">
               <div class="media-left">
                 <a href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="...">
+                  <img class="media-object" src="https://i.imgur.com/IDvo98M.png" alt="...">
                 </a>
               </div>
               <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
+                <h4 class="media-heading">Galaxy S6</h4>
                 ...
               </div>
             </div>
@@ -195,3 +204,24 @@
   </div>
 
 </div>
+<!-- iphone -->
+<!-- https://i.imgur.com/vVDji5h.png  -->
+<!-- ipad -->
+<!-- https://i.imgur.com/M0MvYo5.png -->
+<!-- galaxy -->
+<!-- https://i.imgur.com/0dieDzV.png -->
+<!-- galaxy small -->
+<!-- https://i.imgur.com/IDvo98M.png -->
+<!-- ipad -->
+<!-- https://i.imgur.com/vtKZwB1.png -->
+<!-- iphone -->
+<!-- https://i.imgur.com/FgjwPME.png -->
+<!-- <label class="btn btn-default btn-lg btn-block" for="my-file-selector">
+    <input type="file" style="display:none;">
+    Click Here to Upload
+</label>
+<input type="file" >
+<label class="btn btn-primary" for="my-file-selector">
+    <input id="my-file-selector" type="file" style="display:none;">
+    Button Text Here
+</label> -->

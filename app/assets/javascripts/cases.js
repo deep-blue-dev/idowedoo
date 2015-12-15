@@ -113,6 +113,23 @@ $(document).on('ready page:load', function() {
     }
   });
 
+  // Font Family
+  $(".dropdown-menu li a").click(function(){
+    $(this).parents(".dropdown").find('.selection').text($(this).text());
+    $(this).parents(".dropdown").find('.selection').val($(this).text());
+  });
+
+  var fontControl = $('.selection');
+  $('#font_drop').on('hidden.bs.dropdown', function (e) {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject && activeObject.type === 'text') {
+      console.log(activeObject);
+      console.log($('#fontFamily > span.selection').text());
+      activeObject.fontFamily = $('#fontFamily > span.selection').val();
+      console.log(activeObject);
+      canvas.renderAll();
+    }
+  });
 
   //
   // File Drop
@@ -269,7 +286,7 @@ $(document).on('ready page:load', function() {
   function stopEvent (e){
     e.preventDefault();
     e.stopPropagation();
-    debug([e])
+    debug([e]);
   }
 
 
@@ -285,7 +302,38 @@ $(document).on('ready page:load', function() {
       // Convert canvas to png
       window.open(canvas.toDataURL(0));
     }
-  })
+  });
 
 
+  // $('.upload').on('click', function(e){
+  //   handleImage(e);
+  // });
+  //
+  // function handleImage(e) {
+  //   debug([e]);
+  //   var file  = e.target.files[0];
+  //   var reader = new FileReader();
+  //     reader.onload = function (event){
+  //       var imgObj = new Image();
+  //       imgObj.src = event.target.result;
+  //       imgObj.onload = function () {
+  //         var image = new fabric.Image(imgObj);
+  //         image.set({
+  //               angle: 0,
+  //               padding: 10,
+  //               cornersize:10,
+  //               height:110,
+  //               width:110,
+  //         });
+  //         canvas.centerObject(image);
+  //         canvas.add(image);
+  //         canvas.renderAll();
+  //       };
+  //     };
+  //     reader.readAsDataURL(file);
+  //
+  // }
+
+
+>>>>>>> devise
 });
