@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  # get 'charges/new'
-  # get 'charges/create'
+  get 'charges/new'
+  get 'charges/create'
   get 'orders/index'
-  get 'orders/create'
+  post 'orders/create'
   get 'orders/show'
+  resources :orders
   resources :products
   resources :charges
   resources :users, only: [:new, :show, :edit]

@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :case
   has_many :order_items
-
+  has_one :product
   #scopes
   #callbacks
   #validations
