@@ -52,7 +52,7 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     builder (3.2.2)
-    byebug (8.2.0)
+    byebug (8.2.1)
     capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -67,9 +67,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    concurrent-ruby (1.0.0)
     daemons (1.2.3)
     debug_inspector (0.0.2)
-    devise (3.5.2)
+    devise (3.5.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -102,13 +103,13 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.6.2)
-    mini_portile (0.6.2)
-    minitest (5.8.2)
+    mime-types (2.99)
+    mini_portile2 (2.0.0)
+    minitest (5.8.3)
     multi_json (1.11.2)
     netrc (0.11.0)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     pg (0.18.4)
     pry (0.10.3)
@@ -179,7 +180,7 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
-    sass (3.4.19)
+    sass (3.4.20)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -199,20 +200,17 @@ GEM
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
     slop (3.6.0)
-    spring (1.4.1)
-    sprockets (3.4.0)
+    spring (1.6.0)
+    sprockets (3.5.2)
+      concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-<<<<<<< HEAD
     stripe (1.31.0)
       json (~> 1.8.1)
       rest-client (~> 1.4)
-=======
-    sqlite3 (1.3.11)
->>>>>>> 1e3e5fea59a4cc5efa9129d3ee41e9c7d5912f2d
     temple (0.7.6)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
@@ -231,7 +229,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    warden (1.2.3)
+    warden (1.2.4)
       rack (>= 1.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
@@ -257,7 +255,7 @@ DEPENDENCIES
   figaro
   jbuilder (~> 2.0)
   jquery-rails
-  pg (= 0.18.4)
+  pg
   pry-byebug
   pry-rails
   quiet_assets
@@ -268,11 +266,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   slim-rails
   spring
-<<<<<<< HEAD
   stripe
-=======
-  sqlite3
->>>>>>> 1e3e5fea59a4cc5efa9129d3ee41e9c7d5912f2d
   thin
   turbolinks
   uglifier (>= 1.3.0)
