@@ -110,7 +110,7 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
-    pg (0.18.3)
+    pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -206,9 +206,13 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+<<<<<<< HEAD
     stripe (1.31.0)
       json (~> 1.8.1)
       rest-client (~> 1.4)
+=======
+    sqlite3 (1.3.11)
+>>>>>>> 1e3e5fea59a4cc5efa9129d3ee41e9c7d5912f2d
     temple (0.7.6)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
@@ -253,7 +257,7 @@ DEPENDENCIES
   figaro
   jbuilder (~> 2.0)
   jquery-rails
-  pg
+  pg (= 0.18.4)
   pry-byebug
   pry-rails
   quiet_assets
@@ -264,7 +268,11 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   slim-rails
   spring
+<<<<<<< HEAD
   stripe
+=======
+  sqlite3
+>>>>>>> 1e3e5fea59a4cc5efa9129d3ee41e9c7d5912f2d
   thin
   turbolinks
   uglifier (>= 1.3.0)
