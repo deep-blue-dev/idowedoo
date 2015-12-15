@@ -274,7 +274,7 @@ $(document).on('ready page:load', function() {
 
 
 
-  $('#next').on('click', function(e){
+  $('#addCart').on('click', function(e){
 
     if (!fabric.Canvas.supports('toDataURL')) {
       alert("This browser doesn\'t provide means to serialize canvas to an image" );
@@ -283,10 +283,10 @@ $(document).on('ready page:load', function() {
       // Deselect the objects os that the handles aren't present when exported.
       canvas.deactivateAll().renderAll();
       // Convert canvas to png
-      window.open(canvas.toDataURL('png'));
+      localStorage.setItem("imgData",  canvas.toDataURL('png'));
+
     }
   })
-
 
 });
 

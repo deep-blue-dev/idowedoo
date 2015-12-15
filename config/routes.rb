@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'learn' => 'pages#learn', as: :learn
+  get 'cart' => 'pages#cart', as: :cart
   get '/' => 'pages#coming-soon'
   get 'index' => 'pages#index', as: :index
 
