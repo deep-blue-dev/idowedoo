@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post '/' => 'pages#coming_soon'
   # You can have the root of your site routed with "root"
 
-  # root 'pages#coming_soon'
+  root 'pages#coming_soon'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
