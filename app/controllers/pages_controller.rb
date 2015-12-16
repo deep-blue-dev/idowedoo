@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
 
-
-
   def index
   end
 
@@ -9,10 +7,6 @@ class PagesController < ApplicationController
   end
 
   def cart
-  end
-
-  def landing
-    render layout: false
   end
 
   def coming_soon
@@ -30,6 +24,7 @@ class PagesController < ApplicationController
     else
       render file: 'pages/coming_soon', layout: false
     end
+
   end
 
   def landing_params

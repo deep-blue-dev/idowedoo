@@ -25,5 +25,6 @@ nav.navbar.navbar-default
           a class="btn" href="#" Track your Order
         li
           = link_to 'Sign In', sign_in_path, class:"btn #{'active' if current_page?(sign_in_path)}"
-        li.
+        li
           = link_to "Get Started", new_case_path, class:"btn #{'active' if current_page?(sign_in_path)}"
+
