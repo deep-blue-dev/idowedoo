@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :users
 
   devise_scope :user do
@@ -15,12 +14,13 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'learn' => 'pages#learn', as: :learn
-  get '/' => 'pages#coming-soon'
+  get 'cart' => 'pages#cart', as: :cart
   get 'index' => 'pages#index', as: :index
-
+  get '/' => 'pages#coming_soon'
+  post '/' => 'pages#coming_soon'
   # You can have the root of your site routed with "root"
 
-  root 'pages#index'
+  root 'pages#coming_soon'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

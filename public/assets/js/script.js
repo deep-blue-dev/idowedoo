@@ -377,7 +377,7 @@
 		
 	/* ================ Coming Soon CountDown. ================ */
 	if($(".digits").length > 0){
-		$('.digits').countdown('2020/10/10').on('update.countdown', function(event) {
+		$('.digits').countdown('2016/01/08').on('update.countdown', function(event) {
 			var $this = $(this).html(event.strftime('<ul>'
 			+ '<li><span>%-w</span><p> week%!w </p> </li>'
 			+ '<li><span>%-d</span><p> day%!d </p></li>'
