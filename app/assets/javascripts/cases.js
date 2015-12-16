@@ -333,7 +333,7 @@ $(document).on('ready page:load', function() {
   //     reader.readAsDataURL(file);
   //
   // }
-  })
+  //})
 
   // Spectrum color picker
   $("#togglePaletteOnly").spectrum({

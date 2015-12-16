@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  root 'pages#coming_soon'
+  get '/' => 'pages#coming_soon'
+  post '/' => 'pages#coming_soon'
+
   get 'order_items/create'
 
   get 'charges/new'
@@ -27,12 +32,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   get 'learn' => 'pages#learn', as: :learn
   get 'cart' => 'pages#cart', as: :cart
-  get '/' => 'pages#coming-soon'
   get 'index' => 'pages#index', as: :index
 
   # You can have the root of your site routed with "root"
 
-  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 20151216032117) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.decimal  "unit_price"
+    t.integer  "quantity"
+    t.decimal  "total_price"
+    t.integer  "product_id"
+    t.integer  "order_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "case_id"
