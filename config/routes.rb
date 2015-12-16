@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   get 'order_items/create'
-
   get 'charges/new'
   get 'charges/create'
   get 'orders/index'
   post 'orders/create'
   get 'orders/show'
+
   resources :orders
   resources :order_items
   resources :products
@@ -20,16 +20,18 @@ Rails.application.routes.draw do
   end
 
   get 'learn' => 'pages#learn', as: :learn
-<<<<<<< HEAD
+
   # TODO 1
   # get '/' => 'pages#coming-soon'
-=======
+
   get 'cart' => 'pages#cart', as: :cart
   get '/' => 'pages#coming-soon'
->>>>>>> fakecart
+
   get 'index' => 'pages#index', as: :index
   # TODO 2
   # root 'pages#index'
   # TODO for now using this one uncomment TODO 1 & 2
   root 'products#index'
+
+# last end here
 end
