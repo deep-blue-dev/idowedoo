@@ -68,7 +68,8 @@ body {
 	font-family:"Raleway",sans-serif;
 	line-height:1.5;
 	-webkit-font-smoothing: antialiased;
-	font-size:13px
+	font-size: 14px;
+	zoom: 70%;
 }
 p {
 	margin: 0 0 20px 0;
@@ -5899,7 +5900,7 @@ h4.cta_heading{
 ------------- login-1 ---------------- */
 .login-1{
 	background:#14191e url('../images/login-bg.jpg') no-repeat 0 0;
-	background-size:cover;
+	/*background-size:cover;*/
 }
 .login-box-lg{
 	max-width:500px;
@@ -5984,8 +5985,8 @@ h4.cta_heading{
 /*
 -------------- coming soon --------------- */
 .soon-page{
-	background:#14191e url('../images/soon-bg.jpg') no-repeat 0 0;
-	background-size:cover;
+	background: rgb(255, 255, 255) url('../images/idowedobgtile.png') repeat 0 0;
+	/*background-size:cover;*/
 }
 .soon-page .pageWrapper {
 	padding-top:80px
@@ -6059,11 +6060,11 @@ h4.cta_heading{
 	height: 130px;
 	width:130px;
 	line-height:120px;
-	border: 1px #fff solid;
+	border: 1px #000 solid;
 	border-bottom:0;
 	font-size:55px;
 	font-weight:800;
-	color:#fff;
+	color:#000;
 }
 .digits li{
 	float:left;
@@ -6078,7 +6079,7 @@ h4.cta_heading{
 	left: 0px;
 	display: block;
 	width: 57px;
-	background: #fff;
+	background: #000;
 	height:1px
 }
 .digits li:after{
@@ -6092,7 +6093,7 @@ h4.cta_heading{
 	left: 50%;
 	margin-left:-10px;
 	display: block;
-	background: #fff;
+	background: #000;
 	height:1px;
 	width:12px;
 	-webkit-transform: rotate(45deg);
@@ -6108,7 +6109,7 @@ h4.cta_heading{
 	right: 50%;
 	margin-right:-10px;
 	display: block;
-	background: #fff;
+	background: #000;
 	height:1px;
 	width:12px;
 	-webkit-transform: rotate(-45deg);
@@ -6119,7 +6120,7 @@ h4.cta_heading{
 }
 
 .digits li p{
-	color:#fff;
+	color:#000;
 	font-size:20px;
 	padding-top:30px
 }
