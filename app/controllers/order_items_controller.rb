@@ -16,7 +16,8 @@ class OrderItemsController < ApplicationController
   def edit
   end
 
-  ## TODO fix add cart link in /products/index (missing template issue)
+  ## TODO fix
+  # add cart link in /products/index (missing template issue)
 
   def create
     p "create happen"
