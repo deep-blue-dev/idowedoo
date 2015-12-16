@@ -1,9 +1,13 @@
 class OrdersController < ApplicationController
-  before_action :set_product only: [:new, :create]
+  # TODO take a look to set_product private method mayber set_order too??
+  before_action :set_product, only: [:new, :create]
+
   def index
   end
+
   def new
     @order = Order.new
+    redirect_to new_charge_path
   end
 
   def create
@@ -22,4 +26,5 @@ class OrdersController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
 end

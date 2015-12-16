@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get 'order_items/create'
+
   get 'charges/new'
   get 'charges/create'
   get 'orders/index'
   post 'orders/create'
   get 'orders/show'
   resources :orders
+  resources :order_items
   resources :products
   resources :charges
   resources :users, only: [:new, :show, :edit]
@@ -17,7 +20,11 @@ Rails.application.routes.draw do
   end
 
   get 'learn' => 'pages#learn', as: :learn
-  get '/' => 'pages#coming-soon'
+  # TODO 1
+  # get '/' => 'pages#coming-soon'
   get 'index' => 'pages#index', as: :index
-  root 'pages#index'
+  # TODO 2
+  # root 'pages#index'
+  # TODO for now using this one uncomment TODO 1 & 2
+  root 'products#index'
 end

@@ -1,0 +1,29 @@
+<div class="product-index">
+  <h1>List our cases</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <!-- <th>Status</th> -->
+        </tr>
+      </thead>
+      <tbody>
+       <% @products.each do |p| %>
+        <tr>
+          <td><%= p.name %></td>
+          <td><%= p.price %></td>
+          <td><p>
+              <%= p.description %>
+              </p>
+          </td>
+          <!-- <td>< %= p.status %></td> -->
+          <!-- TODO fix this link (missing template issue) -->
+          <td><%= link_to "Add to cart", new_order_item_path(id: p.id) %> </td>
+        </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+</div>
