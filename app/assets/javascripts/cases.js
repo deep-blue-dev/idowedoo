@@ -301,13 +301,9 @@ $(document).on('ready page:load', function() {
       canvas.deactivateAll().renderAll();
       // Convert canvas to png
       localStorage.setItem("imgData",  canvas.toDataURL('png'));
-
     }
   });
-// ************************************************************** //
-// For uploading pictures TODO: Make it work
-// ************************************************************8* //
-
+  
   // $('.upload').on('click', function(e){
   //    alert( e.isDefaultPrevented() || e.isPropagationStopped());
   //   handleImage(e);

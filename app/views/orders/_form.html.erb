@@ -1,0 +1,19 @@
+<h1>Hello World</h1>
+<%= #@order  %>
+  <div class="field">
+    <%= #f.check_box :ipad %>
+    <%= #f.label :ipad %>
+    <%= #f.check_box :iphone %>
+    <%= #f.label :iphone %>
+    <%= #f.check_box :android %>
+    <%= #f.label :android %>
+  </div>
+
+  <div class="field">
+    <%= #f.label :image %><br>
+    <%= #f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= #f.submit %>
+  </div>
+<% #end %>
