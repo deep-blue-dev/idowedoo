@@ -20,8 +20,13 @@ Rails.application.routes.draw do
   end
 
   get 'learn' => 'pages#learn', as: :learn
+<<<<<<< HEAD
   # TODO 1
   # get '/' => 'pages#coming-soon'
+=======
+  get 'cart' => 'pages#cart', as: :cart
+  get '/' => 'pages#coming-soon'
+>>>>>>> fakecart
   get 'index' => 'pages#index', as: :index
   # TODO 2
   # root 'pages#index'

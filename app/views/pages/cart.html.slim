@@ -1,0 +1,21 @@
+.col-lg-8.col-lg-push-2
+  .panel.panel-default
+    .panel-heading
+      h4 Cart
+    .panel-body
+      .table.table-condensed.table-striped
+        .tr
+          .media
+            .media-left
+              img#case src="" height="128px" weight="128px"
+            .media-body
+              .media-heading
+                h4.media-heading Stufff
+              button.btn-sm.btn-success Purchase
+
+
+coffee:
+  $(document).on 'ready page:load', ->
+    console.log 'ready'
+    $('#case').attr('src', localStorage.getItem("imgData"))
+
