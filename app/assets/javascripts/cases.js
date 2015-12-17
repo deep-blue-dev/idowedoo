@@ -187,10 +187,22 @@ $(document).on('ready page:load', function() {
 
   angleControl.on('change', function () {
       var activeObject = canvas.getActiveObject();
+      angleValue.value = parseFloat(this.value);
       activeObject.setAngle(parseInt(this.value, 10)).setCoords();
       canvas.renderAll();
+      updateControls();
     }
   );
+
+  // angle Input
+  var angleValue = $('#angleValue');
+  angleValue.on('change', function(){
+    var activeObject = canvas.getActiveObject();
+    angleControl.value = parseFloat(this.value);
+    activeObject.setAngle(parseFloat(this.value)).setCoords();
+    canvas.renderAll();
+    updateControls();
+  });
 
   // Scale
   var scaleControl = $('#scale-control');
@@ -199,6 +211,7 @@ $(document).on('ready page:load', function() {
     scaleValue.value = parseFloat(this.value);
     activeObject.scale(parseFloat(this.value)).setCoords();
     canvas.renderAll();
+    updateControls();
   });
 
   // Scale Input
@@ -208,22 +221,47 @@ $(document).on('ready page:load', function() {
     scaleControl.value = parseFloat(this.value);
     activeObject.scale(parseFloat(this.value)).setCoords();
     canvas.renderAll();
+    updateControls();
   });
 
   // Top Control
   var topControl = $('#top-control');
   topControl.on('change', function(){
     var activeObject = canvas.getActiveObject();
+    topValue.value = parseFloat(this.value);
     activeObject.setTop(parseInt(this.value, 10)).setCoords();
     canvas.renderAll();
+    updateControls();
+  });
+
+  // top Input
+  var topValue = $('#topValue');
+  topValue.on('change', function(){
+    var activeObject = canvas.getActiveObject();
+    topControl.value = parseFloat(this.value);
+    activeObject.setTop(parseFloat(this.value)).setCoords();
+    canvas.renderAll();
+    updateControls();
   });
 
   // Left Control
   var leftControl = $('#left-control');
   leftControl.on('change', function(){
     var activeObject = canvas.getActiveObject();
+    leftValue.value = parseFloat(this.value);
     activeObject.setLeft(parseInt(this.value, 10)).setCoords();
     canvas.renderAll();
+    updateControls();
+  });
+
+  // Left Input
+  var leftValue = $('#leftValue');
+  leftValue.on('change', function(){
+    var activeObject = canvas.getActiveObject();
+    leftControl.value = parseFloat(this.value);
+    activeObject.setTop(parseFloat(this.value)).setCoords();
+    canvas.renderAll();
+    updateControls();
   });
 
   //
@@ -256,13 +294,21 @@ $(document).on('ready page:load', function() {
     angleControl.val(
         parseFloat(activeObject.getAngle())
     );
+    angleValue.val(
+        parseFloat(activeObject.getAngle())
+    );
     leftControl.val(
+        parseFloat(activeObject.getLeft())
+    );
+    leftValue.val(
         parseFloat(activeObject.getLeft())
     );
     topControl.val(
         parseFloat(activeObject.getTop())
     );
-
+    topValue.val(
+        parseFloat(activeObject.getTop())
+    );
   }
 
   // Pass values from canvas events
@@ -343,7 +389,7 @@ $(document).on('ready page:load', function() {
     togglePaletteOnly: true,
     togglePaletteMoreText: 'more',
     togglePaletteLessText: 'less',
-    color: 'blanchedalmond',
+    color: 'black',
     palette: [
         ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
         ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
@@ -357,19 +403,21 @@ $(document).on('ready page:load', function() {
   });
 
     console.log($("#togglePaletteOnly").spectrum("get"));
-    var color = $("#togglePaletteOnly").spectrum("get");
+    // var color = $("#togglePaletteOnly").spectrum("get");
 
-  $('#togglePaletteOnly').on('hide.spectrum', function (e, tinycolor) {
-  //   console.log(e);
-  //   console.log(tinycolor.toHexString());
-  //   var activeObject = canvas.getActiveObject();
-  //   if (activeObject && activeObject.type === 'text') {
-  //     console.log(activeObject);
+  $('#togglePaletteOnly').on('move.spectrum', function (e, tinycolor) {
+    // console.log(e);
+    // console.log(tinycolor.toHexString());
+    var activeObject = canvas.getActiveObject();
+    var color = tinycolor.toHexString();
+    if (activeObject && activeObject.type === 'text') {
+      console.log(activeObject);
+      console.log(color);
   //     console.log($('#fontFamily > span.selection').text());
-  //     activeObject.fontFamily = $('#fontFamily > span.selection').val();
-  //     console.log(activeObject);
-  //     canvas.renderAll();
-  //   }
+      activeObject.fill = color;
+      console.log(activeObject);
+      canvas.renderAll();
+    }
   });
 
 
