@@ -16,6 +16,8 @@ $(document).on('ready page:load', function() {
   // Builder
 
   var canvas = this.__canvas = new fabric.Canvas('c');
+  // var canvas = new fabric.Canvas('c');
+  // var canvas = this.__canvas
   fabric.Object.prototype.transparentCorners = false;
 
   //
@@ -113,6 +115,42 @@ $(document).on('ready page:load', function() {
     }
   });
 
+  // Move object forward and back
+  //
+  // Forward
+  var $bringForward = $('#bringForward');
+
+  $bringForward.on('click', function(e){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.bringForward();
+      canvas.renderAll();
+    }
+  });
+
+  // Back
+  var $sendBackwards = $('#sendBackwards');
+
+  $sendBackwards.on('click', function(e){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.sendBackwards();
+      canvas.renderAll();
+    }
+  });
+
+  // Center
+  var $center = $('#center');
+
+  $center.on('click', function(e){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.center();
+      activeObject.setCoords();
+      canvas.renderAll();
+    }
+  });
+
   // Font Family
   $(".dropdown-menu li a").click(function(){
     $(this).parents(".dropdown").find('.selection').text($(this).text());
@@ -123,10 +161,7 @@ $(document).on('ready page:load', function() {
   $('#font_drop').on('hidden.bs.dropdown', function (e) {
     var activeObject = canvas.getActiveObject();
     if (activeObject && activeObject.type === 'text') {
-      console.log(activeObject);
-      console.log($('#fontFamily > span.selection').text());
       activeObject.fontFamily = $('#fontFamily > span.selection').val();
-      console.log(activeObject);
       canvas.renderAll();
     }
   });
@@ -349,7 +384,7 @@ $(document).on('ready page:load', function() {
       localStorage.setItem("imgData",  canvas.toDataURL('png'));
     }
   });
-  
+
   // $('.upload').on('click', function(e){
   //    alert( e.isDefaultPrevented() || e.isPropagationStopped());
   //   handleImage(e);
@@ -400,20 +435,11 @@ $(document).on('ready page:load', function() {
     ]
   });
 
-    console.log($("#togglePaletteOnly").spectrum("get"));
-    // var color = $("#togglePaletteOnly").spectrum("get");
-
   $('#togglePaletteOnly').on('move.spectrum', function (e, tinycolor) {
-    // console.log(e);
-    // console.log(tinycolor.toHexString());
     var activeObject = canvas.getActiveObject();
     var color = tinycolor.toHexString();
     if (activeObject && activeObject.type === 'text') {
-      console.log(activeObject);
-      console.log(color);
-  //     console.log($('#fontFamily > span.selection').text());
       activeObject.fill = color;
-      console.log(activeObject);
       canvas.renderAll();
     }
   });
