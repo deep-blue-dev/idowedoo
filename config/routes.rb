@@ -48,6 +48,4 @@ Rails.application.routes.draw do
 # last end here
   # get 'cart' => 'pages#cart', as: :cart
 
-
-
 end
