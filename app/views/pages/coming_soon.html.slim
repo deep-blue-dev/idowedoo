@@ -1,0 +1,94 @@
+﻿doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title SuperFine | Multi-purpose HTML5 Template
+    meta content=("SuperFine | Multi-purpose HTML5 Template") name="description" /
+    meta content="IT-RAYS" name="author" /
+    = csrf_meta_tags
+    // Mobile Meta
+    meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" /
+    // Put favicon.ico and apple-touch-icon(s).png in the images folder
+    link href="assets/images/favicon.ico" rel=("shortcut icon") /
+    // CSS StyleSheets
+    link href="https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel="stylesheet" type="text/css" /
+    link href="assets/css/assets.css" rel="stylesheet" /
+    link href="assets/css/style.css" rel="stylesheet" /
+    link#theme_css href="assets/css/light.css" rel="stylesheet" /
+    //[if lt IE 9]
+      | <script type="text/javascript" src="assets/js/html5.js"></script
+    // Skin CSS file
+    link#skin_css href="assets/css/skins/default.css" rel="stylesheet" /
+
+
+    sass:
+      .transparent-white
+        background: rgba(255, 255, 255, 0.9)
+
+
+  body.soon-page
+
+    #contentWrapper
+      .container
+        .row.transparent-white
+          .clearfix.over-hidden
+            // Logo start
+            .logo.soon-logo.shape
+              h1 Idowedoo
+              a href="index.html"
+                img alt="idowedoo" height="150px" src="case.png" /
+          // Logo end
+          .t-center
+            .soon-heading
+              h1.bold.soon-lg-head We’ll be back Soon
+              h2.bold.uppercase This site is under construction
+              h3.uppercase We Will Reach you very soon!
+            #holder
+              .count-down
+                .digits
+            .soon-form
+              = form_tag '#'
+                = hidden_field_tag :authenticity_token, form_authenticity_token
+                input.shape name="email" placeholder=("Enter Your Email") required="required" type="text"
+                input.btn.btn-xl.main-bg.shape.btn-soon type="button" value="Subscribe" data-disable-with='Thanks'
+
+
+      // Content End
+      .container
+        .row
+          // footer social links right cell start
+          .centered.padding-vertical-25
+          .centered.padding-vertical-25
+            ul.social-list.minimal-socials
+              li.lg-icon.white-border.shape
+                a.fa.fa-dribbble.white href="#" 
+              li.lg-icon.white-border.shape
+                a.fa.fa-facebook.white href="#" 
+              li.lg-icon.white-border.shape
+                a.fa.fa-linkedin.white href="#" 
+              li.lg-icon.white-border.shape
+                a.fa.fa-skype.white href="#" 
+              li.lg-icon.white-border.shape
+                a.fa.fa-twitter.white href="#" 
+          // footer social links right cell end
+          .clearfix.margin-bottom-15
+          // footer copyrights left cell
+          .copyrights.centered.white
+            | © Copyrights
+            b.main-color SuperFine
+            | 2015. All rights reserved.
+
+    script src="assets/js/assets.min.js" type="text/javascript" 
+
+    script src="assets/js/script.js" type="text/javascript"
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+    coffee:
+      $('form input[type="button"]').on 'click', (e)->
+        e.stopPropagation()
+        e.preventDefault()
+
+        values = $('.soon-form form').serialize()
+
+        $.post '/', values, (data)->
+                  $('.soon-heading > h2.bold.uppercase').fadeOut 'slow', ->
+                    $('.bold.soon-lg-head').text('Thank you for your interest.')

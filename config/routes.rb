@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
 
+  root 'pages#coming_soon'
+  get '/' => 'pages#coming_soon'
+  post '/' => 'pages#coming_soon'
 
+  get 'order_items/create'
+
+  get 'charges/new'
+  get 'charges/create'
+  get 'orders/index'
+  post 'orders/create'
+  get 'orders/show'
+  resources :orders
+  resources :order_items
+  resources :products
+  resources :charges
+  resources :users, only: [:new, :show, :edit]
+  resources :cases, only: [:new, :show, :create]
   devise_for :users
 
   devise_scope :user do
@@ -15,12 +31,11 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'learn' => 'pages#learn', as: :learn
-  get '/' => 'pages#coming-soon'
+  get 'cart' => 'pages#cart', as: :cart
   get 'index' => 'pages#index', as: :index
 
   # You can have the root of your site routed with "root"
 
-  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
