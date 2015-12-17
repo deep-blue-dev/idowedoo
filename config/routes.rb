@@ -31,22 +31,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :show, :edit]
   resources :cases, only: [:new, :show, :create]
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+
   get 'learn' => 'pages#learn', as: :learn
-
-  # checkout routes - hg
-  # TODO 1
   # get '/' => 'pages#coming-soon'
-
   # get 'cart' => 'pages#cart', as: :cart
   get '/' => 'pages#coming-soon'
-
-  # TODO 2
-  # root 'pages#index'
-  # TODO for now using this one uncomment TODO 1 & 2
-  # root 'products#index'
-
 # last end here
   # get 'cart' => 'pages#cart', as: :cart
 

@@ -16,7 +16,7 @@
   <% @order_items.each do |order_item|%>
     <% render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
   <% end %>
-
 <% end %>
 
 <!-- TODO Make total_price sum of all total_price_per_item(qty * unit_price)  -->
+<h1>Total price:Order_Total ammount<%= @total %></h1>
