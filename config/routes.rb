@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'cart/show'
+  get 'carts/show'
 
   root 'pages#coming_soon'
   get '/' => 'pages#coming_soon'
