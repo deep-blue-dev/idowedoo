@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   # TODO take a look to set_product private method mayber set_order too??
-  before_action :set_order, only: [:new, :create]
+  # before_action :set_order, only: [:new, :create]
 
   def index
   end
@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def set_order
     # @product = Product.find(params[:id]) TODO
-    @order = Order.find(params[:id])
+    # @order = Order.find(params[:id])
   end
 
 end

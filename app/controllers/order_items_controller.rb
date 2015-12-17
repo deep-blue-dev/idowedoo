@@ -2,7 +2,7 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tests = Test.all
+    @order_items = OrderItem.all
   end
 
 
@@ -11,6 +11,7 @@ class OrderItemsController < ApplicationController
 
   def new
     @order_item = OrderItem.new
+    redirect_to new_order_item_path
   end
 
   def edit
