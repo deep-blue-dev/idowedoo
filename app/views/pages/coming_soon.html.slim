@@ -61,15 +61,15 @@ html
           .centered.padding-vertical-25
             ul.social-list.minimal-socials
               li.lg-icon.white-border.shape
-                a.fa.fa-dribbble.white href="#" 
+                a.fa.fa-dribbble.white href="#"
               li.lg-icon.white-border.shape
-                a.fa.fa-facebook.white href="#" 
+                a.fa.fa-facebook.white href="#"
               li.lg-icon.white-border.shape
-                a.fa.fa-linkedin.white href="#" 
+                a.fa.fa-linkedin.white href="#"
               li.lg-icon.white-border.shape
-                a.fa.fa-skype.white href="#" 
+                a.fa.fa-skype.white href="#"
               li.lg-icon.white-border.shape
-                a.fa.fa-twitter.white href="#" 
+                a.fa.fa-twitter.white href="#"
           // footer social links right cell end
           .clearfix.margin-bottom-15
           // footer copyrights left cell
@@ -78,7 +78,7 @@ html
             b.main-color SuperFine
             | 2015. All rights reserved.
 
-    script src="assets/js/assets.min.js" type="text/javascript" 
+    script src="assets/js/assets.min.js" type="text/javascript"
 
     script src="assets/js/script.js" type="text/javascript"
     script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
@@ -86,7 +86,6 @@ html
       $('form input[type="button"]').on 'click', (e)->
         e.stopPropagation()
         e.preventDefault()
-
         values = $('.soon-form form').serialize()
 
         $.post '/', values, (data)->
