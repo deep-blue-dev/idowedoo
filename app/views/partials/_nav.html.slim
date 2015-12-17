@@ -19,11 +19,11 @@ nav.navbar.navbar-default
           button.btn.btn-default type="submit" Submit
 
       ul.nav.navbar-nav.navbar-right
-        li.btn class="#{'active' if current_page?(learn_path)}"
-          = link_to 'Learn More', :learn
-        li.btn
-          a href="#" Track your Order
-        li.btn class="#{'active' if current_page?(sign_in_path)}"
-          = link_to 'Sign In', sign_in_path
-        li.btn class="#{'active' if current_page?(new_case_path)}"
-          = link_to "Get Started", new_case_path
+        li
+          = link_to 'Learn More', :learn, class:"btn #{'active' if current_page?(learn_path)}"
+        li
+          a class="btn" href="#" Track your Order
+        li
+          = link_to 'Sign In', sign_in_path, class:"btn #{'active' if current_page?(sign_in_path)}"
+        li
+          = link_to "Get Started", new_case_path, class:"btn #{'active' if current_page?(sign_in_path)}"
