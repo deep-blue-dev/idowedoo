@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   belongs_to :case
   belongs_to :order_status
   has_many :order_items
-  has_one :product
+
 
   #validations
 

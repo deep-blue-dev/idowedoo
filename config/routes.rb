@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :order_items
   resources :products
   resources :charges
+  resource :cart, only: [:show]
   resources :users, only: [:new, :show, :edit]
   resources :cases, only: [:new, :show, :create]
   devise_for :users
@@ -38,10 +39,9 @@ Rails.application.routes.draw do
   # TODO 1
   # get '/' => 'pages#coming-soon'
 
-  get 'cart' => 'pages#cart', as: :cart
+  # get 'cart' => 'pages#cart', as: :cart
   get '/' => 'pages#coming-soon'
 
-  get 'index2' => 'pages#index', as: :hector
   # TODO 2
   # root 'pages#index'
   # TODO for now using this one uncomment TODO 1 & 2
