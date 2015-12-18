@@ -6,6 +6,13 @@ $(document).on('ready page:load', function() {
 
   window.debug = true;
 
+  // Initialize the canvas
+  var canvas = this.__canvas = new fabric.Canvas('c');
+  fabric.Object.prototype.transparentCorners = false;
+
+  // Set the canvas size
+  updateCanvasSize();
+
   // Tabs
 
   $('.tab-content div').click(function (e) {
@@ -15,27 +22,23 @@ $(document).on('ready page:load', function() {
 
   // Builder
 
-  var canvas = this.__canvas = new fabric.Canvas('c');
-  // var canvas = new fabric.Canvas('c');
-  // var canvas = this.__canvas
-  fabric.Object.prototype.transparentCorners = false;
+  // Set the canvas size when window is resized
+  $(window).on('resize', function(){
+    updateCanvasSize();
+  });
 
-  //
-  //var rect = new fabric.Rect({
-  //  width: 100,
-  //  height: 100,
-  //  top: 100,
-  //  left: 100,
-  //  fill: 'rgba(255,0,0,0.5)'
-  //});
-
-  //canvas.add(rect).setActiveObject(rect);
-  //var text = new fabric.Text('Hello.. Nurse!', { left: 100, top: 100 });
-
-  //canvas.add(text);
-  //fabric.Image.fromURL('data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7', function(oImg) {
-  //  canvas.add(oImg);
-  //},{top: 100, left: 100});
+  // Get the canvas height and width dynamically
+  function updateCanvasSize() {
+    var $canvasHeight = $('.canvas-area')[0].clientWidth;
+    var $canvasWidth = $('.canvas-area')[0].clientWidth;
+    $('.upper-canvas').width = $('.canvas-area')[0].clientWidth;
+    $('.upper-canvas').height = $('.canvas-area')[0].clientWidth;
+    $('.canvas-container').width = $('.canvas-area')[0].clientWidth;
+    $('.canvas-container').height = $('.canvas-area')[0].clientWidth;
+    canvas.setWidth($canvasHeight);
+    canvas.setHeight($canvasWidth);
+    canvas.calcOffset();
+  }
 
   //
   // Text Controls
@@ -183,7 +186,7 @@ $(document).on('ready page:load', function() {
   // Listen to drop event
   $droparea.on('drop', function(e){
     stopEvent(e);
-    dropFile(e)
+    dropFile(e);
   });
 
   // Grab file from drop event then add to canvas
@@ -191,9 +194,9 @@ $(document).on('ready page:load', function() {
 
     var file = "";
 
-    if (e.originalEvent.dataTransfer != null){
+    if (e.originalEvent.dataTransfer !== null){
       file = URL.createObjectURL(e.originalEvent.dataTransfer.files[0]);
-      if (e.target.files != null){
+      if (e.target.files !== null){
         file = URL.createObjectURL(e.target.files[0]);
       }
     }
