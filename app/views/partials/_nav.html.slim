@@ -20,7 +20,7 @@ nav.navbar.navbar-default
 
       ul.nav.navbar-nav.navbar-right
         li
-          = link_to "#{current_order.order_items.size} Items in Cart (#{number_to_currency current_order.subtotal})", cart_path, class: 'btn'
+          = render 'layouts/cart_text.html.erb'
         li
           = link_to 'Learn More', :learn, class:"btn #{'active' if current_page?(learn_path)}"
         li

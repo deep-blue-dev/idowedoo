@@ -1,12 +1,8 @@
 class OrderItemsController < ApplicationController
   before_action :set_current_order, only:[:create, :update, :destroy]
-  ## TODO fix
-  # add cart link in /products/index (missing template issue)
+
 
   def create
-    p "#****************"
-    p @order.id
-    p "#****************"
     @order_item = @order.order_items.new(order_item_params)
     @order.save
     session[:order_id] = @order.id
@@ -28,7 +24,7 @@ class OrderItemsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def set_current_order
-      @order = current_order # this way no need to put it in every method (create, update, destroy)
+      @order = current_order
     end
 
     def order_item_params

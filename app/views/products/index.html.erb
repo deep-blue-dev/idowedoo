@@ -1,4 +1,4 @@
-<div class="product-index">
+<!-- <!- -  <div class="product-index">
   <h1>List our cases</h1>
     <table>
       <thead>
@@ -6,24 +6,33 @@
           <th>Name</th>
           <th>Price</th>
           <th>Description</th>
-          <!-- <th>Status</th> -->
+          <!- - <th>Status</th>
         </tr>
       </thead>
       <tbody>
-       <% @products.each do |p| %>
+       < % @products.each do |p| %>
         <tr>
-          <td><%= p.name %></td>
-          <td><%= p.price %></td>
+          <td>< %= p.name %></td>
+          <td>< %= p.price %></td>
           <td><p>
-              <%= p.description %>
+              < %= p.description %>
               </p>
           </td>
-          <!-- <td>< %= p.status %></td> -->
-          <!-- TODO fix this link (missing template issue) -->
-          <td><%= link_to "Add to cart", new_order_item_path(id: p.id) %> </td>
+          <! - - <td>< %= p.status %></td>
+          <!- - TODO fix this link (missing template issue) - -
+          <td>< % = link_to "Add to cart", new_order_item_path(id: p.id) % > </td>
         </tr>
 
-        <% end %>
+        < % end % >
       </tbody>
     </table>
-</div>
+</div> -->
+
+<h3 class="text-center">Cases</h3>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <% @products.each do |product| %>
+        <%= render "product_row", product: product, order_item: @order_item %>
+      <% end %>
+    </div>
+  </div>

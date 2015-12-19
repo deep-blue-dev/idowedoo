@@ -444,7 +444,4 @@ $(document).on('ready page:load', function() {
     }
   });
 
->>>>>>> ed7fc41758a1fb58c1c86c31aa0efe22ccfdacc2
-
-
 });
