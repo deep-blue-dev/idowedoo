@@ -8,10 +8,32 @@ $(document).on('ready page:load', function() {
 
   // Initialize the canvas
   var canvas = this.__canvas = new fabric.Canvas('c');
+
+
   fabric.Object.prototype.transparentCorners = false;
 
   // Set the canvas size
   updateCanvasSize();
+
+
+  // Currently hardcode phone
+  fabric.loadSVGFromURL('../assets/images/nexus5x-template.svg', function(objects, options) {
+
+    var phone = fabric.util.groupSVGElements(objects, options);
+
+    phone.set({
+      left: canvas.height * 0.25,
+      scaleY: (canvas.width / phone.height),
+      scaleX: (canvas.width / phone.height)
+    });
+
+    canvas.clipTo = ctx => phone.render(ctx);
+    canvas.calcOffset();
+    canvas.renderAll();
+  });
+
+
+
 
   // Tabs
 
@@ -120,6 +142,7 @@ $(document).on('ready page:load', function() {
 
   // Move object forward and back
   //
+
   // Forward
   var $bringForward = $('#bringForward');
 
@@ -209,9 +232,9 @@ $(document).on('ready page:load', function() {
 
     var file = "";
 
-    if (e.originalEvent.dataTransfer !== null){
+    if (e.originalEvent.dataTransfer != null){
       file = URL.createObjectURL(e.originalEvent.dataTransfer.files[0]);
-      if (e.target.files !== null){
+      if (e.target.files != null){
         file = URL.createObjectURL(e.target.files[0]);
       }
     }
@@ -385,7 +408,6 @@ $(document).on('ready page:load', function() {
   function stopEvent (e){
     e.preventDefault();
     e.stopPropagation();
-    debug([e]);
   }
 
 
