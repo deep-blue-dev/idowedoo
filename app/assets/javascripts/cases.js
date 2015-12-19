@@ -158,6 +158,7 @@ $(document).on('ready page:load', function() {
   $(".dropdown-menu li a").click(function(){
     $(this).parents(".dropdown").find('.selection').text($(this).text());
     $(this).parents(".dropdown").find('.selection').val($(this).text());
+
   });
 
   var fontControl = $('.selection');
@@ -165,6 +166,20 @@ $(document).on('ready page:load', function() {
     var activeObject = canvas.getActiveObject();
     if (activeObject && activeObject.type === 'text') {
       activeObject.fontFamily = $('#fontFamily > span.selection').val();
+      canvas.renderAll();
+    }
+  });
+
+  //Text outline
+
+  //
+
+
+  $('#strokeSelect li a').on('click', function (e) {
+    var stroke = parseFloat(e.target.dataset.stroke);
+    var activeObject = canvas.getActiveObject();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.strokeWidth = stroke;
       canvas.renderAll();
     }
   });
@@ -420,7 +435,7 @@ $(document).on('ready page:load', function() {
   //})
 
   // Spectrum color picker
-  $("#togglePaletteOnly").spectrum({
+  $("#togglePaletteOnly, #strokePalette").spectrum({
     showPaletteOnly: true,
     togglePaletteOnly: true,
     togglePaletteMoreText: 'more',
@@ -447,6 +462,14 @@ $(document).on('ready page:load', function() {
     }
   });
 
+  $('#strokePalette').on('move.spectrum', function (e, tinycolor) {
+    var activeObject = canvas.getActiveObject();
+    var color = tinycolor.toHexString();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.stroke = color;
+      canvas.renderAll();
+    }
+  });
 
 
 });

@@ -49,24 +49,27 @@
                 <li><a href="#" >Arial</a></li>
                 <li><a href="#" >Times New Roman</a></li>
               </ul>
+              <input type='text' id="togglePaletteOnly" />
             </div>
-            <input type='text' id="togglePaletteOnly" />
           </p>
 
 
           <!--textOutline-->
           <p>
             <label for="textOutline">Add an outline</label>
-            <div class="dropdown">
+            <div id="strokeSelect" class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                No Outline
+                <!-- No outline -->
+                <span class="selection" >No outline</span>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
+                <li><a data-stroke="0" href="#">No outline</a></li>
+                <li><a data-stroke="1" href="#">Thin outline</a></li>
+                <li><a data-stroke="1.5" href="#">Medium outline</a></li>
+                <li><a data-stroke="2" href="#">Thick outline</a></li>
               </ul>
+              <input type='text' id="strokePalette" />
             </div>
           </p>
 
