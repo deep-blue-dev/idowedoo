@@ -13,9 +13,14 @@
     There are no items in your shopping cart. Please <%= link_to "Get back to index of products", products_path %> and add some cases to your
   </p>
 <% else %>
+  <% p "*************" %>
+  <% p order_items %>
+  <% p "*******122" %>
   <% @order_items.each do |order_item|%>
-    <% render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
+    <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
+
   <% end %>
+  <!-- Testing of Order_items each loop  -->
 <% end %>
 
 <!-- TODO Make total_price sum of all total_price_per_item(qty * unit_price)  -->
