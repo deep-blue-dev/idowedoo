@@ -1,3 +1,5 @@
+
+
 // $('#writesomething').on('keyup', function(e) {
 //     $('#appear').html($(this).val().draggable());
 //  });
@@ -174,8 +176,41 @@ $(document).on('ready page:load', function() {
       activeObject.center();
       activeObject.setCoords();
       canvas.renderAll();
+      updateControls();
     }
   });
+
+  //Delete object from canvas
+  var $delete = $('#delete');
+  $delete.on('click', function(e){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.remove();
+      activeObject.setCoords();
+      canvas.renderAll();
+    }
+  });
+// *****************************************************//
+  // Delete object on delete keypress but
+  // it has unwanted behavior -- Won't do
+
+  // window.onkeydown = onKeyDownHandler;
+  //
+  // function onKeyDownHandler(e) {
+  //   console.log(e.keyCode);
+  //    switch (e.keyCode) {
+  //       case 8: // delete
+  //          var activeObject = canvas.getActiveObject();
+  //          if (activeObject) {
+  //            canvas.remove(activeObject);
+  //            canvas.remove(activeObject);
+  //            canvas.renderAll();
+  //            return false;
+  //          }
+  //     }
+  //    return;
+  // }
+  //******************************************************//
 
   // Font Family
   $(".dropdown-menu li a").click(function(){
@@ -426,7 +461,7 @@ $(document).on('ready page:load', function() {
   });
 
   // $('.upload').on('click', function(e){
-  //    alert( e.isDefaultPrevented() || e.isPropagationStopped());
+  //    alert( e.isPropagationStopped()); //e.isDefaultPrevented()); || e.isPropagationStopped());
   //   handleImage(e);
   // });
   //
@@ -454,7 +489,6 @@ $(document).on('ready page:load', function() {
   //     reader.readAsDataURL(file);
   //
   // }
-  //})
 
   // Spectrum color picker
   $("#togglePaletteOnly, #strokePalette").spectrum({
