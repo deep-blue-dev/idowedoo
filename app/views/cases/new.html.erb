@@ -49,24 +49,27 @@
                 <li><a href="#" >Arial</a></li>
                 <li><a href="#" >Times New Roman</a></li>
               </ul>
+              <input type='text' id="togglePaletteOnly" />
             </div>
-            <input type='text' id="togglePaletteOnly" />
           </p>
 
 
           <!--textOutline-->
           <p>
             <label for="textOutline">Add an outline</label>
-            <div class="dropdown">
+            <div id="strokeSelect" class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                No Outline
+                <!-- No outline -->
+                <span class="selection" >No outline</span>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
+                <li><a data-stroke="0" href="#">No outline</a></li>
+                <li><a data-stroke="1" href="#">Thin outline</a></li>
+                <li><a data-stroke="1.5" href="#">Medium outline</a></li>
+                <li><a data-stroke="2" href="#">Thick outline</a></li>
               </ul>
+              <input type='text' id="strokePalette" />
             </div>
           </p>
 
@@ -97,7 +100,9 @@
 
       </div>
 
-      <div class="advanced-controls">
+      <a href="#advanceControlz" class="btn btn-default" data-toggle="collapse">Advanced Controls</a><br>
+      <br>
+      <div id="advanceControlz" class="advanced-controls collapse">
         <button id="bringForward" class="btn btn-default">
           <span class="glyphicon glyphicon-arrow-up"></span>
         </button>
@@ -106,7 +111,8 @@
         </button>
         <button id="center" class="btn btn-default">
           <span class="glyphicon glyphicon-screenshot"></span>
-        </button>
+        </button><br>
+        <br>
         <p>
           <label><span>Angle:</span> <input type="range" id="angle-control" value="0" min="0" max="360" step="5">
           </label>
@@ -135,12 +141,12 @@
   <!--canvas-->
   <div class="col-lg-6">
     <section class="canvas-area">
-      <div class="canvas-container" style="width: 300px; height: 300px; position: relative; -webkit-user-select: none;">
-        <canvas class="upper-canvas " width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none; cursor: default;">
-        </canvas>
-        <canvas id="c" width="300" height="300" style="border: 1px solid rgb(204, 204, 204); position: absolute; width: 300px; height: 300px; left: 0px; top: 0px; -webkit-user-select: none;" class="lower-canvas"></canvas>
-
-      </div>
+      <!-- <div class="canvas-container" style="width: 300px; height: 300px; position: relative; -webkit-user-select: none;"> -->
+        <!-- <canvas id="canvas1"class="upper-canvas "> -->
+        <!-- </canvas> -->
+        <!-- <canvas id="c" class="lower-canvas"></canvas> -->
+        <canvas id="c" width="300" height="300" style="border:1px solid #ccc"></canvas>
+      <!-- </div> -->
     </section>
   </div>
 
@@ -222,6 +228,7 @@
   </div>
 
 </div>
+
 <!-- iphone -->
 <!-- https://i.imgur.com/vVDji5h.png  -->
 <!-- ipad -->

@@ -6,6 +6,35 @@ $(document).on('ready page:load', function() {
 
   window.debug = true;
 
+  // Initialize the canvas
+  var canvas = this.__canvas = new fabric.Canvas('c');
+
+
+  fabric.Object.prototype.transparentCorners = false;
+
+  // Set the canvas size
+  updateCanvasSize();
+
+
+  // Currently hardcode phone
+  fabric.loadSVGFromURL('../assets/images/nexus5x-template.svg', function(objects, options) {
+
+    var phone = fabric.util.groupSVGElements(objects, options);
+
+    phone.set({
+      left: canvas.height * 0.25,
+      scaleY: (canvas.width / phone.height),
+      scaleX: (canvas.width / phone.height)
+    });
+
+    canvas.clipTo = ctx => phone.render(ctx);
+    canvas.calcOffset();
+    canvas.renderAll();
+  });
+
+
+
+
   // Tabs
 
   $('.tab-content div').click(function (e) {
@@ -15,27 +44,23 @@ $(document).on('ready page:load', function() {
 
   // Builder
 
-  var canvas = this.__canvas = new fabric.Canvas('c');
-  // var canvas = new fabric.Canvas('c');
-  // var canvas = this.__canvas
-  fabric.Object.prototype.transparentCorners = false;
+  // Set the canvas size when window is resized
+  $(window).on('resize', function(){
+    updateCanvasSize();
+  });
 
-  //
-  //var rect = new fabric.Rect({
-  //  width: 100,
-  //  height: 100,
-  //  top: 100,
-  //  left: 100,
-  //  fill: 'rgba(255,0,0,0.5)'
-  //});
-
-  //canvas.add(rect).setActiveObject(rect);
-  //var text = new fabric.Text('Hello.. Nurse!', { left: 100, top: 100 });
-
-  //canvas.add(text);
-  //fabric.Image.fromURL('data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7', function(oImg) {
-  //  canvas.add(oImg);
-  //},{top: 100, left: 100});
+  // Get the canvas height and width dynamically
+  function updateCanvasSize() {
+    var $canvasHeight = $('.canvas-area')[0].clientWidth;
+    var $canvasWidth = $('.canvas-area')[0].clientWidth;
+    $('.upper-canvas').width = $('.canvas-area')[0].clientWidth;
+    $('.upper-canvas').height = $('.canvas-area')[0].clientWidth;
+    $('.canvas-container').width = $('.canvas-area')[0].clientWidth;
+    $('.canvas-container').height = $('.canvas-area')[0].clientWidth;
+    canvas.setWidth($canvasHeight);
+    canvas.setHeight($canvasWidth);
+    canvas.calcOffset();
+  }
 
   //
   // Text Controls
@@ -117,6 +142,7 @@ $(document).on('ready page:load', function() {
 
   // Move object forward and back
   //
+
   // Forward
   var $bringForward = $('#bringForward');
 
@@ -155,6 +181,7 @@ $(document).on('ready page:load', function() {
   $(".dropdown-menu li a").click(function(){
     $(this).parents(".dropdown").find('.selection').text($(this).text());
     $(this).parents(".dropdown").find('.selection').val($(this).text());
+
   });
 
   var fontControl = $('.selection');
@@ -162,6 +189,20 @@ $(document).on('ready page:load', function() {
     var activeObject = canvas.getActiveObject();
     if (activeObject && activeObject.type === 'text') {
       activeObject.fontFamily = $('#fontFamily > span.selection').val();
+      canvas.renderAll();
+    }
+  });
+
+  //Text outline
+
+  //
+
+
+  $('#strokeSelect li a').on('click', function (e) {
+    var stroke = parseFloat(e.target.dataset.stroke);
+    var activeObject = canvas.getActiveObject();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.strokeWidth = stroke;
       canvas.renderAll();
     }
   });
@@ -183,7 +224,7 @@ $(document).on('ready page:load', function() {
   // Listen to drop event
   $droparea.on('drop', function(e){
     stopEvent(e);
-    dropFile(e)
+    dropFile(e);
   });
 
   // Grab file from drop event then add to canvas
@@ -367,7 +408,6 @@ $(document).on('ready page:load', function() {
   function stopEvent (e){
     e.preventDefault();
     e.stopPropagation();
-    debug([e]);
   }
 
 
@@ -417,7 +457,7 @@ $(document).on('ready page:load', function() {
   //})
 
   // Spectrum color picker
-  $("#togglePaletteOnly").spectrum({
+  $("#togglePaletteOnly, #strokePalette").spectrum({
     showPaletteOnly: true,
     togglePaletteOnly: true,
     togglePaletteMoreText: 'more',
@@ -444,4 +484,17 @@ $(document).on('ready page:load', function() {
     }
   });
 
+<<<<<<< HEAD
+=======
+  $('#strokePalette').on('move.spectrum', function (e, tinycolor) {
+    var activeObject = canvas.getActiveObject();
+    var color = tinycolor.toHexString();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.stroke = color;
+      canvas.renderAll();
+    }
+  });
+
+
+>>>>>>> f345d4360705f6615c3e1e6078c6f493ee2b11f5
 });
