@@ -15,20 +15,18 @@
   <% @order_items.each do |order_item| %>
     <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
   <% end %>
-
-  <% @total = number_to_currency current_order.subtotal %>
-
-
-  <h4>Order Total: <%= @total %></h4>
-  <% @total = current_order.subtotal %>
-  <form action="/charge" method="POST">
+  <% @county_tax = 10 %>
+  <h4>Subtotal: $<%= @subtotal %></h4>
+  <h4>Tax(<%= @county_tax %>%): $<%= @subtotal_tax  %></h4>
+  <h4>Order total: $<%= @order_total %></h4>
+<%= form_tag('/charge') do %>
     <script src='https://checkout.stripe.com/checkout.js'
             class="stripe-button"
             data-key="pk_test_uovOTYQuhtyMnwvrd6KuByHq"
             data-description="Get your case"
-            data-amount="<%= @total*100 %>"
+            data-amount="<%= @order_total*100 %>"
             data-locale="auto"></script>
-</form>
+<% end %>
   <!-- Testing of Order_items each loop  -->
 <% end %>
 

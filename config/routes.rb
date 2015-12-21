@@ -43,26 +43,27 @@
 # end
 
 Rails.application.routes.draw do
-  # NOTE hg routes
-    resource :cart, only: [:show]
-    get 'carts/show'
-
+  # NOTE hg's routes
+    resource :cart , only: [:show]
+    # get 'carts/show'
 
   root 'pages#coming_soon'
   get '/' => 'pages#coming_soon'
   post '/' => 'pages#coming_soon'
-
+  post '/charge' => 'charges#charge'
   get 'order_items/create'
 
-  get 'charges/new'
-  get 'charges/create'
+  # get 'charges/new'
+  # get 'charges/create'
+  # get '/charge' => 'charges#charge'
+
   get 'orders/index'
   post 'orders/create'
   get 'orders/show'
   resources :orders
   resources :order_items
   resources :products
-  resources :charges
+  resources :charges, only: [:index]
   resources :users, only: [:new, :show, :edit]
   resources :cases, only: [:new, :show, :create]
   devise_for :users
