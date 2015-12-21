@@ -484,8 +484,7 @@ $(document).on('ready page:load', function() {
     }
   });
 
-<<<<<<< HEAD
-=======
+
   $('#strokePalette').on('move.spectrum', function (e, tinycolor) {
     var activeObject = canvas.getActiveObject();
     var color = tinycolor.toHexString();
@@ -496,5 +495,4 @@ $(document).on('ready page:load', function() {
   });
 
 
->>>>>>> f345d4360705f6615c3e1e6078c6f493ee2b11f5
 });
