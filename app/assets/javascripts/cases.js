@@ -93,14 +93,15 @@ $(document).on('ready page:load', function() {
           scaleX: 0.5,
           scaleY: 0.5,
           fontWeight: '',
-          hasRotatingPoint: true
+          hasRotatingPoint: true,
+          lockUniScaling: true,
+          centeredScaling: true
         });
-
         // Add Fabric Text Object to Canvas
         canvas.add(fabricText);
-
-      }
-  );
+        canvas.setActiveObject(fabricText);
+        centerActiveObject();
+    });
 
   // Set the current value of text object to the input
   $textInput.keyup(function(){
@@ -171,14 +172,18 @@ $(document).on('ready page:load', function() {
   var $center = $('#center');
 
   $center.on('click', function(e){
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-      activeObject.center();
-      activeObject.setCoords();
-      canvas.renderAll();
-      updateControls();
-    }
+    centerActiveObject();
   });
+
+function centerActiveObject() {
+  var activeObject = canvas.getActiveObject();
+  if (activeObject) {
+    activeObject.center();
+    activeObject.setCoords();
+    canvas.renderAll();
+    updateControls();
+  }
+}
 
   //Delete object from canvas
   var $delete = $('#delete');
@@ -280,7 +285,10 @@ $(document).on('ready page:load', function() {
           left: fabric.util.getRandomInt(0, 200),
           top: fabric.util.getRandomInt(0, 400),
           angle: 0,
-          hasRotatingPoint: true
+          hasRotatingPoint: true,
+          //locks aspect ratio & scales from center
+          lockUniScaling: true,
+          centeredScaling: true
         }
     );
 
