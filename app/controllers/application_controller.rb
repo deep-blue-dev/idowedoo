@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
   # global order controller method
     def current_order
       if !session[:order_id].nil?
-        Order.find(session[:order_id])
+        begin
+          Order.find(session[:order_id])
+        rescue ActiveRecord::RecordNotFound
+          Order.new
+        end
       else
         Order.new
       end
