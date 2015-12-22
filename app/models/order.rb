@@ -29,7 +29,9 @@ class Order < ActiveRecord::Base
     def shipping
       return subtotal + 100.00
     end
-
+    def tracking
+      self.tracking_no = Time.now.to_i.to_s
+    end
   private
     def set_order_status
       self.order_status_id = 1

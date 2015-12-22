@@ -22,11 +22,13 @@
 <%= form_tag('/charge') do %>
     <script src='https://checkout.stripe.com/checkout.js'
             class="stripe-button"
-            data-key="pk_test_uovOTYQuhtyMnwvrd6KuByHq"
+            data-key="<%= App.first.stp_test_pk %>"
             data-description="Get your case"
             data-amount="<%= @order_total*100 %>"
             data-locale="auto"></script>
 <% end %>
+
+<!-- data-key="pk_test_uovOTYQuhtyMnwvrd6KuByHq" -->
   <!-- Testing of Order_items each loop  -->
 <% end %>
 

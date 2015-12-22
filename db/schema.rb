@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217214341) do
+ActiveRecord::Schema.define(version: 20151222185332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apps", force: :cascade do |t|
+    t.string   "stp_test_sk"
+    t.string   "stp_test_pk"
+    t.string   "stp_live_sk"
+    t.string   "stp_live_pk"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "cases", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -60,6 +69,7 @@ ActiveRecord::Schema.define(version: 20151217214341) do
     t.decimal  "shipping"
     t.decimal  "total_price"
     t.integer  "order_status_id"
+    t.string   "tracking_no"
   end
 
   add_index "orders", ["case_id"], name: "index_orders_on_case_id", using: :btree
