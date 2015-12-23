@@ -1,6 +1,8 @@
 class ChargesController < ApplicationController
   # Stripe backend
   Stripe.api_key = App.first.stp_test_sk
+  # Easypost
+  EasyPost.api_key = App.first.easy_test_sk
   # Data used for stripe
   before_action :set_current_order, only: [:charge]
 
@@ -8,6 +10,7 @@ class ChargesController < ApplicationController
   end
 
   def index
+    
   end
 
     def charge
@@ -24,7 +27,9 @@ class ChargesController < ApplicationController
         :currency => 'usd',
         :metadata => { :order_id => @order.id }
       )
+
       redirect_to charges_path
+
     # rescue Stripe::CardError => e
     #   redirect_to products_path
 
