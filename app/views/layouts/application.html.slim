@@ -21,16 +21,16 @@ html lang='en'
 
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = javascript_include_tag  '//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
   = csrf_meta_tags
-  / Spectrum color picker
-  
+
   body id=params[:controller] class=params[:action]
 
     = render 'partials/nav'
 
     .container
       = yield
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    
-    script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js" 
-    link href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css" rel="stylesheet" type="text/css" /
+
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css', 'data-turbolinks-track' => true

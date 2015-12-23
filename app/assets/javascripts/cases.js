@@ -33,23 +33,40 @@ $(document).on('ready page:load', function() {
   updateCanvasSize();
 
 
-  // Currently hardcode phone
-  fabric.loadSVGFromURL('../assets/images/nexus5x-template.svg', function(objects, options) {
 
-    var phone = fabric.util.groupSVGElements(objects, options);
 
-    phone.set({
-      left: canvas.height * 0.25,
-      scaleY: (canvas.width / phone.height),
-      scaleX: (canvas.width / phone.height)
+  function loadPhoneTemplate(){
+
+    // Currently hardcode phone
+    fabric.loadSVGFromURL('../assets/images/nexus5x-template.svg', function(objects, options) {
+
+      var phone = fabric.util.groupSVGElements(objects, options);
+
+      phone.set({
+        left: canvas.height * 0.25,
+        scaleY: (canvas.width / phone.height),
+        scaleX: (canvas.width / phone.height)
+      });
+
+      for(path in phone.paths){
+
+        phone.paths[0].__proto__.setFill('#337AB7');
+        console.log(path);
+      }
+
+      canvas.clipTo = function(ctx){
+        phone.render(ctx)
+      };
+      canvas.calcOffset();
+      canvas.renderAll();
+
+      window.phone = phone;
+      window.canvas = canvas;
     });
 
-    canvas.clipTo = function(ctx){
-      phone.render(ctx)
-    };
-    canvas.calcOffset();
-    canvas.renderAll();
-  });
+  }
+
+  window.loadPhone = loadPhoneTemplate;
 
 
   // Set the canvas size when window is resized
@@ -61,17 +78,15 @@ $(document).on('ready page:load', function() {
   function updateCanvasSize() {
 
     const $canvasArea = $('.canvas-area')[0];
-    const $canvasContainer = $('.canvas-container');
+    const $canvasContainer = $('.camb')
     const $upperCanvas = $('.upper-canvas');
 
-    var $canvasClientWidth = $canvasArea.clientWidth;
-    var $canvasHeight = $canvasClientWidth;
-    var $canvasWidth = $canvasClientWidth;
-
-    $upperCanvas.width = $canvasClientWidth;
-    $upperCanvas.height = $canvasClientWidth;
-    $canvasContainer.width = $canvasClientWidth;
-    $canvasContainer.height = $canvasClientWidth;
+    var $canvasHeight = $canvasArea.clientWidth;
+    var $canvasWidth = $canvasArea.clientWidth;
+    $upperCanvas.width = $canvasArea.clientWidth;
+    $upperCanvas.height = $canvasArea.clientWidth;
+    $('.canvas-container').width = $canvasArea.clientWidth;
+    $('.canvas-container').height = $canvasArea.clientWidth;
     canvas.setWidth($canvasHeight);
     canvas.setHeight($canvasWidth);
     canvas.calcOffset();
