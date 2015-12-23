@@ -32,39 +32,58 @@ $(document).on('ready page:load', function() {
    updateCanvasSize();
 
 
-   function loadPhoneTemplate(){
+   //
+   // Add Phone Case To Canvas
+   //
 
-     // Currently hardcode phone
-     fabric.loadSVGFromURL('../assets/images/nexus5x-template.svg', function(objects, options) {
+   // Add SVG To Canvas as a mask and center it
+   function loadPhoneCase(casePath){
 
-       var phone = fabric.util.groupSVGElements(objects, options);
+     // Use native fabric SVG Loader
+     fabric.loadSVGFromURL(casePath, function(objects, options) {
 
-       phone.set({
+       // Create Fabric Object from parsed SVG
+       var phoneCase = fabric.util.groupSVGElements(objects, options);
+
+       // Set phoneCase position to the center of the canvas
+       phoneCase.set({
          left: canvas.height * 0.25,
-         scaleY: (canvas.width / phone.height),
-         scaleX: (canvas.width / phone.height)
+         scaleY: (canvas.width / phoneCase.height),
+         scaleX: (canvas.width / phoneCase.height)
        });
 
-       for(path in phone.paths){
-
-         phone.paths[0].__proto__.setFill('#337AB7');
-         console.log(path);
-       }
-
+       // Mask the canvas to phoneCase
        canvas.clipTo = function(ctx){
-         phone.render(ctx)
+         debugger;
+         phoneCase.render(ctx)
        };
-       canvas.calcOffset();
+
+       // Refresh Canvas
        canvas.renderAll();
 
-       window.phone = phone;
-       window.canvas = canvas;
      });
 
    }
 
-   window.loadPhone = loadPhoneTemplate;
+   // Load Phone Case from Case Path Selection
+   const $caseSelection = $('.phone-case');
+   $caseSelection.on('click', function(e){
 
+     // Get casePath from the link
+     const casePath = this.dataset.casePath;
+
+     // Stop the event bubble
+     stopEvent(e);
+
+     // Call loadPhoneCase with the casePath
+     loadPhoneCase(casePath);
+
+   });
+
+
+   //
+   // Resize Canvas Handler
+   //
 
    // Set the canvas size when window is resized
    $(window).on('resize', function(){
@@ -89,10 +108,10 @@ $(document).on('ready page:load', function() {
      canvas.calcOffset();
    }
 
+
    //
    // Text Controls
    //
-
 
    //  Input
    //
@@ -514,7 +533,9 @@ $(document).on('ready page:load', function() {
    // log if debugging
    function debug (theArgs){
      if (window.debug === true) {
+
        console.log(theArgs);
+
      }
    }
 
