@@ -17,3 +17,18 @@
 //= require_tree .
 
 
+// dirty implementation of an existential operator
+function exists(object){
+  return (typeof object !== "undefined" && object !== null && object.length > 0)
+}
+
+// Checks what pages we are on so we can conditionally execute code
+
+function currentView(controllerString, actionString){
+
+  $controller = $('#' + controllerString);
+  $action = $('.' + actionString);
+
+  return ( exists($controller) && exists($action) )
+
+}
