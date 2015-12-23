@@ -58,7 +58,7 @@ $(document).on('ready page:load', function() {
        canvas.renderAll();
 
        window.phone = phone;
-       window.canvas = canvas;
+      //  window.canvas = canvas;
      });
 
    }
@@ -334,8 +334,8 @@ $(document).on('ready page:load', function() {
      stopEvent(e);
    });
 
-   // Spectrum color picker
-   $("#togglePaletteOnly, #strokePalette").spectrum({
+   // Spectrum color picker initializer
+   $("#togglePaletteOnly, #strokePalette, #caseColor").spectrum({
      showPaletteOnly: true,
      togglePaletteOnly: true,
      togglePaletteMoreText: 'more',
@@ -353,6 +353,7 @@ $(document).on('ready page:load', function() {
      ]
    });
 
+   // Change color of text
    $('#togglePaletteOnly').on('move.spectrum', function (e, tinycolor) {
      var activeObject = canvas.getActiveObject();
      var color = tinycolor.toHexString();
@@ -362,6 +363,7 @@ $(document).on('ready page:load', function() {
      }
    });
 
+   // Change color of text outline
    $('#strokePalette').on('move.spectrum', function (e, tinycolor) {
      var activeObject = canvas.getActiveObject();
      var color = tinycolor.toHexString();
@@ -369,6 +371,13 @@ $(document).on('ready page:load', function() {
        activeObject.stroke = color;
        canvas.renderAll();
      }
+   });
+
+   //Change color of phone case
+   $("#caseColor").on('move.spectrum', function (e, tinycolor) {
+     var color = tinycolor.toHexString();
+     canvas.backgroundColor = color;
+     canvas.renderAll();
    });
 
    // Advanced Controls
