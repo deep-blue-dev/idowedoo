@@ -2,7 +2,7 @@ class ChargesController < ApplicationController
   # Stripe backend
   Stripe.api_key = App.first.stp_test_sk
   # Data used for stripe
-
+  before_action :set_current_order, only: [:charge]
 
   def new
   end
@@ -11,14 +11,11 @@ class ChargesController < ApplicationController
   end
 
     def charge
-      p "Rescue Stripe Card Error!!!!!"
-
       @subtotal = current_order.subtotal.to_f
       @subtotal_tax = current_order.tax.to_f
       @order_total = @subtotal + @subtotal_tax
       @tracking_no = current_order.tracking
 
-      p @order_total*100
       @customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :card => params[:stripeToken]
@@ -26,15 +23,19 @@ class ChargesController < ApplicationController
       @charge = Stripe::Charge.create(
         :customer => @customer.id,
         :amount => (@order_total * 100).to_i,
-        :currency => 'usd'
+        :currency => 'usd',
+        :metadata => { :order_id => @order.id }
       )
-
-
       redirect_to charges_path
-
     # rescue Stripe::CardError => e
     #   redirect_to products_path
-      p "Rescue Stripe Card Error"
+
+  end
+
+  private
+
+  def set_current_order
+    @order = current_order
   end
 
 end
