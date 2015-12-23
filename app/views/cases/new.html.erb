@@ -9,12 +9,25 @@
 
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#text" aria-controls="text" role="tab" data-toggle="tab">Text</a></li>
-        <li role="presentation"><a href="#art" aria-controls="art" role="tab" data-toggle="tab">Art</a></li>
+        <li role="presentation" class="active">
+          <a href="#text" aria-controls="text" role="tab" data-toggle="tab">
+            <h4>Text</h4>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#art" aria-controls="art" role="tab" data-toggle="tab">
+            <h4>Images</h4>
+          </a>
+        </li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
+
+        <!---->
+        <!--Text Tab-->
+        <!---->
+
         <div role="tabpanel" class="tab-pane active" id="text">
 
           <!--textEnter-->
@@ -75,9 +88,12 @@
 
 
         </div>
-        <div role="tabpanel" class="tab-pane" id="art">
 
-          <button type="button" class="btn btn-primary btn-lg btn-block ">Browse Artwork</button>
+        <!---->
+        <!-- Image Tab -->
+        <!---->
+
+        <div role="tabpanel" class="tab-pane" id="image">
 
           <div class="drop-container">
             <div class="drop-area">
@@ -146,7 +162,7 @@
   <!--caseSelector-->
   <div class="col-lg-3">
     <div class="well">
-      <h3>Style and Design</h3>
+      <h4>Style and Design</h4>
 
       <!--caseStyle-->
       <p>
@@ -165,17 +181,18 @@
         <!-- List group -->
         <ul class="list-group">
           <li class="list-group-item">
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object" src="https://i.imgur.com/FgjwPME.png" alt="...">
-                </a>
+            <a class='phone-case' data-case-path=<%= image_path('nexus5x-template.svg') %>>
+
+              <div class="media">
+                <div class="media-left">
+                    <%= image_tag image_path('nexus5x-template.svg'), class: 'media-object', height: '64px'%>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Nexus 5X</h4>
+                  ...
+                </div>
               </div>
-              <div class="media-body">
-                <h4 class="media-heading">Iphone 6s</h4>
-                ...
-              </div>
-            </div>
+            </a>
           </li>
           <li class="list-group-item">
             <div class="media">

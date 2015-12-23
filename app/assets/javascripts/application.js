@@ -26,6 +26,8 @@ function exists(object){
 
 function currentView(controllerString, actionString){
 
+  // Made this way for clarity, why be clever.
+
   $controller = $('#' + controllerString);
   $action = $('.' + actionString);
 
