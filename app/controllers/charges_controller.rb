@@ -14,8 +14,6 @@ class ChargesController < ApplicationController
       @subtotal = current_order.subtotal.to_f
       @subtotal_tax = current_order.tax.to_f
       @order_total = @subtotal + @subtotal_tax
-      @tracking_no = current_order.tracking
-
       @customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :card => params[:stripeToken]

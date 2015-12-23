@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   #callbacks
   before_create :set_order_status
   before_save :update_subtotal
+  before_save :tracking
   #relations
   belongs_to :user
   belongs_to :case
@@ -33,6 +34,7 @@ class Order < ActiveRecord::Base
       self.tracking_no = Time.now.to_i.to_s
     end
   private
+
     def set_order_status
       self.order_status_id = 1
     end
