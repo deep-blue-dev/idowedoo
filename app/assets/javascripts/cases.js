@@ -405,20 +405,19 @@ $(document).on('ready page:load', function() {
 
    // Angle
    var angleControl = $('#angle-control');
-   angleControl.on('change', function () {
-         var activeObject = canvas.getActiveObject();
-         angleValue.value = parseFloat(this.value);
-         activeObject.setAngle(parseInt(this.value, 10)).setCoords();
-         canvas.renderAll();
-         updateControls();
-       }
-   );
+    angleControl.on('change', function () {
+      var activeObject = canvas.getActiveObject();
+      angleValue.value = Math.floor(parseFloat(this.value));
+      activeObject.setAngle(parseInt(this.value, 10)).setCoords();
+      canvas.renderAll();
+      updateControls();
+     });
 
    // Angle Input
    var angleValue = $('#angleValue');
    angleValue.on('change', function(){
      var activeObject = canvas.getActiveObject();
-     angleControl.value = parseFloat(this.value);
+     angleControl.value = Math.floor(parseFloat(this.value));
      activeObject.setAngle(parseFloat(this.value)).setCoords();
      canvas.renderAll();
      updateControls();
@@ -428,7 +427,7 @@ $(document).on('ready page:load', function() {
    var scaleControl = $('#scale-control');
    scaleControl.on('change', function(){
      var activeObject = canvas.getActiveObject();
-     scaleValue.value = parseFloat(this.value);
+     scaleValue.value = Math.floor(parseFloat(this.value));
      activeObject.scale(parseFloat(this.value)).setCoords();
      canvas.renderAll();
      updateControls();
@@ -438,7 +437,7 @@ $(document).on('ready page:load', function() {
    var scaleValue = $('#scaleValue');
    scaleValue.on('change', function(){
      var activeObject = canvas.getActiveObject();
-     scaleControl.value = parseFloat(this.value);
+     scaleControl.value = Math.floor(parseFloat(this.value));
      activeObject.scale(parseFloat(this.value)).setCoords();
      canvas.renderAll();
      updateControls();
@@ -448,7 +447,7 @@ $(document).on('ready page:load', function() {
    var topControl = $('#top-control');
    topControl.on('change', function(){
      var activeObject = canvas.getActiveObject();
-     topValue.value = parseFloat(this.value);
+     topValue.value = Math.floor(parseFloat(this.value));
      activeObject.setTop(parseInt(this.value, 10)).setCoords();
      canvas.renderAll();
      updateControls();
@@ -458,7 +457,7 @@ $(document).on('ready page:load', function() {
    var topValue = $('#topValue');
    topValue.on('change', function(){
      var activeObject = canvas.getActiveObject();
-     topControl.value = parseFloat(this.value);
+     topControl.value = Math.floor(parseFloat(this.value));
      activeObject.setTop(parseFloat(this.value)).setCoords();
      canvas.renderAll();
      updateControls();
@@ -468,7 +467,7 @@ $(document).on('ready page:load', function() {
    var leftControl = $('#left-control');
    leftControl.on('change', function(){
      var activeObject = canvas.getActiveObject();
-     leftValue.value = parseFloat(this.value);
+     leftValue.value = Math.floor(parseFloat(this.value));
      activeObject.setLeft(parseInt(this.value, 10)).setCoords();
      canvas.renderAll();
      updateControls();
@@ -478,8 +477,8 @@ $(document).on('ready page:load', function() {
    var leftValue = $('#leftValue');
    leftValue.on('change', function(){
      var activeObject = canvas.getActiveObject();
-     leftControl.value = parseFloat(this.value);
-     activeObject.setTop(parseFloat(this.value)).setCoords();
+     leftControl.value = Math.floor(parseFloat(this.value));
+     activeObject.setLeft(parseFloat(this.value)).setCoords();
      canvas.renderAll();
      updateControls();
    });
