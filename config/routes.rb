@@ -81,5 +81,6 @@ Rails.application.routes.draw do
   get 'learn' => 'pages#learn', as: :learn
   # get 'cart' => 'pages#cart', as: :cart
   get 'index' => 'pages#index', as: :index
+  get 'create' => 'pages#create', as: :create
 
 end
