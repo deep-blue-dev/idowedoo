@@ -9,12 +9,25 @@
 
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#text" aria-controls="text" role="tab" data-toggle="tab">Text</a></li>
-        <li role="presentation"><a href="#art" aria-controls="art" role="tab" data-toggle="tab">Art</a></li>
+        <li role="presentation" class="active">
+          <a href="#text" aria-controls="text" role="tab" data-toggle="tab">
+            <h4>Text</h4>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#image" aria-controls="image" role="tab" data-toggle="tab">
+            <h4>Images</h4>
+          </a>
+        </li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
+
+        <!---->
+        <!--Text Tab-->
+        <!---->
+
         <div role="tabpanel" class="tab-pane active" id="text">
 
           <!--textEnter-->
@@ -75,22 +88,20 @@
 
 
         </div>
-        <div role="tabpanel" class="tab-pane" id="art">
 
-          <button type="button" class="btn btn-primary btn-lg btn-block ">Browse Artwork</button>
-          <hr>
-          <label class="btn btn-default btn-lg btn-block upload" for="my-file-selector">
-              <input type="file" style="display:none;">
-              Upload your own
-          </label>
+        <!---->
+        <!-- Image Tab -->
+        <!---->
+
+        <div role="tabpanel" class="tab-pane" id="image">
 
           <div class="drop-container">
             <div class="drop-area">
               <div class="lead text-center">Drag Here to Upload</div>
-              <label class="btn btn-default btn-lg btn-block upload" for="my-file-selector">
-                  <input type="file" style="display:none;">
+              <input id='upload' type="file" accept="image/*" style="display: none">
+              <a id="fileUpload" class="btn btn-default btn-lg btn-block">
                   Click Here to Upload
-              </label>
+              </a>
               <small><em class="text-center">
                 By uploading an image you agree that you hold the right to reproduce and sell the design.</em></small>
             </div>
@@ -111,6 +122,9 @@
         </button>
         <button id="center" class="btn btn-default">
           <span class="glyphicon glyphicon-screenshot"></span>
+        </button>
+        <button id="delete" class="btn btn-default">
+          <span class="glyphicon glyphicon-trash"></span>
         </button><br>
         <br>
         <p>
@@ -141,32 +155,19 @@
   <!--canvas-->
   <div class="col-lg-6">
     <section class="canvas-area">
-      <!-- <div class="canvas-container" style="width: 300px; height: 300px; position: relative; -webkit-user-select: none;"> -->
-        <!-- <canvas id="canvas1"class="upper-canvas "> -->
-        <!-- </canvas> -->
-        <!-- <canvas id="c" class="lower-canvas"></canvas> -->
-        <canvas id="c" width="300" height="300" style="border:1px solid #ccc"></canvas>
-      <!-- </div> -->
+        <canvas id="c" width="300" height="300" style="border:1px solid #ccc "></canvas>
     </section>
   </div>
 
   <!--caseSelector-->
   <div class="col-lg-3">
     <div class="well">
-      <h3>Style and Design</h3>
+      <h4>Style and Design</h4>
 
       <!--caseStyle-->
       <p>
-        <label for="textOutline">Add an outline</label>
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">No Outline
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">HTML</a></li>
-          <li><a href="#">CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-        </ul>
-      </div>
+        <label for="textOutline">Change case color</label><br>
+        <input type='text' id="caseColor" />
       </p>
 
       <!--caseList-->
@@ -180,17 +181,18 @@
         <!-- List group -->
         <ul class="list-group">
           <li class="list-group-item">
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object" src="https://i.imgur.com/FgjwPME.png" alt="...">
-                </a>
+            <a class='phone-case' data-case-path=<%= image_path('nexus5x-template.svg') %>>
+
+              <div class="media">
+                <div class="media-left">
+                    <%= image_tag image_path('nexus5x-template.svg'), class: 'media-object', height: '64px'%>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Nexus 5X</h4>
+                  ...
+                </div>
               </div>
-              <div class="media-body">
-                <h4 class="media-heading">Iphone 6s</h4>
-                ...
-              </div>
-            </div>
+            </a>
           </li>
           <li class="list-group-item">
             <div class="media">
