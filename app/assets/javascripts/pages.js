@@ -1,7 +1,7 @@
 
 $(document).on('ready page:load', function() {
 
-  if ( currentView('cases', 'new') ) {
+  if ( currentView('pages', 'create') ) {
     initialize();
   }
 
