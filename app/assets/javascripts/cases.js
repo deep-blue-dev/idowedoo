@@ -2,7 +2,7 @@
 $(document).on('ready page:load', function() {
 
   if ( currentView('cases', 'new') ) {
-    initialize();
+    initialize()
   }
 
  function initialize(){
@@ -411,7 +411,7 @@ $(document).on('ready page:load', function() {
       activeObject.setAngle(parseInt(this.value, 10)).setCoords();
       canvas.renderAll();
       updateControls();
-<<<<<<< HEAD
+
     }
   );
 
@@ -639,10 +639,6 @@ $(document).on('ready page:load', function() {
     }
   });
 
-
-=======
-     });
-
    // Angle Input
    var angleValue = $('#angleValue');
    angleValue.on('change', function(){
@@ -799,5 +795,5 @@ $(document).on('ready page:load', function() {
      }
    });
  }
->>>>>>> master
+
 });

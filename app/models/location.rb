@@ -3,6 +3,10 @@ class Location < ActiveRecord::Base
   #scopes
   #callbacks
   #relations
+  belongs_to :order
+  belongs_to :user
   #validations
+
   #methods
+
 end

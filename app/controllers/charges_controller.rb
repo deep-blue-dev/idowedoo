@@ -10,10 +10,14 @@ class ChargesController < ApplicationController
   end
 
   def index
-    
   end
 
+    def shipping
+
+    end
+
     def charge
+      p "Stripe Started"
       @subtotal = current_order.subtotal.to_f
       @subtotal_tax = current_order.tax.to_f
       @order_total = @subtotal + @subtotal_tax
@@ -27,9 +31,52 @@ class ChargesController < ApplicationController
         :currency => 'usd',
         :metadata => { :order_id => @order.id }
       )
-
+      p "Stripe Ended"
+      p "*********************************"
       redirect_to charges_path
+      p "Easy Post started"
 
+      @location = Location.all.first
+
+      fromAddress = EasyPost::Address.create(
+      :company => 'EasyPost',
+      :street1 => '118 2nd Street',
+      :street2 => '4th Floor',
+      :city => 'San Francisco',
+      :state => 'CA',
+      :zip => '94105',
+      :phone => '415-528-7555'
+      )
+
+      toAddress = EasyPost::Address.create(
+      :name => @location.name,
+      :street1 => (@location.street_number + " " + @location.street),
+      :city => @location.city,
+      :state => @location.state,
+      :zip => @location.zipcode
+      )
+
+      parcel = EasyPost::Parcel.create(
+      :length => 9,
+      :width => 6,
+      :height => 2,
+      :weight => 10
+      )
+
+      shipment = EasyPost::Shipment.create(
+      :to_address => toAddress,
+      :from_address => fromAddress,
+      :parcel => parcel
+      )
+
+      shipment.rates.each do |rate|
+        puts (rate.carrier)
+        puts (rate.service)
+        puts (rate.rate)
+        puts (rate.id)
+          end
+    p "EasyPost ended"
+    p "<<<<<<<********************>>>>>"
     # rescue Stripe::CardError => e
     #   redirect_to products_path
 

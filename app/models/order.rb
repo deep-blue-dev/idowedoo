@@ -5,12 +5,13 @@ class Order < ActiveRecord::Base
   before_create :set_order_status
   before_save :update_subtotal
   before_save :tracking
+
   #relations
   belongs_to :user
   belongs_to :case
   belongs_to :order_status
   has_many :order_items
-
+  has_many :locations
 
   #validations
 
