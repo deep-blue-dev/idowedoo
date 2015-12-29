@@ -1,0 +1,22 @@
+// Location
+
+.icon-group
+  .icon
+    i.glyphicon.glyphicon-map-marker
+  .icon-content
+    .form-group
+      = text_field_tag :order_location, 'Add location', class:'form-control', name:''
+      = form_for @location, url: new_order_path, html: { method: :post } do |lf|
+        = lf.hidden_field :name
+        = lf.hidden_field :unit
+        = lf.hidden_field :street_number
+        = lf.hidden_field :street
+        = lf.hidden_field :city
+        = lf.hidden_field :state
+        = lf.hidden_field :zipcode
+        = lf.hidden_field :country
+        = lf.hidden_field :long_address
+
+.location-group
+  #location_addr
+  #location_map style="display: none"

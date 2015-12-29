@@ -45,6 +45,8 @@
 Rails.application.routes.draw do
   # NOTE hg's routes
     resource :cart , only: [:show]
+    get 'carts/address'
+
     # get 'carts/show'
 
   root 'pages#coming_soon'

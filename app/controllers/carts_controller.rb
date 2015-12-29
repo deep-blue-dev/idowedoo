@@ -12,4 +12,7 @@ class CartsController < ApplicationController
   def charge
   end
 
+  def address
+    @location = Location.new
+  end
 end
