@@ -18,8 +18,8 @@
 /log/*
 !/log/.keep
 /tmp
-database.yml
 .DS_Store
+config/database.yml
 
 # Ignore application configuration
 /config/application.yml
