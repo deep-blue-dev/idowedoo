@@ -6,17 +6,19 @@ Rails.application.routes.draw do
 
   get 'order_items/create'
 
-  get 'charges/new'
+
   get 'charges/create'
+
   get 'orders/index'
   post 'orders/create'
   get 'orders/show'
+
   resources :orders
   resources :order_items
   resources :products
   resources :charges
-  resources :users, only: [:new, :show, :edit]
   resources :cases, only: [:new, :show, :create]
+
   devise_for :users
 
   devise_scope :user do
@@ -25,7 +27,6 @@ Rails.application.routes.draw do
     get "sign_out", :to => "devise/sessions#destroy", as: :sign_out
   end
 
-  resources :users, only: [:new, :show, :edit]
   resources :cases, only: [:new, :show, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
