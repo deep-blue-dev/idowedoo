@@ -55,22 +55,25 @@ class CartsController < ApplicationController
     )
 
     shipment.rates.each do |rate|
-      puts "Shipment rates each:"
+      # puts "Shipment rates each:"
       puts (rate.carrier)
       puts (rate.service)
-      puts (rate.rate)
-      puts (rate.id)
+      # puts (rate.rate)
+      # puts (rate.id)
 
       @shipping = rate.rate
+      p @shipping
         end
   # p "EasyPost ended"
   # p  "How much shipping gonna cost coming in"
   @shipping
   # p "<<<<<<<********************>>>>>"
   # p "3"
-  # p "<<<<<<<********************>>>>>"
-  # p "EasyPost ended in CONTROLLER"
-  # p "<<<<<<<********************>>>>>"
+  p "<<<<<<<********************>>>>>"
+  p "EasyPost ended in CONTROLLER"
+  p 'hello'
+  p @shipping
+  p "<<<<<<<********************>>>>>"
   @order_total = @subtotal + @subtotal_tax + @shipping.to_f
   end
 

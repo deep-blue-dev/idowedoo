@@ -46,11 +46,11 @@ class ChargesController < ApplicationController
       )
 
       shipment.rates.each do |rate|
-        puts "Shipment rates each:"
-        puts (rate.carrier)
-        puts (rate.service)
-        puts (rate.rate)
-        puts (rate.id)
+        # puts "Shipment rates each:"
+        # puts (rate.carrier)
+        # puts (rate.service)
+        # puts (rate.rate)
+        # puts (rate.id)
 
         @shipping = rate.rate
           end
