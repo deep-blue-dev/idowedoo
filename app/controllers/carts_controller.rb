@@ -15,4 +15,8 @@ class CartsController < ApplicationController
   def address
     @location = Location.new
   end
+
+  def location
+    p params
+  end
 end

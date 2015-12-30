@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :products
   resources :charges
   resources :cases, only: [:new, :show, :create]
+  resources :locations
 
   devise_for :users
 
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
   get 'index' => 'pages#index', as: :index
   get 'create' => 'pages#create', as: :create
 
+  get 'carts/address'
+  post 'carts/location'
   # You can have the root of your site routed with "root"
 
 
