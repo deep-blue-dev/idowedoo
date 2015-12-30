@@ -9,13 +9,15 @@ Rails.application.routes.draw do
   get '/cart2' => 'carts#show'
   get 'order_items/create'
 
+  get 'cart/address'=> 'carts#address'
+
 
   # get 'charges/new'
   # get 'charges/create'
   # get '/charge' => 'charges#charge'
 
 
-  get 'charges/create'
+  # get 'charges/create'
 
 
   get 'orders/index'
