@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :user_profiles
   root 'pages#coming_soon'
   get '/' => 'pages#coming_soon'
   post '/' => 'pages#coming_soon'
