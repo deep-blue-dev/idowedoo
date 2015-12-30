@@ -13,10 +13,16 @@ class CartsController < ApplicationController
   def charge
   end
 
+
   def shipping
     p "***************----->>>>>>>>>>****************"
     p "Shipping has just been clicked of CartsController"
     p "***************^^^^^"
+  end
+
+
+  def address
+    @location = Location.new
   end
 
 end

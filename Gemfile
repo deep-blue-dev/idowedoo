@@ -11,6 +11,8 @@ gem 'rails_12factor'
 
 
 
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'pg'
@@ -23,10 +25,11 @@ gem 'bcrypt', '~> 3.1.7'
 
 ### Libraries
 
-gem 'devise' # Devise some users
-gem 'figaro' #env variable for development
-gem 'stripe' # Payments made simple
 gem 'turbolinks' # Turbo mode for views
+gem 'devise' # Devise some users
+gem 'figaro' # Env Dependent Keys
+gem 'stripe' # Payments made simple
+gem 'easypost' # Easy Shipping
 
 ### Assets
 
