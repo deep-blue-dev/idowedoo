@@ -1,30 +1,36 @@
-<div class="icon-group">
-  <div class="icon">
-    <i class="glyphicon glyphicon-map-marker"></i>
-  </div>
-  <div class="icon-content">
-    <div class="form-group">
-      <%= text_field_tag :order_location, "Add Location", class:"form-control", name: '' %>
-      <%= form_for @location, url: new_order_path, html: { method: :post } do |lf| %>
-      <%= lf.hidden_field :name  %>
-      <%= lf.hidden_field :unit %>
-      <%= lf.hidden_field :street_number %>
-      <%= lf.hidden_field :street %>
-      <%= lf.hidden_field :city %>
-      <%= lf.hidden_field :state %>
-      <%= lf.hidden_field :zipcode %>
-      <%= lf.hidden_field :country %>
-      <%= lf.hidden_field :long_address %>
-      <% end %>
 
-    </div>
-  </div>
-</div>
 
 <div class="location-group">
   <div id="location_addr">
 
   </div>
 <div id="location_map" style="display: none">
+
+</div>
+
+
+<h1>Address Form</h1>
+
+<div class="payment">
+  <div class="pull-right">
+    <% @county_tax = 10 %>
+    <h4>Subtotal: $<%= @subtotal %></h4>
+    <h4>Tax(<!-- <%= @county_tax %>-->TBD%): $<%= @subtotal_tax  %></h4>
+    <h4>Shipping: $<%= @shipping %></h4>
+    <h4>Order total: $<%=  @order_total  %></h4>
+    <%= form_tag('/charge') do %>
+      <script src='https://checkout.stripe.com/checkout.js'
+            class="stripe-button"
+            data-key="<%= App.first.stp_test_pk %>"
+            data-description="Get your case"
+            data-amount="< %= @order_total*100 %>"
+            data-locale="auto"></script>
+              <% end %>
+  <!-- </div> -->
+<!-- TODO TAXES   -->
+  <!-- <div class="shipping pull-left">
+    < % @county_tax = 10 % >
+  </div> -->
+
 
 </div>

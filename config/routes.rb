@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
   get 'carts/address'
   post 'carts/location'
+  get '/cart2' => 'carts#show'
   # You can have the root of your site routed with "root"
 
 
