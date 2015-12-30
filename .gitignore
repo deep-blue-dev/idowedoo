@@ -18,8 +18,12 @@
 /log/*
 !/log/.keep
 /tmp
+<<<<<<< HEAD
 database.yml
 .DS_Store
+=======
+config/database.yml
+>>>>>>> master
 
 # Ignore application configuration
 /config/application.yml

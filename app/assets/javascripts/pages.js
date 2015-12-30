@@ -347,8 +347,9 @@ $(document).on('ready page:load', function() {
    var $uploadInput = $('#upload');
 
    $('#fileUpload').on('click', function(e){
+     stopEvent(e);
      $uploadInput.click();
-     $uploadInput.on('change', function(e){
+     $uploadInput.off().on('change', function(e){
        addFileToCanvas(e);
      });
      stopEvent(e);

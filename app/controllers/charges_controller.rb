@@ -4,7 +4,8 @@ class ChargesController < ApplicationController
   # Easypost
   EasyPost.api_key = App.first.easy_test_sk
   # Data used for stripe
-  before_action :set_current_order, only: [:charge]
+
+  before_action :set_current_order, only: [:charge, :shipping]
 
     def new
     end
@@ -51,11 +52,17 @@ class ChargesController < ApplicationController
         puts (rate.rate)
         puts (rate.id)
           end
-    p "EasyPost ended"
+    # p "EasyPost ended"
+    # p "<<<<<<<********************>>>>>"
+    p "3"
     p "<<<<<<<********************>>>>>"
+    p "EasyPost ended in CONTROLLER"
+    p "<<<<<<<********************>>>>>"
+
     end
 
     def charge
+      p "2"
       p "Stripe Started"
       @subtotal = current_order.subtotal.to_f
       @subtotal_tax = current_order.tax.to_f
@@ -72,16 +79,18 @@ class ChargesController < ApplicationController
       )
       p "Stripe Ended"
       p "*********************************"
-      redirect_to charges_path
+      redirect_to charge_shipping_path
 
-    rescue Stripe::CardError => e
-      redirect_to products_path
-    end
-
+    # rescue Stripe::CardError => e
+    #   redirect_to products_path
+    # end
+end
   private
 
   def set_current_order
     @order = current_order
+    p "set_current_order"
+    p "1"
   end
 
 end

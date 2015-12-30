@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :show, only:[:shipping]
   def show
     @order_items = current_order.order_items
     # notes TODO need make a total amount to pass it to stripe go to _shopping_cart !!
@@ -10,6 +11,12 @@ class CartsController < ApplicationController
   end
 
   def charge
+  end
+
+  def shipping
+    p "***************----->>>>>>>>>>****************"
+    p "Shipping has just been clicked of CartsController"
+    p "***************^^^^^"
   end
 
 end
