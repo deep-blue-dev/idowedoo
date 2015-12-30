@@ -1,65 +1,24 @@
 <h1>Address Form</h1>
 
-<!-- <div class="payment">
+<div class="payment">
   <div class="pull-right">
-
-    < % @county_tax = 10 %>
-    <h4>Subtotal: $< %= @subtotal %></h4>
-    <h4>Tax(< %= @county_tax %>%): $< %= @subtotal_tax  %></h4>
-    <h4>Order total: $< %= @order_total % ></h4>
-    < %= form_tag('/charge') do % >
+    <% @county_tax = 10 %>
+    <h4>Subtotal: $<%= @subtotal %></h4>
+    <h4>Tax(<!-- <%= @county_tax %>-->TBD%): $<%= @subtotal_tax  %></h4>
+    <h4>Shipping: $<%= @shipping %></h4>
+    <h4>Order total: $<%=  @order_total  %></h4>
+    <%= form_tag('/charge') do %>
       <script src='https://checkout.stripe.com/checkout.js'
             class="stripe-button"
-            data-key="< %= App.first.stp_test_pk %>"
+            data-key="<%= App.first.stp_test_pk %>"
             data-description="Get your case"
-            data-amount="< %= @order_total*100 %>"
+            data-amount="<%= @order_total*100 %>"
             data-locale="auto"></script>
-              < % end %>
-  </div>
-
-  <div class="shipping pull-left">
+              <% end %>
+  <!-- </div> -->
+<!-- TODO TAXES   -->
+  <!-- <div class="shipping pull-left">
     < % @county_tax = 10 % >
-  </div>
-</div> -->
+  </div> -->
 
-
-< % p "Easy Post started"
-@location = Location.all.first
-fromAddress = EasyPost::Address.create(
-:company => 'EasyPost',
-:street1 => '118 2nd Street',
-:street2 => '4th Floor',
-:city => 'San Francisco',
-:state => 'CA',
-:zip => '94105',
-:phone => '415-528-7555'
-)
-toAddress = EasyPost::Address.create(
-:name => @location.name,
-:street1 => (@location.street_number + " " + @location.street),
-:city => @location.city,
-:state => @location.state,
-:zip => @location.zipcode
-)
-
-parcel = EasyPost::Parcel.create(
-:length => 9,
-:width => 6,
-:height => 2,
-:weight => 10
-)
-
-shipment = EasyPost::Shipment.create(
-:to_address => toAddress,
-:from_address => fromAddress,
-:parcel => parcel
-)
-
-shipment.rates.each do |rate|
-  puts (rate.carrier)
-  puts (rate.service)
-  puts (rate.rate)
-  puts (rate.id)
-    end
-p "EasyPost ended"
-p "<<<<<<<********************>>>>>" %>
+</div>

@@ -14,7 +14,6 @@ class ChargesController < ApplicationController
     end
 
     def shipping
-      p "Easy Post started"
       @location = Location.all.first
       fromAddress = EasyPost::Address.create(
       :company => 'EasyPost',
@@ -47,26 +46,29 @@ class ChargesController < ApplicationController
       )
 
       shipment.rates.each do |rate|
+        puts "Shipment rates each:"
         puts (rate.carrier)
         puts (rate.service)
         puts (rate.rate)
         puts (rate.id)
+
+        @shipping = rate.rate
           end
     # p "EasyPost ended"
+    # p  "How much shipping gonna cost coming in"
+    @shipping
     # p "<<<<<<<********************>>>>>"
-    p "3"
-    p "<<<<<<<********************>>>>>"
-    p "EasyPost ended in CONTROLLER"
-    p "<<<<<<<********************>>>>>"
-
+    # p "3"
+    # p "<<<<<<<********************>>>>>"
+    # p "EasyPost ended in CONTROLLER"
+    # p "<<<<<<<********************>>>>>"
+    @order_total = @subtotal + @subtotal_tax + @shipping.to_f
     end
 
     def charge
-      p "2"
-      p "Stripe Started"
-      @subtotal = current_order.subtotal.to_f
-      @subtotal_tax = current_order.tax.to_f
-      @order_total = @subtotal + @subtotal_tax
+      # p "2"
+      # p "Stripe Started method Charges#Charge"
+
       @customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :card => params[:stripeToken]
@@ -77,9 +79,9 @@ class ChargesController < ApplicationController
         :currency => 'usd',
         :metadata => { :order_id => @order.id }
       )
-      p "Stripe Ended"
-      p "*********************************"
-      redirect_to charge_shipping_path
+      # p "Stripe Ended"
+      # p "*********************************"
+      redirect_to charges_path
 
     # rescue Stripe::CardError => e
     #   redirect_to products_path
@@ -89,8 +91,13 @@ end
 
   def set_current_order
     @order = current_order
-    p "set_current_order"
-    p "1"
+    @subtotal = current_order.subtotal.to_f
+    @subtotal_tax = current_order.tax.to_f
+    @shipping = nil
+    @order_total = @subtotal + @subtotal_tax + @shipping.to_f
+    # p "set_current_order"
+    # p "1"
   end
+
 
 end

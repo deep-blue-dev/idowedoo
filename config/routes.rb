@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   post '/charge' => 'charges#charge'
   get '/cart/shipping' => 'charges#shipping'
-
+  get '/cart2' => 'carts#show'
   get 'order_items/create'
 
 
