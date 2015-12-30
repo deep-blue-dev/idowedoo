@@ -5,7 +5,7 @@ class CartsController < ApplicationController
     # notes TODO need make a total amount to pass it to stripe go to _shopping_cart !!
      @subtotal = current_order.subtotal
      @subtotal_tax = current_order.tax
-     @order_total = @subtotal + @subtotal_tax 
+     @order_total = @subtotal + @subtotal_tax
      p "Show Carts"
      p @order_total
   end
@@ -23,6 +23,11 @@ class CartsController < ApplicationController
 
   def address
     @location = Location.new
+  end
+
+
+  def location
+    p params
   end
 
 end

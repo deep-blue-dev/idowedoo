@@ -3,36 +3,23 @@ Rails.application.routes.draw do
   root 'pages#coming_soon'
   get '/' => 'pages#coming_soon'
   post '/' => 'pages#coming_soon'
-
   post '/charge' => 'charges#charge'
-  get '/cart/shipping' => 'charges#shipping'
-  get '/cart2' => 'carts#show'
   get 'order_items/create'
 
-  get 'cart/address'=> 'carts#address'
 
-
-  # get 'charges/new'
-  # get 'charges/create'
-  # get '/charge' => 'charges#charge'
-
-
-  # get 'charges/create'
-
+  get 'charges/create'
 
   get 'orders/index'
   post 'orders/create'
   get 'orders/show'
+
   resources :orders
   resources :order_items
   resources :products
-
-  resources :charges, only: [:index]
-  resources :users, only: [:new, :show, :edit]
-
   resources :charges
-
   resources :cases, only: [:new, :show, :create]
+  resources :locations
+
   devise_for :users
 
   devise_scope :user do
@@ -41,7 +28,6 @@ Rails.application.routes.draw do
     get "sign_out", :to => "devise/sessions#destroy", as: :sign_out
   end
 
-  resources :users, only: [:new, :show, :edit]
   resources :cases, only: [:new, :show, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -51,6 +37,8 @@ Rails.application.routes.draw do
   get 'index' => 'pages#index', as: :index
   get 'create' => 'pages#create', as: :create
 
+  get 'carts/address'
+  post 'carts/location'
   # You can have the root of your site routed with "root"
 
 
