@@ -29,6 +29,6 @@ class CasesController < ApplicationController
   end
 
   def case_params
-    params.require(:case).permit(:ipad, :iphone, :android, :image)
+    params.require(:case).permit(:ipad, :iphone, :android, :image, :title)
   end
 end

@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216032117) do
+ActiveRecord::Schema.define(version: 20151230183655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apps", force: :cascade do |t|
+    t.string   "stp_test_sk"
+    t.string   "stp_test_pk"
+    t.string   "stp_live_sk"
+    t.string   "stp_live_pk"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "easy_test_sk"
+    t.string   "easy_live_sk"
+  end
 
   create_table "cases", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151216032117) do
     t.boolean  "ipad"
     t.boolean  "iphone"
     t.boolean  "android"
+    t.string   "title"
   end
 
   create_table "landingemails", force: :cascade do |t|
@@ -30,6 +42,25 @@ ActiveRecord::Schema.define(version: 20151216032117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "title"
+    t.string   "name"
+    t.string   "street_number"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "country"
+    t.string   "unit"
+    t.string   "long_address"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+    t.string   "user_title"
+  end
+
+  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.decimal  "unit_price"
@@ -44,6 +75,12 @@ ActiveRecord::Schema.define(version: 20151216032117) do
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
+  create_table "order_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "case_id"
@@ -54,6 +91,7 @@ ActiveRecord::Schema.define(version: 20151216032117) do
     t.decimal  "shipping"
     t.decimal  "total_price"
     t.integer  "order_status_id"
+    t.string   "tracking_no"
   end
 
   add_index "orders", ["case_id"], name: "index_orders_on_case_id", using: :btree
@@ -86,6 +124,7 @@ ActiveRecord::Schema.define(version: 20151216032117) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "locations", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "cases"
