@@ -50,8 +50,10 @@ Rails.application.routes.draw do
   root 'pages#coming_soon'
   get '/' => 'pages#coming_soon'
   post '/' => 'pages#coming_soon'
+
   post '/charge' => 'charges#charge'
   get '/cart/shipping' => 'charges#shipping'
+
   get 'order_items/create'
 
   # get 'charges/new'
