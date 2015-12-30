@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get 'index' => 'pages#index', as: :index
   get 'create' => 'pages#create', as: :create
 
-  get 'carts/address'
+  get 'carts/checkout' => 'carts#checkout'
   post 'carts/location'
   get '/cart2' => 'carts#show'
   # You can have the root of your site routed with "root"

@@ -2,8 +2,11 @@ class CartsController < ApplicationController
 
   # Easypost
   EasyPost.api_key = App.first.easy_test_sk
-  before_action :show, only: [:shipping, :address]
-  before_action :shipping, only:[:address]
+  before_action :show, only: [:shipping, :checkout]
+  before_action :shipping, only:[:checkout]
+
+
+
   def show
     @order_items = current_order.order_items
     @location = Location.all.first
@@ -72,10 +75,12 @@ class CartsController < ApplicationController
   end
 
 
-  def address
+  def checkout
 
   end
 
+  def address
+  end
 
   def location
     p params
