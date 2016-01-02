@@ -7,6 +7,4 @@ class User < ActiveRecord::Base
 
   has_one :profile, class_name: 'UserProfile'
 
-  has_many :locations, dependent: :destroy
-
 end

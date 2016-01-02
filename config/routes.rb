@@ -1,18 +1,42 @@
 Rails.application.routes.draw do
 
-  resources :user_profiles
-  root 'pages#coming_soon'
-  get '/' => 'pages#coming_soon'
-  post '/' => 'pages#coming_soon'
-  post '/charge' => 'charges#charge'
-  get 'order_items/create'
+  root  'pages#coming_soon'
+
+  # Pages
+  post  '/' => 'pages#coming_soon'
+  get   '/' => 'pages#coming_soon'
+  get   'learn' => 'pages#learn', as: :learn
+  get   'cart' => 'pages#cart', as: :cart
+  get   'index' => 'pages#index', as: :index
+  get   'create' => 'pages#create', as: :create
+
+  # Cart Stuff
+  get   'carts/address'
+  post  'carts/location'
+
+  # TODO: This should post to Charges#New not Charges#Charge
+  post  '/charge' => 'charges#charge'
 
 
-  get 'charges/create'
+  # TODO: Are these even needed? They conflict with normal REST methods
+  get   'charges/create'
+  get   'order_items/create'
 
-  get 'orders/index'
-  post 'orders/create'
-  get 'orders/show'
+  # Orders
+  get   'orders/index'
+  post  'orders/create'
+  get   'orders/show'
+
+  # Devise
+  devise_for :users
+
+  devise_scope :user do
+    get 'sign_in', :to => 'devise/sessions#new', as: :sign_in
+    get 'sign_up', :to => 'devise/registrations#new', as: :sign_up
+    get 'sign_out', :to => 'devise/sessions#destroy', as: :sign_out
+  end
+
+  # Resources
 
   resources :orders
   resources :order_items
@@ -21,25 +45,12 @@ Rails.application.routes.draw do
   resources :cases, only: [:new, :show, :create]
   resources :locations
 
-  devise_for :users
+  resources :user_profiles
 
-  devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new", as: :sign_in
-    get "sign_up", :to => "devise/registrations#new", as: :sign_up
-    get "sign_out", :to => "devise/sessions#destroy", as: :sign_out
-  end
-
-  resources :cases, only: [:new, :show, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  get 'learn' => 'pages#learn', as: :learn
-  get 'cart' => 'pages#cart', as: :cart
-  get 'index' => 'pages#index', as: :index
-  get 'create' => 'pages#create', as: :create
 
-  get 'carts/address'
-  post 'carts/location'
   # You can have the root of your site routed with "root"
 
 

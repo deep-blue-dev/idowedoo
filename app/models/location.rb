@@ -1,12 +1,6 @@
 class Location < ActiveRecord::Base
-  #gems
-  #scopes
-  #callbacks
-  #relations
-  belongs_to :order
-  belongs_to :user
-  #validations
 
-  #methods
+  belongs_to :order
+  belongs_to :profile, class_name: 'UserProfile'
 
 end
