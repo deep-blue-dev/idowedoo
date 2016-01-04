@@ -17,20 +17,12 @@
   <% end %>
 
   <div class="pull-right">
-    <h4>Subtotal: $<%= @subtotal %></h4>
-
+    <h4>Subtotal: $<span class="subtotal"><%= current_order.subtotal %></span></h4>
     <%= link_to "Shipping", carts_checkout_path, class:"btn btn-primary" %>
-
   </div>
 
 
   <div class="shipping pull-left">
-    <!-- < % @county_tax = 10 % > -->
-    <!-- <h3>Shipping Address:</h3>
-    <h4>Andress: 111 Danielle court<%=  %></h4>
-    <h4>City:Weston<% %> <%=  %></h4>
-    <h4>State: FL<%=  %></h4>
-    <h4>Zipcode: 33326</h4> -->
   </div>
 
 <!-- data-key="pk_test_uovOTYQuhtyMnwvrd6KuByHq" -->

@@ -20,7 +20,7 @@ nav.navbar.navbar-default
 
       ul.nav.navbar-nav.navbar-right
         li
-          = render 'layouts/cart_text.html.erb'
+          = link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart2_path, class: "btn btn-link cart-text"
         li
           = link_to 'Learn More', :learn, class:"btn #{'active' if current_page?(learn_path)}"
         li
@@ -29,3 +29,5 @@ nav.navbar.navbar-default
           = link_to 'Sign In', sign_in_path, class:"btn #{'active' if current_page?(sign_in_path)}"
         li
           = link_to "Get Started", new_case_path, class:"btn #{'active' if current_page?(sign_in_path)}"
+        li
+          = link_to "Products", products_path, class:"btn btn-link"  

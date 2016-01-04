@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
     end
 
     def tax
-      subtotal * 0.10.to_f
+      subtotal * 0.07.to_f
     end
 
     def shipping

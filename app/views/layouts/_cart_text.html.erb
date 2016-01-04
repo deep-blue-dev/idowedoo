@@ -1,1 +1,1 @@
-<span class="cart-text"><%= link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart2_path, class: "btn btn-link" %></span>
+<%= link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart2_path, class: "btn btn-link cart-text" %>

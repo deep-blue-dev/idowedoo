@@ -1,8 +1,8 @@
 <div class="payment">
   <div class="pull-right">
-    <% @county_tax = 10 %>
+    <% @county_tax = 7 %>
     <h4>Subtotal: $<%= @subtotal %></h4>
-    <h4>Tax(<!-- <%= @county_tax %>-->TBD%): $<%= @subtotal_tax  %></h4>
+    <h4>Tax(<%= @county_tax %>%): $<%= @subtotal_tax  %></h4>
     <h4>Shipping: $<%= @shipping %></h4>
     <h4>Order total: $<%=  @order_total  %></h4>
     <%= form_tag('/charge') do %>

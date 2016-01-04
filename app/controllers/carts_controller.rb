@@ -5,17 +5,13 @@ class CartsController < ApplicationController
   before_action :show, only: [:shipping, :checkout]
   before_action :shipping, only:[:checkout]
 
-
-
   def show
     @order_items = current_order.order_items
     @location = Location.all.first
     # notes TODO need make a total amount to pass it to stripe go to _shopping_cart !!
-     @subtotal = current_order.subtotal
      @subtotal_tax = current_order.tax
+     @subtotal = current_order.subtotal
      @order_total = @subtotal + @subtotal_tax
-     p "Show Carts"
-     p @order_total
   end
 
   def charge
@@ -55,27 +51,11 @@ class CartsController < ApplicationController
     )
 
     shipment.rates.each do |rate|
-      # puts "Shipment rates each:"
-      puts (rate.carrier)
-      puts (rate.service)
-      # puts (rate.rate)
-      # puts (rate.id)
-
       @shipping = rate.rate
-      p @shipping
         end
-  # p "EasyPost ended"
-  # p  "How much shipping gonna cost coming in"
-  @shipping
-  # p "<<<<<<<********************>>>>>"
-  # p "3"
-  p "<<<<<<<********************>>>>>"
-  p "EasyPost ended in CONTROLLER"
-  p 'hello'
-  p @shipping
-  p "<<<<<<<********************>>>>>"
   @order_total = @subtotal + @subtotal_tax + @shipping.to_f
   end
+
 
 
   def checkout
@@ -86,7 +66,8 @@ class CartsController < ApplicationController
   end
 
   def location
-    p params
+
   end
+
 
 end
