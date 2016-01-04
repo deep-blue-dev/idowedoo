@@ -25,9 +25,16 @@ nav.navbar.navbar-default
           = link_to 'Learn More', :learn, class:"btn #{'active' if current_page?(learn_path)}"
         li
           a class="btn" href="#" Track your Order
+        - if current_user
+          li
+            = link_to 'Sign Out', sign_out_path, class: "btn"
+        -else
+          li
+            = link_to 'Sign In', sign_in_path, class:"btn #{'active' if current_page?(sign_in_path || new_user_session_path)}"
         li
+
           = link_to 'Sign In', sign_in_path, class:"btn #{'active' if current_page?(sign_in_path)}"
         li
-          = link_to "Get Started", new_case_path, class:"btn #{'active' if current_page?(sign_in_path)}"
-        li
-          = link_to "Products", products_path, class:"btn btn-link"  
+          = link_to "Products", products_path, class:"btn btn-link"
+
+          = link_to "Get Started", create_path, class:"btn #{'active' if current_page?(create_path)}"
