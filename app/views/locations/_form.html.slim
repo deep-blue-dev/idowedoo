@@ -10,7 +10,7 @@
       i.glyphicon.glyphicon-map-marker
     .icon-content
       .form-group
-        = text_field_tag :location_input, '', class:'form-control', name:''
+        = text_field_tag :location_input, '', class:'form-control', name:'', value: @location.long_address
         = f.label :user_title, "Save to your Places"
         = f.text_field :user_title, class:'form-control', placeholder: 'Add a label'
         = f.hidden_field :name
