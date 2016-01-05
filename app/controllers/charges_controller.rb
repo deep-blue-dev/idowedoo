@@ -1,9 +1,5 @@
 class ChargesController < ApplicationController
-  # Stripe backend
-  Stripe.api_key = App.first.stp_test_sk
-  # Easypost
-  EasyPost.api_key = App.first.easy_test_sk
-  # Data used for stripe
+
 
   before_action :set_current_order, only: [:charge, :shipping]
 

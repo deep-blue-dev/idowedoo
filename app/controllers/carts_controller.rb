@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
   # Easypost
-  EasyPost.api_key = App.first.easy_test_sk
+  EasyPost.api_key = ENV['easy_key']
   before_action :show, only: [:shipping, :checkout]
   before_action :shipping, only:[:checkout]
 
