@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   resources :products
   resources :charges
   resources :cases, only: [:new, :show, :create]
+  resources :locations
 
   resource :profile do
     resources :locations
@@ -52,6 +53,8 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get 'carts/address'
+  post 'carts/location'
   # You can have the root of your site routed with "root"
 
 
