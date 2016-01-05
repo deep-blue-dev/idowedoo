@@ -43,7 +43,6 @@ Rails.application.routes.draw do
   resources :products
   resources :charges
   resources :cases, only: [:new, :show, :create]
-  resources :locations
 
   resource :profile do
     resources :locations
