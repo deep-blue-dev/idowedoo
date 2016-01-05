@@ -19,18 +19,25 @@ class Order < ActiveRecord::Base
 
   #methods
 
+    def order_total
 
-    def subtotal
+      ## TODO
+      # @subtotal + @subtotal_tax + @shipping.to_f
+
+    end
+
+    def calculated_subtotal
       order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
     end
 
     def tax
-      subtotal * 0.07.to_f
+      calculated_subtotal * 0.07.to_f
     end
 
     def shipping
-      return subtotal + 100.00
+      return calculated_subtotal + 100.00
     end
+
     def tracking
       self.tracking_no = Time.now.to_i.to_s
     end

@@ -3,15 +3,17 @@
     <% @county_tax = 7 %>
     <h4>Subtotal: <%= number_to_currency(@subtotal) %></h4>
     <h4>Tax(<%= @county_tax %>%): <%= number_to_currency(@subtotal_tax)  %></h4>
-    <h4>Shipping: <%= @shipping %></h4>
-    <h4>Order total: <%=  number_to_currency(@order_total)  %></h4>
+    <h4>Shipping: <%= number_to_currency(@shipping_rate) %></h4>
+    <h4>Order total: <%=  number_to_currency( @order_total.round(2) )  %></h4>
     <%= form_tag('/charge') do %>
       <script src='https://checkout.stripe.com/checkout.js'
-            class="stripe-button"
-            data-key="<%= ENV['stripe_publishable_key'] %>"
-            data-description="Get your case"
-            data-amount="< %= @order_total*100 %>"
-            data-locale="auto"></script>
-              <% end %>
+              class="stripe-button"
+              data-key="<%= ENV['stripe_publishable_key'] %>"
+              data-description="Get your case"
+              data-amount="<%= (@order_total.round(2) * 100) %>"
+              data-locale="auto"></script>
+    <% end %>
+
+
   </div>
 </div>

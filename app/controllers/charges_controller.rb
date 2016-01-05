@@ -1,98 +1,44 @@
 class ChargesController < ApplicationController
 
+  before_action :set_current_order, only: [:charge]
 
-  before_action :set_current_order, only: [:charge, :shipping]
+  def index
+  end
 
-    def new
-    end
+  def charge
 
-    def index
-    end
 
-    def shipping
-      @location = Location.all.first
-      fromAddress = EasyPost::Address.create(
-      :company => 'EasyPost',
-      :street1 => '118 2nd Street',
-      :street2 => '4th Floor',
-      :city => 'San Francisco',
-      :state => 'CA',
-      :zip => '94105',
-      :phone => '415-528-7555'
-      )
-      toAddress = EasyPost::Address.create(
-      :name => @location.name,
-      :street1 => (@location.street_number + " " + @location.street),
-      :city => @location.city,
-      :state => @location.state,
-      :zip => @location.zipcode
-      )
+    @customer = Stripe::Customer.create(
+    :email => params[:stripeEmail],
+    :card => params[:stripeToken]
+    )
+    @charge = Stripe::Charge.create(
+      :customer => @customer.id,
+      :amount => (@order_total.round(2) * 100).to_i,
+      :currency => 'usd',
+      :metadata => { :order_id => @order.id }
+    )
 
-      parcel = EasyPost::Parcel.create(
-      :length => 9,
-      :width => 6,
-      :height => 2,
-      :weight => 10
-      )
+    redirect_to charges_path
 
-      shipment = EasyPost::Shipment.create(
-      :to_address => toAddress,
-      :from_address => fromAddress,
-      :parcel => parcel
-      )
+  # rescue Stripe::CardError => e
+  #   redirect_to products_path
+  # end
 
-      shipment.rates.each do |rate|
-        # puts "Shipment rates each:"
-        # puts (rate.carrier)
-        # puts (rate.service)
-        # puts (rate.rate)
-        # puts (rate.id)
+  end
 
-        @shipping = rate.rate
-          end
-    # p "EasyPost ended"
-    # p  "How much shipping gonna cost coming in"
-    @shipping
-    # p "<<<<<<<********************>>>>>"
-    # p "3"
-    # p "<<<<<<<********************>>>>>"
-    # p "EasyPost ended in CONTROLLER"
-    # p "<<<<<<<********************>>>>>"
-    @order_total = @subtotal + @subtotal_tax + @shipping.to_f
-    end
-
-    def charge
-      # p "2"
-      # p "Stripe Started method Charges#Charge"
-
-      @customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
-      :card => params[:stripeToken]
-      )
-      @charge = Stripe::Charge.create(
-        :customer => @customer.id,
-        :amount => (@order_total * 100).to_i,
-        :currency => 'usd',
-        :metadata => { :order_id => @order.id }
-      )
-      # p "Stripe Ended"
-      # p "*********************************"
-      redirect_to charges_path
-
-    # rescue Stripe::CardError => e
-    #   redirect_to products_path
-    # end
-end
   private
 
   def set_current_order
     @order = current_order
+
+    current_order.subtotal = 12341267
+
     @subtotal = current_order.subtotal.to_f
     @subtotal_tax = current_order.tax.to_f
     @shipping = nil
     @order_total = @subtotal + @subtotal_tax + @shipping.to_f
-    # p "set_current_order"
-    # p "1"
+
   end
 
 
