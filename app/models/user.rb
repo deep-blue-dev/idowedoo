@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   after_create :build_default_profile
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
 
   # before_create :build_default_profile
 
