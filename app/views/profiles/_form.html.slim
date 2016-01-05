@@ -1,9 +1,9 @@
-= form_for @user_profile do |f|
-  - if @user_profile.errors.any?
+= form_for @profile do |f|
+  - if @profile.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@user_profile.errors.count, "error")} prohibited this user_profile from being saved:"
+      h2 = "#{pluralize(@profile.errors.count, "error")} prohibited this profile from being saved:"
       ul
-        - @user_profile.errors.full_messages.each do |message|
+        - @profile.errors.full_messages.each do |message|
           li = message
 
   .field
@@ -18,4 +18,5 @@
   .field
     = f.label :phone
     = f.text_field :phone
+
   .actions = f.submit

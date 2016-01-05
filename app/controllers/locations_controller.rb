@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:new, :create]
 
   # GET /locations
   # GET /locations.json
@@ -26,7 +27,6 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-    @location.profile = current_user.profile
 
     respond_to do |format|
       if @location.save
@@ -58,7 +58,7 @@ class LocationsController < ApplicationController
   def destroy
     @location.destroy
     respond_to do |format|
-      format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
+      format.html { redirect_to profile_locations_path, notice: 'Location was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,10 @@ class LocationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_location
       @location = Location.find(params[:id])
+    end
+
+    def set_profile
+      @profile = current_user.profile
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,19 +1,14 @@
 h1 Listing locations
+= link_to 'New Location', new_profile_location_path
+- @locations.each do |location|
 
-table
-  thead
-    tr
-      th
-      th
-      th
+  address
+    br
+    h4 = location.name
+    p = location.street_address
+    p = location.city_state
 
-  tbody
-    - @locations.each do |location|
-      tr
-        td = link_to 'Show', location
-        td = link_to 'Edit', edit_location_path(location)
-        td = link_to 'Destroy', location, data: {:confirm => 'Are you sure?'}, :method => :delete
+  td = link_to 'Show', profile_location_path(location)
+  td = link_to 'Edit', edit_profile_location_path(location)
+  td = link_to 'Destroy', profile_location_path(location), data: {:confirm => 'Are you sure?'}, :method => :delete
 
-br
-
-= link_to 'New Location', new_location_path

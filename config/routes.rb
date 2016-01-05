@@ -43,9 +43,10 @@ Rails.application.routes.draw do
   resources :products
   resources :charges
   resources :cases, only: [:new, :show, :create]
-  resources :locations
 
-  resources :user_profiles
+  resource :profile do
+    resources :locations
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

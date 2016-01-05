@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(version: 20151229223353) do
     t.string   "country"
     t.string   "unit"
     t.string   "long_address"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "user_profile_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "profile_id"
     t.string   "user_title"
   end
 
-  add_index "locations", ["user_profile_id"], name: "index_locations_on_user_profile_id", using: :btree
+  add_index "locations", ["profile_id"], name: "index_locations_on_profile_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.decimal  "unit_price"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20151229223353) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "user_profiles", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20151229223353) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -134,10 +134,10 @@ ActiveRecord::Schema.define(version: 20151229223353) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "locations", "user_profiles"
+  add_foreign_key "locations", "profiles"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "cases"
   add_foreign_key "orders", "users"
-  add_foreign_key "user_profiles", "users"
+  add_foreign_key "profiles", "users"
 end

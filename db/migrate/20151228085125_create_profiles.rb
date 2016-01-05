@@ -1,6 +1,6 @@
-class CreateUserProfiles < ActiveRecord::Migration
+class CreateProfiles < ActiveRecord::Migration
   def change
-    create_table :user_profiles do |t|
+    create_table :profiles do |t|
       t.references :user, index: true, foreign_key: true
       t.string :first_name
       t.string :last_name

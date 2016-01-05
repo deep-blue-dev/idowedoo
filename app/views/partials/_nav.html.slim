@@ -20,17 +20,15 @@ nav.navbar.navbar-default
 
       ul.nav.navbar-nav.navbar-right
         li
-          = render 'layouts/cart_text.html.erb'
-        li
           = link_to 'Learn More', :learn, class:"btn #{'active' if current_page?(learn_path)}"
         li
           a class="btn" href="#" Track your Order
         li
-
-          - if user_signed_in?
-            = link_to 'Sign Out', destroy_user_session_path, :method => :delete
-          - else
-            = link_to 'Sign In', sign_in_path, class:"btn #{'active' if current_page?(sign_in_path)}"
-
-        li
           = link_to "Get Started", new_case_path, class:"btn #{'active' if current_page?(sign_in_path)}"
+        li
+          - if user_signed_in?
+            = link_to current_user.email, profile_path
+          - else
+            = link_to 'Sign In', sign_in_path, class: "btn #{'active' if current_page?(sign_in_path)}"
+        li
+          = render 'partials/cart_text'
