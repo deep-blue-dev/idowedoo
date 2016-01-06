@@ -8,7 +8,7 @@ html lang='en'
 
     title
       - if content_for? :title
-        = yield :title
+        | IDoWeDo - #{ yield :title }
       - else
         | IDoWeDo
 
@@ -31,7 +31,7 @@ html lang='en'
 
     .container
       .row
-        .col-lg-5
+        .col-lg-6.center-block style='float: none'
           = render 'partials/flash_errors'
       = yield
 
