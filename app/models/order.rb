@@ -32,6 +32,29 @@ class Order < ActiveRecord::Base
     self.tracking_no = Time.now.to_i.to_s
   end
 
+  def order_total
+
+    ## TODO
+    # @subtotal + @subtotal_tax + @shipping.to_f
+
+  end
+
+  def calculated_subtotal
+    order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
+  end
+
+  def tax
+    calculated_subtotal * 0.07.to_f
+  end
+
+  def shipping
+    return calculated_subtotal + 100.00
+  end
+
+  def tracking
+    self.tracking_no = Time.now.to_i.to_s
+  end
+
   private
 
   def set_order_status

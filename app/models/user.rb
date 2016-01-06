@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -9,6 +10,7 @@ class User < ActiveRecord::Base
   after_create :build_default_profile
 
   has_one :profile
+  has_many :locations, dependent: :destroy
 
   # before_create :build_default_profile
 
@@ -27,5 +29,7 @@ class User < ActiveRecord::Base
     # Or add the child's errors to the User model's error array of the :base
     # error item
   end
+
+
 
 end

@@ -15,28 +15,14 @@
   <% @order_items.each do |order_item| %>
     <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
   <% end %>
+
   <div class="pull-right">
-    <% @county_tax = 10 %>
-    <h4>Subtotal: $<%= @subtotal %></h4>
-    <h4>Tax(<%= @county_tax %>%): $<%= @subtotal_tax  %></h4>
-    <h4>Order total: $<%= @order_total %></h4>
-    <%= form_tag('/charge') do %>
-      <script src='https://checkout.stripe.com/checkout.js'
-            class="stripe-button"
-            data-key="<%= App.first.stp_test_pk %>"
-            data-description="Get your case"
-            data-amount="<%= @order_total*100 %>"
-            data-locale="auto"></script>
-              <% end %>
+    <h4>Subtotal: $<span class="subtotal"><%= current_order.subtotal %></span></h4>
+    <%= link_to "Shipping", carts_checkout_path, class:"btn btn-primary" %>
   </div>
 
+
   <div class="shipping pull-left">
-    <% @county_tax = 10 %>
-    <!-- <h3>Shipping Address:</h3>
-    <h4>Andress: 111 Danielle court<%=  %></h4>
-    <h4>City:Weston<% %> <%=  %></h4>
-    <h4>State: FL<%=  %></h4>
-    <h4>Zipcode: 33326</h4> -->
   </div>
 
 <!-- data-key="pk_test_uovOTYQuhtyMnwvrd6KuByHq" -->

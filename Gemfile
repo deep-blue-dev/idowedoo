@@ -1,6 +1,18 @@
 source 'https://rubygems.org'
 
 
+#gems added
+gem 'figaro' #env variable for development
+gem 'stripe' #payments
+gem 'easypost' #shipping computations
+#gems for production:
+gem 'pg'
+gem 'rails_12factor'
+
+
+
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'pg'

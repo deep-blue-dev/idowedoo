@@ -11,6 +11,8 @@
     .icon-content
       .form-group
         = text_field_tag :location_input, '', class:'form-control', name:''
+        = f.label :user_title, "Save to your Places"
+        = f.text_field :user_title, class:'form-control', placeholder: 'Add a label'
         = f.hidden_field :name
         = f.hidden_field :unit
         = f.hidden_field :street_number
