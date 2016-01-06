@@ -12,10 +12,11 @@
               .media-heading
                 h4.media-heading Stufff
               button.btn-sm.btn-success Purchase
+              br
+              = link_to 'Back', 'javascript:history.go(-1);'
 
 
 coffee:
   $(document).on 'ready page:load', ->
     console.log 'ready'
     $('#case').attr('src', localStorage.getItem("imgData"))
-
