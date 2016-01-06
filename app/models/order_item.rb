@@ -4,7 +4,7 @@ class OrderItem < ActiveRecord::Base
   #scopes
 
   #callbacks
-  before_save :finalize
+  # before_save :finalize
 
   #relations
   belongs_to :product
@@ -12,18 +12,18 @@ class OrderItem < ActiveRecord::Base
   has_one :case
 
   #validations
-  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  validate :product_present
-  validate :order_present
+  # validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  # validate :product_present
+  # validate :order_present
 
   #methods
-    def unit_price
-      if persisted?
-        self[:unit_price]
-      else
-        product.price
-      end
-    end
+    # def unit_price
+    #   if persisted?
+    #     self[:unit_price]
+    #   else
+    #     product.price
+    #   end
+    # end
 
     def total_price
       unit_price * quantity

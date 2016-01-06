@@ -1,12 +1,4 @@
-<!-- < % if @order_item.nil? && @order_item.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-      < %  = @order_item.errors.full_messages.each do |msg| %>
-        <li>< %= msg %></li>
-      < % end %>
-    </ul>
-  </div>
-< % end %> -->
+
 <% if @order_items.size == 0 %>
   <p class="text-center">
     There are no items in your shopping cart. Please <%= link_to "Get back to index of products", products_path %> and add some cases to your
@@ -25,8 +17,6 @@
   <div class="shipping pull-left">
   </div>
 
-<!-- data-key="pk_test_uovOTYQuhtyMnwvrd6KuByHq" -->
-  <!-- Testing of Order_items each loop  -->
 <% end %>
 
 <!-- TODO Make total_price sum of all total_price_per_item(qty * unit_price)  -->

@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   end
 
   def create
+    @order_item = OrderItem.new
   end
 
   def learn

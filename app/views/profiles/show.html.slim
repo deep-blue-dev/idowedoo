@@ -23,5 +23,10 @@
       strong Locations
       .pull-right = link_to 'Edit', profile_locations_path
     .panel-body
-      = render 'locations/show', location: @profile.locations.first
+      - if @profile.locations.any?
+        = render 'locations/show', location: @profile.locations.first
+      - else
+        .text-center = link_to 'Add a location for us to deliver to.', new_profile_location_path
+
+
 

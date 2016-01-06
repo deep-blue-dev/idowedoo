@@ -30,8 +30,8 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to :back, notice: 'Location was successfully created.' }
-        format.js   { redirect_to :back, notice: 'Location was successfully created.' }
+        pp format.inspect
+        format.html { redirect_to profile_path, turbolinks: true, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new }
