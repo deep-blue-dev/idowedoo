@@ -1,16 +1,17 @@
-= form_for ['profile', @location] do |f|
+= form_for ['profile', @location], remote: true do |f|
   - if @location.errors.any?
     #error_explanation
       h2 = "#{pluralize(@location.errors.count, "error")} prohibited this location from being saved:"
       ul
         - @location.errors.full_messages.each do |message|
           li = message
+
   .icon-group
     .icon
       i.glyphicon.glyphicon-map-marker
     .icon-content
       .form-group
-        = text_field_tag :location_input, '', class:'form-control', name:''
+        = text_field_tag :location_input, '', class:'form-control', value: @location.long_address
         = f.label :user_title, "Save to your Places"
         = f.text_field :user_title, class:'form-control', placeholder: 'Add a label'
         = f.hidden_field :name
@@ -26,4 +27,5 @@
   .location-group
     #location_addr
     #location_map style="display: none"
+
   .actions = f.submit

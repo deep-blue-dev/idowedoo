@@ -1,0 +1,10 @@
+.address-container
+  .pull-left = image_tag location.google_maps_img_url
+  h4 = location.user_title
+  - if location.name
+    p = location.name
+  p = location.street_address
+  p = location.city_state
+
+  = link_to 'Edit', edit_profile_location_path(location)
+  = link_to 'Destroy', profile_location_path(location), data: {:confirm => 'Are you sure?'}, :method => :delete

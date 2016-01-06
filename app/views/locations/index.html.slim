@@ -1,14 +1,11 @@
-h1 Listing locations
+= content_for :title do
+  | Locations
+
+
 = link_to 'New Location', new_profile_location_path
-- @locations.each do |location|
 
-  address
-    br
-    h4 = location.name
-    p = location.street_address
-    p = location.city_state
-
-  td = link_to 'Show', profile_location_path(location)
-  td = link_to 'Edit', edit_profile_location_path(location)
-  td = link_to 'Destroy', profile_location_path(location), data: {:confirm => 'Are you sure?'}, :method => :delete
+.row
+  - @locations.each do |location|
+    .col-lg-4
+      = render 'locations/show', location: location
 
