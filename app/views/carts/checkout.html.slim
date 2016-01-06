@@ -1,0 +1,14 @@
+.payment
+  .pull-right
+    - @county_tax = 7 
+    h4 Subtotal: #{number_to_currency(@subtotal) }
+    h4 Tax #{@county_tax}: #{number_to_currency(@subtotal_tax)  }
+    h4 Shipping: #{number_to_currency(@shipping_rate) }
+    h4 Order total: #{ number_to_currency( @order_total.round(2) )  }
+    - if @shipping_rate != 0
+      = form_tag('/charge') do 
+        script.stripe-button[
+          data-amount=("<%= (@order_total.round(2) * 100) %>") 
+          data-description=("Get your case") 
+          data-key=("<%= ENV['stripe_publishable_key'] %>") 
+          data-locale="auto" src="https://checkout.stripe.com/checkout.js" ]
