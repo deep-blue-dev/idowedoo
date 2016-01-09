@@ -11,19 +11,21 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   has_one :case
 
-  #validations
+  ## validations
+
   # validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   # validate :product_present
   # validate :order_present
 
-  #methods
-    # def unit_price
-    #   if persisted?
-    #     self[:unit_price]
-    #   else
-    #     product.price
-    #   end
-    # end
+  ## methods
+
+  # def unit_price
+  #   if persisted?
+  #     self[:unit_price]
+  #   else
+  #     product.price
+  #   end
+  # end
 
     def total_price
       unit_price * quantity
