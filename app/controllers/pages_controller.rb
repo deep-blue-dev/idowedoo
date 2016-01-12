@@ -13,6 +13,9 @@ class PagesController < ApplicationController
   def cart
   end
 
+  def campaign
+  end
+
   def coming_soon
 
     if request.post?

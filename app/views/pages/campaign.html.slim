@@ -1,0 +1,90 @@
+.nav.navbar
+  .container-fluid
+    ul.nav.nav-pills
+      li
+        a.btn
+          span.badge 1
+          |  Create
+      li
+        a.btn
+          span.badge 2
+          |  Set Goal
+      li
+        a.btn
+          span.badge 3
+          |  Describe
+
+
+.row
+  .col-lg-6
+    p
+      label
+        | Sales Goal
+      input.progress-bar-success type="range" name="points" min="0" max="10"
+
+    .row
+      .col-lg-5
+        .input-group.input-group-lg
+          span.input-group-addon # of Units
+          input#basic-url.form-control.col-sm-10 type="number" aria-describedby="cost" value="5"
+      .col-lg-7
+        | Your goal is the number of units you’re aiming to sell,
+        |  but we’ll print your campaign as long as you sell enough to generate a profit.
+    .row
+      .col-lg-6
+        h3.text-right Estimated Profit   |
+      .col-lg-6
+        h1.lead.text-success.text-left $696+
+
+
+    .row
+      .col-lg-12
+        .panel.panel-default
+          .panel-heading Case Options
+          .panel-body
+            .row
+              .col-lg-2
+                img.media-object#case-small src="" height='96px'
+              .col-lg-8
+                h4 Nexus 5x
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
+                | dolorem doloremque earum expedita laborum maiores minus nulla sit.
+
+              .col-lg-2
+                input.input-md type="text" class="form-control" id="basic-url" aria-describedby="basic-addon" value="$5.00"
+
+    .row
+      .col-lg-8.center-block style='float: none'
+        a.btn.btn-lg.btn-block.btn-success Next
+
+    .row
+      .col-lg-12
+        .form-group
+          label for="inputHelpBlock" Campaign Title
+          span id="helpBlock" class="help-block" Summarize your campaign in 40 characters or less.
+          input type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock"
+        .form-group
+          label for="inputHelpBlock" Description
+          span id="helpBlock" class="help-block" Summarize your campaign in 40 characters or less.
+          textarea type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock"
+        .form-group
+          label for="inputHelpBlock" Tag
+          span id="helpBlock" class="help-block" Tags help buyers find your campaign. Enter up to 10 words to describe your campaign (e.g. Sports, Moms, Firefighters)
+          input type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock"
+        .form-group
+          label for="inputHelpBlock" Campaign Length
+          span id="helpBlock" class="help-block" US orders will arrive 10-14 days after the end of the campaign.
+          input type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock"
+
+    .row
+      .col-lg-8.center-block style='float: none'
+        a.btn.btn-lg.btn-block.btn-success Launch
+
+  .col-lg-6
+    img#case
+
+
+
+coffee:
+  $(document).on 'ready page:load', ->
+    $('#case, #case-small').attr('src', localStorage.getItem("imgData"))
