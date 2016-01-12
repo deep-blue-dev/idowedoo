@@ -1,11 +1,11 @@
 .nav.navbar.navbar-default
-.container-fluid
+  .container-fluid
 
 .row
   // controls-->
   .col-lg-3
     // Nav tabs -->
-    ul.nav.nav-tabs role="tablist"
+    ul.nav.nav-tabs role='tablist'
       li.active role="presentation"
         a aria-controls="text" data-toggle="tab" href="#text" role="tab"
           h4 Text
@@ -21,7 +21,7 @@
       // Text Tab
       //
 
-      #text.tab-pane.active role="tabpanel"
+      #text.tab-pane.active role='tabpanel'
 
         // textEnter
 
@@ -188,4 +188,3 @@
             = f.submit "Add to cart", class: "btn btn-primary"
 
       = link_to 'Add to Cart', cart_path, {id: 'addCart', class: 'btn-lg btn-block btn-danger'}
-
