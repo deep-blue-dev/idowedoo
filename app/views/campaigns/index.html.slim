@@ -1,0 +1,31 @@
+h1 Listing campaigns
+
+table
+  thead
+    tr
+      th Title
+      th Description
+      th Start
+      th Finish
+      th User
+      th Goal unit
+      th
+      th
+      th
+
+  tbody
+    - @campaigns.each do |campaign|
+      tr
+        td = campaign.title
+        td = campaign.description
+        td = campaign.start
+        td = campaign.finish
+        td = campaign.user
+        td = campaign.goal_unit
+        td = link_to 'Show', campaign
+        td = link_to 'Edit', edit_campaign_path(campaign)
+        td = link_to 'Destroy', campaign, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Campaign', new_campaign_path
