@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :campaigns
   root  'pages#coming_soon'
 
   # Pages
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   get   'cart' => 'pages#cart', as: :cart
   get   'index' => 'pages#index', as: :index
   get   'create' => 'pages#create', as: :create
-  get   'campaign' => 'pages#campaign', as: :campaign
+  # get   'campaign' => 'pages#campaign', as: :campaign
 
   # Cart Stuff
   get   'carts/address'

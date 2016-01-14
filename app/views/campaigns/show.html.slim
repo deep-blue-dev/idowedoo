@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @campaign.title
+p
+  strong Description:
+  = @campaign.description
+p
+  strong Start:
+  = @campaign.start
+p
+  strong Finish:
+  = @campaign.finish
+p
+  strong User:
+  = @campaign.user
+p
+  strong Goal unit:
+  = @campaign.goal_unit
+
+= link_to 'Edit', edit_campaign_path(@campaign)
+'|
+= link_to 'Back', campaigns_path
