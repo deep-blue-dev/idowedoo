@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :campaigns
   root  'pages#coming_soon'
 
   # Pages
@@ -15,10 +14,12 @@ Rails.application.routes.draw do
   # Cart Stuff
   get   'carts/address'
   post  'carts/location'
+  get 'carts/checkout' => 'carts#checkout'
+  post 'carts/location'
+  get '/cart2' => 'carts#show'
 
   # TODO: This should post to Charges#New not Charges#Charge
   post  '/charge' => 'charges#charge'
-
 
   # TODO: Are these even needed? They conflict with normal REST methods
   get   'charges/create'
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
 
   # Resources
 
+  resources :campaigns
   resources :orders
   resources :order_items
   resources :products
@@ -54,9 +56,6 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'carts/checkout' => 'carts#checkout'
-  post 'carts/location'
-  get '/cart2' => 'carts#show'
   # You can have the root of your site routed with "root"
 
 

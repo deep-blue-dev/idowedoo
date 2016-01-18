@@ -175,14 +175,14 @@
                 | ...
       h5 Base Cost @ 50 Units
       h3 $32.99
-
+ 
       - order_item_price = 32.99
 
       = form_for @order_item, remote: true do |f|
         = f.hidden_field :unit_price, value: order_item_price
         .input-group
-          = f.number_field :quantity, value: 1, class: "form-control", min: 1
+          = f.number_field :quantity, value: 1, class: 'form-control', min: 1
           .input-group-btn
-            = f.submit "Add to cart", class: "btn btn-primary"
+            = f.submit 'Add to cart', class: 'btn btn-primary'
 
-      = link_to 'Add to Cart', cart_path, {id: 'addCart', class: 'btn-lg btn-block btn-danger'}
+      = link_to 'Create Campaign', campaign_path, {id: 'addCart', class: 'btn-lg btn-block btn-danger'}
