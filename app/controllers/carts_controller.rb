@@ -15,7 +15,6 @@ class CartsController < ApplicationController
     @subtotal = current_order.subtotal
     @order_total = @subtotal + @subtotal_tax
 
-
   end
 
   def shipping

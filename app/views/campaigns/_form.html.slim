@@ -31,18 +31,10 @@
         = f.label :description
         = f.text_area :description
       .field
-        = f.label :start
-        = f.text_field :start
-      .field
-        = f.label :finish
-        = f.text_field :finish
-      .field
-        = f.label :user
-        = f.text_field :user
-      .field
         = f.label :goal_unit
         = f.number_field :goal_unit
 
+      // TODO: Fix this now
 
       .tab-content
 
@@ -112,12 +104,11 @@
               .form-group
                 label for="inputHelpBlock" Campaign Length
                 span id="helpBlock" class="help-block" US orders will arrive 10-14 days after the end of the campaign.
-                input type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock"
+                = f.select :finish, options_for_select(@campaign_length_options), html_options:{ id: 'inputHelpBlock', class: 'form-control'}
 
           .row
             .col-lg-12.center-block style='float: none'
-              a.btn.btn-lg.btn-block.btn-success = f.submit
-
+              = f.submit 'Create Campaign', class: 'btn btn-block btn-success'
   .col-lg-6
     img#case
 

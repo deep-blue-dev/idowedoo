@@ -1,5 +1,11 @@
 class CampaignsController < ApplicationController
+
+  include CampaignsHelper
+
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_campaign_length_options, only: [:new, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
 
   # GET /campaigns
   # GET /campaigns.json
@@ -25,6 +31,8 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(campaign_params)
+    @campaign.user = current_user
+    @campaign.start = Date.today
 
     respond_to do |format|
       if @campaign.save
@@ -67,8 +75,28 @@ class CampaignsController < ApplicationController
       @campaign = Campaign.find(params[:id])
     end
 
+    def set_user
+      @user = current_user
+    end
+
+    def set_campaign_length_options
+
+      max_campaign_length = 21
+
+      ## Make an array of numbers divisible by
+      amount = (1..max_campaign_length).select{|i| i.modulo(3).zero? }
+
+      @campaign_length_options = []
+
+      amount.each do |day|
+        @campaign_length_options << date_time_options(day)
+      end
+
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
       params.require(:campaign).permit(:title, :description, :start, :finish, :user_id, :goal_unit)
     end
+
 end
