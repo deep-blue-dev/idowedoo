@@ -6,6 +6,21 @@ class CartsController < ApplicationController
 
   def show
 
+    @order_items = current_order.order_items
+    @location = Location.all.first
+
+    # notes TODO need make a total amount to pass it to stripe go to _shopping_cart !!
+
+    @subtotal_tax = current_order.tax
+    @subtotal = current_order.subtotal
+    @order_total = @subtotal + @subtotal_tax
+
+  end
+
+  def shipping
+
+    @location = Location.all.last
+
     fromAddress = EasyPost::Address.create(
       :company => 'EasyPost',
       :street1 => '118 2nd Street',
