@@ -24,16 +24,6 @@
             - @campaign.errors.full_messages.each do |message|
               li = message
 
-      .field
-        = f.label :title
-        = f.text_field :title
-      .field
-        = f.label :description
-        = f.text_area :description
-      .field
-        = f.label :goal_unit
-        = f.number_field :goal_unit
-
       // TODO: Fix this now
 
       .tab-content
@@ -43,13 +33,13 @@
         #goal.tab-pane.fade.in.active role="tabpanel"
           p
             h4 Sales Goal
-            input.progress-bar-success type="range" name="points" min="0" max="10"
+            = f.range_field :goal_unit, min: 10, max: 500, step: 10, class: 'input-lg'
 
             .row
               .col-lg-5
                 .input-group.input-group-lg
                   span.input-group-addon # of Units
-                  input#basic-url.form-control.col-sm-10 type="number" aria-describedby="cost" value="5"
+                  = f.text_field :goal_unit_val, class: 'form-control col-sm-10', value: 10
               .col-lg-7
                 | Your goal is the number of units you’re aiming to sell,
                 |  but we’ll print your campaign as long as you sell enough to generate a profit.
@@ -90,11 +80,11 @@
               .form-group
                 label for="inputHelpBlock" Campaign Title
                 span id="helpBlock" class="help-block" Summarize your campaign in 40 characters or less.
-                input type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock"
+                = f.text_field :title, {class:'form-control', placeholder:'Campaign Title'}
               .form-group
-                label for="inputHelpBlock" Description
+                = f.label :description
                 span id="helpBlock" class="help-block" Summarize your campaign in 40 characters or less.
-                textarea type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock"
+                = f.text_area :description, cols: 40, rows: 3, class: 'form-control'
               .form-group
                 label for="inputHelpBlock" Tag
                 span id="helpBlock" class="help-block"
@@ -104,11 +94,12 @@
               .form-group
                 label for="inputHelpBlock" Campaign Length
                 span id="helpBlock" class="help-block" US orders will arrive 10-14 days after the end of the campaign.
-                = f.select :finish, options_for_select(@campaign_length_options), html_options:{ id: 'inputHelpBlock', class: 'form-control'}
+                = f.select :finish, options_for_select(@campaign_length_options, f.object.finish.to_date.to_s), {}, class: 'form-control input-lg'
 
           .row
             .col-lg-12.center-block style='float: none'
-              = f.submit 'Create Campaign', class: 'btn btn-block btn-success'
+              = f.submit class:'btn btn-block btn-lg btn-success'
+
   .col-lg-6
     img#case
 
@@ -116,6 +107,3 @@
 coffee:
   $(document).on 'ready page:load', ->
     $('#case, #case-small').attr('src', localStorage.getItem("imgData"))
-
-
-

@@ -21,6 +21,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/new
   def new
     @campaign = Campaign.new
+    @campaign.finish = Date.today + 3.days
   end
 
   # GET /campaigns/1/edit
