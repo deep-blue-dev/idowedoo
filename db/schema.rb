@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114213958) do
+ActiveRecord::Schema.define(version: 20160121211112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,27 @@ ActiveRecord::Schema.define(version: 20160114213958) do
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
   create_table "cases", force: :cascade do |t|
+    t.string   "title"
+    t.decimal  "unit_cost",  precision: 8, scale: 2
+    t.integer  "unit_min"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "cases_colors", id: false, force: :cascade do |t|
+    t.integer  "case_id"
+    t.integer  "color_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "image"
-    t.boolean  "ipad"
-    t.boolean  "iphone"
-    t.boolean  "android"
-    t.string   "title"
+  end
+
+  add_index "cases_colors", ["case_id"], name: "index_cases_colors_on_case_id", using: :btree
+  add_index "cases_colors", ["color_id"], name: "index_cases_colors_on_color_id", using: :btree
+
+  create_table "colors", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "landingemails", force: :cascade do |t|
@@ -101,11 +115,11 @@ ActiveRecord::Schema.define(version: 20160114213958) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "price"
+    t.decimal  "price",       precision: 8, scale: 2
     t.text     "description"
     t.boolean  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -138,6 +152,8 @@ ActiveRecord::Schema.define(version: 20160114213958) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "campaigns", "users"
+  add_foreign_key "cases_colors", "cases"
+  add_foreign_key "cases_colors", "colors"
   add_foreign_key "locations", "profiles"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
