@@ -1,5 +1,5 @@
 class Color < ActiveRecord::Base
-  has_and_belongs_to_many :cases
+  belongs_to :cases
 
 
   def name
@@ -19,17 +19,5 @@ class Color < ActiveRecord::Base
       include_all_fields
       field :value, :color
     end
-    # edit do
-    #   include_all_fields
-    #   field :value do
-    #     partial 'form_spectrum'
-    #   end
-    # end
-    # list do
-    #   include_all_fields
-    #   field :value do
-    #     partial 'form_spectrum'
-    #   end
-    # end
   end
 end

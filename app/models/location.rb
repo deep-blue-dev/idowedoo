@@ -50,4 +50,10 @@ class Location < ActiveRecord::Base
     self.user_title = "Default#{self.user.locations.size.next}" if self.user_title == ''
   end
 
+  ## Rails Admin Config
+
+  rails_admin do
+    visible false
+  end
+
 end

@@ -19,7 +19,9 @@ gem 'devise' # Devise some users
 gem 'figaro' # Env Dependent Keys
 gem 'stripe' # Payments made simple
 gem 'easypost' # Easy Shipping
-gem 'rails_admin'
+gem 'rails_admin' # Auto-Magic Admin Dashboard
+gem 'paperclip' # File Handler
+gem 'aws-sdk' # AWS
 
 ### Assets
 
