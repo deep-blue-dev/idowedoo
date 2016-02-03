@@ -150,7 +150,6 @@ $(document).on('ready page:load', function() {
 
    // Add text from input
 
-
    $textAdd.on('click', function() {
 
      // Get text from input
@@ -275,7 +274,8 @@ $(document).on('ready page:load', function() {
      }
    });
 
-// *****************************************************//
+   // *****************************************************//
+
    // Delete object on delete keypress but
    // it has unwanted behavior -- Won't do
 
@@ -302,7 +302,6 @@ $(document).on('ready page:load', function() {
    $(".dropdown-menu li a").click(function(){
      $(this).parents(".dropdown").find('.selection').text($(this).text());
      $(this).parents(".dropdown").find('.selection').val($(this).text());
-
    });
 
    var fontControl = $('.selection');
