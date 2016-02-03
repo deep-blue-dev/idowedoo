@@ -1,6 +1,6 @@
 class Color < ActiveRecord::Base
-  belongs_to :cases
 
+  has_and_belongs_to_many :cases
 
   def name
     value

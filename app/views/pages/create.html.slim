@@ -150,6 +150,15 @@
           p ...
         // List group
         ul.list-group
+          - @cases.each do |shell|
+            li.list-group-item
+              span.phone-case data-case-path="#{shell.template.url}" data-case-colors="#{shell.colors.map(&:value)}"
+                .media
+                  .media-left
+                    = image_tag shell.template.url, class: 'media-object', height: '64px'
+                  .media-body
+                    h4.media-heading = shell.title
+                    = "#{shell.unit_min} @ #{number_to_currency shell.unit_cost, precision: 2}"
           li.list-group-item
             a.phone-case data-case-path="#{image_path('nexus5x-template.svg')}"
               .media

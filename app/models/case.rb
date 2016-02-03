@@ -1,6 +1,20 @@
 class Case < ActiveRecord::Base
 
-  has_many :colors
+  attr_accessor :delete_asset
+
+  before_validation { self.asset.clear if self.delete_asset == '1' }
+
+  has_and_belongs_to_many :colors
+
+  has_attached_file :template,
+                    :styles => {
+                        :thumb => '100x100#',
+                        :small  => '150x150>',
+                        :medium => '200x200'}
+
+  validates_attachment :template, presence: true,
+                       content_type: { content_type: 'image/svg+xml'}
+
 
   ## Rails Admin Config
 
@@ -24,9 +38,11 @@ class Case < ActiveRecord::Base
       }
       end
     end
+
     configure :colors do
       required :true
     end
+
   end
 
 end

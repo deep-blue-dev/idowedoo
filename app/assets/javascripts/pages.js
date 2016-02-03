@@ -25,7 +25,6 @@ $(document).on('ready page:load', function() {
    // Initialize the canvas
    var canvas = this.__canvas = new fabric.Canvas('c');
 
-
    fabric.Object.prototype.transparentCorners = false;
 
    // Set the canvas size
@@ -67,11 +66,16 @@ $(document).on('ready page:load', function() {
    }
 
    // Load Phone Case from Case Path Selection
+
    const $caseSelection = $('.phone-case');
+
    $caseSelection.on('click', function(e){
 
      // Get casePath from the link
      const casePath = this.dataset.casePath;
+
+     // Get caseColors Array from the link
+     const caseColors = JSON.parse(this.dataset.caseColors);
 
      // Stop the event bubble
      stopEvent(e);
@@ -79,8 +83,32 @@ $(document).on('ready page:load', function() {
      // Call loadPhoneCase with the casePath
      loadPhoneCase(casePath);
 
+     // Change the case color selectors to the cases colors
+     setSpectrumPalette(caseColors);
+
    });
 
+   // Set Spectrum Case Color Palette
+   function setSpectrumPalette(caseColors){
+
+     // Transform color values to hex by adding hash to start
+     hexColorPalette = caseColors.map(
+                        function(str){
+                          return "#" + str });
+
+     defaultColor = hexColorPalette[0];
+
+     $("#caseColor").spectrum({
+       showPaletteOnly: true,
+       color: defaultColor,
+       palette: [ hexColorPalette ]
+     });
+
+     // Change Current color to first in palette
+     canvas.backgroundColor = defaultColor;
+     canvas.renderAll();
+
+   }
 
    //
    // Resize Canvas Handler
@@ -142,10 +170,13 @@ $(document).on('ready page:load', function() {
        lockUniScaling: true,
        centeredScaling: true
      });
+
      // Add Fabric Text Object to Canvas
+
      canvas.add(fabricText);
      canvas.setActiveObject(fabricText);
      centerActiveObject();
+
    });
 
    // Set the current value of text object to the input
@@ -178,7 +209,7 @@ $(document).on('ready page:load', function() {
 
    var $textBold= $('#textBold');
 
-   // Set Object to Italics and toggle button
+   // Set Object to Bold and toggle button
    $textBold.on('click', function(e){
      var activeObject = canvas.getActiveObject();
      if (activeObject && activeObject.type === 'text') {
@@ -356,7 +387,7 @@ $(document).on('ready page:load', function() {
    });
 
    // Spectrum color picker initializer
-   $("#togglePaletteOnly, #strokePalette, #caseColor").spectrum({
+   $("#togglePaletteOnly, #strokePalette").spectrum({
      showPaletteOnly: true,
      togglePaletteOnly: true,
      togglePaletteMoreText: 'more',
