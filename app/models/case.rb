@@ -51,11 +51,6 @@ class Case < ActiveRecord::Base
       visible false
     end
 
-    ## Manually specify order
-    edit do
-
-    end
-
   end
 
 end
