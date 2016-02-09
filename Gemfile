@@ -22,6 +22,7 @@ gem 'easypost' # Easy Shipping
 gem 'rails_admin' # Auto-Magic Admin Dashboard
 gem 'paperclip' # File Handler
 gem 'aws-sdk' # AWS
+gem 'money-rails'
 
 ### Assets
 

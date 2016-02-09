@@ -1,6 +1,7 @@
 class Case < ActiveRecord::Base
 
   attr_accessor :delete_asset
+  monetize :unit_cost_cents
 
   before_validation { self.asset.clear if self.delete_asset == '1' }
 
@@ -24,7 +25,10 @@ class Case < ActiveRecord::Base
       required :true
     end
 
-    configure :unit_cost do
+    configure :unit_cost, :decimal do
+      formatted_value do
+        bindings[:object].unit_cost
+      end
       required :true
     end
 
@@ -41,6 +45,15 @@ class Case < ActiveRecord::Base
 
     configure :colors do
       required :true
+    end
+
+    configure :unit_cost_currency do
+      visible false
+    end
+
+    ## Manually specify order
+    edit do
+
     end
 
   end
