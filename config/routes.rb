@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   root  'pages#coming_soon'
 
   # Pages
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   get   'cart' => 'pages#cart', as: :cart
   get   'index' => 'pages#index', as: :index
   get   'create' => 'pages#create', as: :create
+  get   'campaigns/case_options'
   # get   'campaign' => 'pages#campaign', as: :campaign
 
   # Cart Stuff

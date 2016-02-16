@@ -32,5 +32,13 @@ module Idowedoo
             :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
         }
     }
+
+    config.generators do |g|
+      # g.template_engine nil #to skip views
+      # g.stylesheets false
+      g.test_framework  nil #to skip test framework
+      g.assets  false
+      g.helper false
+    end
   end
 end

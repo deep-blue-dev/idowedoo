@@ -22,6 +22,11 @@ class CampaignsController < ApplicationController
   def new
     @campaign = Campaign.new
     @campaign.finish = Date.today + 3.days
+    @cases = Case.all
+  end
+
+  def case_options
+    render partial: 'case_options', layout: false
   end
 
   # GET /campaigns/1/edit
