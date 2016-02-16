@@ -1,9 +1,12 @@
 class Case < ActiveRecord::Base
 
   attr_accessor :delete_asset
+
   monetize :unit_cost_cents
 
   before_validation { self.asset.clear if self.delete_asset == '1' }
+
+  belongs_to :brand, inverse_of: :cases
 
   has_and_belongs_to_many :colors
 

@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209191544) do
+ActiveRecord::Schema.define(version: 20160216074100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brands", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "campaign_case_options", force: :cascade do |t|
     t.integer  "campaign_id"
@@ -47,7 +53,10 @@ ActiveRecord::Schema.define(version: 20160209191544) do
     t.datetime "template_updated_at"
     t.integer  "unit_cost_cents",       default: 0,     null: false
     t.string   "unit_cost_currency",    default: "USD", null: false
+    t.integer  "brand_id"
   end
+
+  add_index "cases", ["brand_id"], name: "index_cases_on_brand_id", using: :btree
 
   create_table "cases_colors", id: false, force: :cascade do |t|
     t.integer  "case_id"

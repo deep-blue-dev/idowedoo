@@ -23,6 +23,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new
     @campaign.finish = Date.today + 3.days
     @cases = Case.all
+    @brands = Brand.all
   end
 
   def case_options
