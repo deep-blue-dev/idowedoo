@@ -1,10 +1,20 @@
 .row
-  .col-lg-3.text-center
-    img.media-object#case-small src="" height='96px'
-  .col-lg-7
-    h4 Nexus 5x
-    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
-    | dolorem doloremque earum expedita laborum maiores minus nulla sit.
+  .col-lg-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-lg-3.text-center
+            img.media-object#case-small src="" height='96px'
+          .col-lg-7
+            .row
+              .col-lg-12
+                h4 = selected_case.title
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
+            .row
+              .col-lg
+            ul
+              - selected_case.colors.each do |color|
+                li.case-option-color style='background:##{color.value}'
 
-  .col-lg-2
-    input.input-md type="text" class="form-control" id="basic-url" aria-describedby="basic-addon" value="$5.00"
+          .col-lg-2
+            input.input-md type="text" class="form-control" id="basic-url" aria-describedby="basic-addon" value="$5.00"

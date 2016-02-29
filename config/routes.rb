@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get   'index' => 'pages#index', as: :index
   get   'create' => 'pages#create', as: :create
   get   'campaigns/case_options'
+  get   'campaigns/cases_by_brand'
   # get   'campaign' => 'pages#campaign', as: :campaign
 
   # Cart Stuff

@@ -22,12 +22,24 @@ class CampaignsController < ApplicationController
   def new
     @campaign = Campaign.new
     @campaign.finish = Date.today + 3.days
-    @cases = Case.all
+    @cases = Brand.first.cases
     @brands = Brand.all
   end
 
   def case_options
-    render partial: 'case_options', layout: false
+    selected_case = Case.find case_params[:id]
+    render partial: 'case_options',
+           locals:  {selected_case: selected_case},
+           layout: false
+  end
+
+  def cases_by_brand
+
+    cases = Case.where(brand: case_params[:brand])
+
+    render partial: 'cases_by_brand',
+           locals:  {cases: cases},
+           layout:  false
   end
 
   # GET /campaigns/1/edit
@@ -102,6 +114,11 @@ class CampaignsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+
+    def case_params
+      params.require(:case).permit(:id, :brand)
+    end
+
     def campaign_params
       params.require(:campaign).permit(:title, :description, :start, :finish, :user_id, :goal_unit)
     end
