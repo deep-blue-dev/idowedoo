@@ -4,7 +4,6 @@ class CampaignsController < ApplicationController
 
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   before_action :set_campaign_length_options, only: [:new, :edit, :update]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
   # GET /campaigns
@@ -92,10 +91,6 @@ class CampaignsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find(params[:id])
-    end
-
-    def set_user
-      @user = current_user
     end
 
     def set_campaign_length_options
