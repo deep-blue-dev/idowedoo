@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: landingemails
+#
+#  id         :integer          not null, primary key
+#  email      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Landingemail, type: :model do
