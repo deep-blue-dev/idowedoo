@@ -14,8 +14,16 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require spectrum
 //= require_tree .
 
+$(document).on("ready", function() {
+  // Init bootstrap tabs
+  $('.tab-content div').click(function (e) {
+    //e.preventDefault();
+    $(this).tab('show');
+  });
+})
 
 // dirty implementation of an existential operator
 function exists(object){
