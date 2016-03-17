@@ -2,51 +2,50 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  # Devise
+  devise_for :users
+  devise_scope :user do
+    get 'sign_in', to: 'devise/sessions#new', as: :sign_in
+    get 'sign_up', to: 'devise/registrations#new', as: :sign_up
+    get 'sign_out', to: 'devise/sessions#destroy', as: :sign_out
+  end
+
   root  'pages#coming_soon'
 
   # Pages
-  post  '/' => 'pages#coming_soon'
-  get   '/' => 'pages#coming_soon'
-  get   'learn' => 'pages#learn', as: :learn
-  get   'cart' => 'pages#cart', as: :cart
-  get   'index' => 'pages#index', as: :index
-  get   'create' => 'pages#create', as: :create
+  get   '/', to: 'pages#coming_soon'
+  get   'learn', to: 'pages#learn', as: :learn
+  get   'cart', to: 'pages#cart', as: :cart
+  get   'index', to: 'pages#index', as: :index
+  get   'create', to: 'pages#create', as: :create
+
+  # Campaigns
+  resources :campaigns
   get   'campaigns/case_options'
   get   'campaigns/cases_by_brand'
-  # get   'campaign' => 'pages#campaign', as: :campaign
+  # get   'campaign', to: 'pages#campaign', as: :campaign
 
   # Cart Stuff
   get   'carts/address'
   post  'carts/location'
-  get 'carts/checkout' => 'carts#checkout'
+  get 'carts/checkout', to: 'carts#checkout'
   post 'carts/location'
-  get '/cart2' => 'carts#show'
+  get '/cart2', to: 'carts#show'
 
   # TODO: This should post to Charges#New not Charges#Charge
-  post  '/charge' => 'charges#charge'
+  post  '/charge', to: 'charges#charge'
 
   # TODO: Are these even needed? They conflict with normal REST methods
   get   'charges/create'
   get   'order_items/create'
 
   # Orders
+  resources :orders
   get   'orders/index'
   post  'orders/create'
   get   'orders/show'
 
-  # Devise
-  devise_for :users
-
-  devise_scope :user do
-    get 'sign_in', :to => 'devise/sessions#new', as: :sign_in
-    get 'sign_up', :to => 'devise/registrations#new', as: :sign_up
-    get 'sign_out', :to => 'devise/sessions#destroy', as: :sign_out
-  end
-
   # Resources
-
-  resources :campaigns
-  resources :orders
   resources :order_items
   resources :products
   resources :charges
@@ -55,60 +54,4 @@ Rails.application.routes.draw do
   resource :profile do
     resources :locations
   end
-
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end
