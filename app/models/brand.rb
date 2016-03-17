@@ -16,4 +16,8 @@ class Brand < ActiveRecord::Base
     visible false
   end
 
+  def self.brand_list
+    all || []
+  end
+
 end

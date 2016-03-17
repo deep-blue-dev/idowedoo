@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
 
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   before_action :set_campaign_length_options, only: [:new, :edit, :update]
-
+  before_action :set_brands_cases_options, only: [:new, :edit]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -21,8 +21,6 @@ class CampaignsController < ApplicationController
   def new
     @campaign = Campaign.new
     @campaign.finish = Date.today + 3.days
-    @cases = Brand.first.cases
-    @brands = Brand.all
   end
 
   def case_options
@@ -43,6 +41,8 @@ class CampaignsController < ApplicationController
 
   # GET /campaigns/1/edit
   def edit
+    @campaign = Campaign.find(params[:id])
+    @campaign.finish = Date.today + 3.days
   end
 
   # POST /campaigns
@@ -116,6 +116,11 @@ class CampaignsController < ApplicationController
 
     def campaign_params
       params.require(:campaign).permit(:title, :description, :start, :finish, :user_id, :goal_unit)
+    end
+
+    def set_brands_cases_options
+      @brands = Brand.all
+      @cases = @brands.first.try(:cases) || []
     end
 
 end
