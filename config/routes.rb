@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   root  'pages#coming_soon'
 
   # Pages
-  get   '/', to: 'pages#coming_soon'
   get   'learn', to: 'pages#learn', as: :learn
   get   'cart', to: 'pages#cart', as: :cart
   get   'index', to: 'pages#index', as: :index
