@@ -58,6 +58,13 @@ group :development do
   gem 'quiet_assets' # Shhh.. we don't need to see the assets
 end
 
+group :test do
+  # Creates models for testing
+  gem 'factory_girl_rails'
+  # Cleans all records from DB before each test
+  gem 'database_cleaner'
+end
+
 group :production do
 
   gem 'rails_12factor'

@@ -16,12 +16,12 @@
 
 .row
   .col-lg-6
-    = form_for @campaign do |f|
-      - if @campaign.errors.any?
+    = form_for campaign do |f|
+      - if campaign.errors.any?
         #error_explanation
-          h2 = "#{pluralize(@campaign.errors.count, "error")} prohibited this campaign from being saved:"
+          h2 = "#{pluralize(campaign.errors.count, "error")} prohibited this campaign from being saved:"
           ul
-            - @campaign.errors.full_messages.each do |message|
+            - campaign.errors.full_messages.each do |message|
               li = message
 
       // TODO: Fix this now
@@ -68,9 +68,9 @@
                           input.input-md type="text" class="form-control" id="basic-url" aria-describedby="basic-addon" value="$5.00"
             .row
               .col-lg-5
-                = select_tag "Brands", options_from_collection_for_select(@brands, 'id', 'name'), class: 'form-control input-lg'
+                = select_tag "Brands", options_from_collection_for_select(brands, 'id', 'name'), class: 'form-control input-lg'
               .col-lg-5
-                = select_tag "Cases", options_from_collection_for_select(@cases, 'id', 'title'), class: 'form-control input-lg'
+                = select_tag "Cases", options_from_collection_for_select(cases, 'id', 'title'), class: 'form-control input-lg'
               .col-lg-2
                 a#addCaseOption.btn.btn-lg.btn-success +
             .row
@@ -101,7 +101,7 @@
               .form-group
                 label for="inputHelpBlock" Campaign Length
                 span id="helpBlock" class="help-block" US orders will arrive 10-14 days after the end of the campaign.
-                = f.select :finish, options_for_select(@campaign_length_options, f.object.finish.to_date.to_s), {}, class: 'form-control input-lg'
+                = f.select :finish, options_for_select(campaign_length_options, f.object.finish.to_date.to_s), {}, class: 'form-control input-lg'
           .row
             .col-lg-12.center-block style='float: none'
               = f.submit class:'btn btn-block btn-lg btn-success'
