@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get   'index', to: 'pages#index', as: :index
   get   'create', to: 'pages#create', as: :create
 
+  resources :cases, only: [:new]
+
   # Campaigns
   resources :campaigns
   get   'campaigns/case_options'
