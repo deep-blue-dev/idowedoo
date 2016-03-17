@@ -23,6 +23,7 @@ gem 'rails_admin' # Auto-Magic Admin Dashboard
 gem 'paperclip' # File Handler
 gem 'aws-sdk' # AWS
 gem 'money-rails'
+gem 'annotate' # Add model DB data to app/models/*.rb file
 
 ### Assets
 

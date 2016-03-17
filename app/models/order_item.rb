@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: order_items
+#
+#  id          :integer          not null, primary key
+#  unit_price  :decimal(, )
+#  quantity    :integer
+#  total_price :decimal(, )
+#  product_id  :integer
+#  order_id    :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class OrderItem < ActiveRecord::Base
 
   #gems
