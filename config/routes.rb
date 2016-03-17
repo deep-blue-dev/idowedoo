@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root  'pages#coming_soon'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # Devise
@@ -10,9 +12,9 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy', as: :sign_out
   end
 
-  root  'pages#coming_soon'
-
   # Pages
+  get '/coming_soon', to: 'pages#coming_soon', as: :coming_soon
+  post '/landing_email', to: 'pages#landing_email', as: :landing_email_subscribe
   get   'learn', to: 'pages#learn', as: :learn
   get   'cart', to: 'pages#cart', as: :cart
   get   'index', to: 'pages#index', as: :index

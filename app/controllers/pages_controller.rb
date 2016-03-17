@@ -18,24 +18,22 @@ class PagesController < ApplicationController
   end
 
   def coming_soon
-
-    if request.post?
-      landing_email = Landingemail.new()
-      landing_email.email = params[:email]
-
-      if landing_email.save
-        render json: {email: landing_params}, status: :ok
-      else
-        render errors: landing_email.errors, status: :internal_server_error
-      end
-
-    else
-      render file: 'pages/coming_soon', layout: false
-    end
   end
 
-  def landing_params
-    params.permit(:email)
+  def landing_email
+    landing_email = LandingEmail.new(landing_email_params)
+    if landing_email.save
+      flash[:success] = t('landing_email.success')
+    else
+      flash[:error] = landing_email.errors.full_messages
+    end
+    redirect_to coming_soon_path
+  end
+
+  private 
+
+  def landing_email_params
+    params.require(:landing_email).permit(:email)
   end
 
 end

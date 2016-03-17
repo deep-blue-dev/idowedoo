@@ -20,4 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+    hello: "Hello world"
+
+    landing_email:
+        success: "Thanks for signing up. We will email you with more information."
+        errors:
+            already_registered: "This email has already been signed up."
+            email_missing: "Please enter an email address."
+            invalid_email: "Email is invalid."
+
