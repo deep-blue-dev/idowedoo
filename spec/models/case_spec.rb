@@ -19,5 +19,24 @@
 require 'rails_helper'
 
 RSpec.describe Case, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "factory" do
+    let!(:kase) { build(:case) }
+    it "should be valid" do
+      expect(kase).to be_valid
+      expect do
+        kase.save
+      end.to change{ Case.count }.by(1)
+    end
+  end
+
+  describe "creator" do
+    let!(:kase) { build(:case, creator: nil) }
+    let!(:user) { build(:user) }
+    it "should be validated" do
+      expect(kase).to_not be_valid
+      kase.creator = user
+      expect(kase).to be_valid
+      expect(kase.creator).to eq(user)
+    end
+  end
 end

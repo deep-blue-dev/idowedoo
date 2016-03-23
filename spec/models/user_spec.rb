@@ -20,5 +20,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "cases" do
+    let!(:user) { create(:user) }
+    let!(:kases) { create_list(:case, 2, creator: user) }
+    it "accesses all a users cases" do
+      kases.each do |kase|
+        expect(kase.creator).to eq(user)
+      end
+      expect(user.cases).to eq(kases)
+    end
+  end
 end

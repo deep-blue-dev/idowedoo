@@ -25,6 +25,7 @@ class Case < ActiveRecord::Base
   before_validation { self.asset.clear if self.delete_asset == '1' }
 
   belongs_to :brand, inverse_of: :cases
+  belongs_to :creator, class_name: "User"
 
   has_and_belongs_to_many :colors
 
@@ -36,7 +37,7 @@ class Case < ActiveRecord::Base
 
   validates_attachment :template, presence: true,
                        content_type: { content_type: 'image/svg+xml'}
-
+  validates :creator, presence: true
 
   ## Rails Admin Config
 
