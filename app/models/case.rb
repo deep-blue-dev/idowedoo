@@ -35,7 +35,7 @@ class Case < ActiveRecord::Base
                         :small  => '150x150>',
                         :medium => '200x200'}
 
-  validates_attachment :template, presence: true,
+  validates_attachment :template,
                        content_type: { content_type: 'image/svg+xml'}
   validates :creator, presence: true
 
