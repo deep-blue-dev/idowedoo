@@ -29,3 +29,7 @@ en:
             email_missing: "Please enter an email address."
             invalid_email: "Email is invalid."
 
+    cases_controller:
+        create:
+            success: "New case created."
+
