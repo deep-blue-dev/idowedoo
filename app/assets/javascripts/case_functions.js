@@ -31,3 +31,21 @@ function loadPhoneCase(casePath){
   });
 
 }
+
+// Get the canvas height and width dynamically
+function updateCanvasSize() {
+  console.log('update canvas size called');
+  const $canvasArea = $('.canvas-area')[0];
+  const $canvasContainer = $('.camb')
+  const $upperCanvas = $('.upper-canvas');
+
+  var $canvasHeight = $canvasArea.clientWidth;
+  var $canvasWidth = $canvasArea.clientWidth;
+  $upperCanvas.width = $canvasArea.clientWidth;
+  $upperCanvas.height = $canvasArea.clientWidth;
+  $('.canvas-container').width = $canvasArea.clientWidth;
+  $('.canvas-container').height = $canvasArea.clientWidth;
+  canvas.setWidth($canvasHeight);
+  canvas.setHeight($canvasWidth);
+  canvas.calcOffset();
+}
