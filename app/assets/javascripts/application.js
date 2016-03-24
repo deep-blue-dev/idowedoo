@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require spectrum
+//= require fabric-1.5.0.min
 //= require_tree .
 
 $(document).on("ready", function() {
