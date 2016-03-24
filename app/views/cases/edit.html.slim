@@ -20,7 +20,7 @@
       .row
         .col-md-8.col-md-offset-2
           = render "cases/case_editor/campaign_form"
-  
+
 javascript:
   $(document).on("ready", function() {
     CaseCreator.init(#{raw @case.saved_data});

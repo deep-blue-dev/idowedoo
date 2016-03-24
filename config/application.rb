@@ -24,13 +24,25 @@ module Idowedoo
     config.active_record.raise_in_transactional_callbacks = true
 
     # Paperclip Setup
+    # config.paperclip_defaults = {
+    #     :storage => :s3,
+    #     :s3_credentials => {
+    #         :bucket => ENV['S3_BUCKET_NAME'],
+    #         :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    #         :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    #     }
+    # }
+
     config.paperclip_defaults = {
-        :storage => :s3,
-        :s3_credentials => {
-            :bucket => ENV['S3_BUCKET_NAME'],
-            :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-            :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-        }
+      default_style: :original,
+      default_url: "/:attachment/:style/missing.png",
+      restricted_characters: /[&$+,\/:;=?@<>\[\]\{\}\|\\\^~%# ]/,
+      hash_data: ":class/:attachment/:id/:style/:updated_at",
+      interpolator: Paperclip::Interpolations,
+      path: ":rails_root/spec/storage/:class/:attachment/:id/:style/:filename",
+      url_generator: Paperclip::UrlGenerator,
+      validate_media_type: true,
+      check_validity_before_processing: true
     }
 
     config.generators do |g|
