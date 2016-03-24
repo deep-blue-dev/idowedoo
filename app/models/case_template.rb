@@ -12,6 +12,10 @@ class CaseTemplate < ActiveRecord::Base
                        content_type: { content_type: 'image/svg+xml'}
 
   def url
-    template.url
+    url = template.url
+    if template.url.starts_with?("http://s3.amazonaws.com/idowedo")
+      "http://idowedo.s3-us-west-1.amazonaws.com/" + template.url.split("http://s3.amazonaws.com/idowedo")[1]
+    end
+    url
   end
 end
