@@ -34,7 +34,6 @@ function loadPhoneCase(casePath){
 
 // Get the canvas height and width dynamically
 function updateCanvasSize() {
-  console.log('update canvas size called');
   const $canvasArea = $('.canvas-area')[0];
   const $canvasContainer = $('.camb')
   const $upperCanvas = $('.upper-canvas');
