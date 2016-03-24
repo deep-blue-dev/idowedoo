@@ -1,197 +1,28 @@
-
 .row
-  // controls-->
-  .col-lg-3
-    // Nav tabs -->
-    ul.nav.nav-tabs role='tablist'
-      li.active role="presentation"
-        a aria-controls="text" data-toggle="tab" href="#text" role="tab"
-          h4 Text
-      li role="presentation"
-        a aria-controls="image" data-toggle="tab" href="#image" role="tab"
-          h4 Images
-
-
-    // Tab panes
-    .tab-content
-
-      //
-      // Text Tab
-      //
-
-      #text.tab-pane.active role='tabpanel'
-
-        // textEnter
-
-        p
-          label for="textInput"  Enter Text Below
-          .input-group
-            input#textInput.form-control placeholder=("I Do We Do") type="text"
-            span.input-group-btn
-              button#textAdd.btn.btn-default type="button"  Add Text
-        p
-          button#textItalic.btn.btn-default
-            span.glyphicon.glyphicon-italic
-          button#textBold.btn.btn-default
-            span.glyphicon.glyphicon-bold
-
-        // chooseFont
-
-        p
-          label for="chooseFont"  Choose a font
-          #font_drop.dropdown
-            button#fontFamily.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
-              span.selection Helvetica
-              span.caret
-            ul.dropdown-menu
-              li
-                a href="#"  Helvetica
-              li
-                a href="#"  Comic Sans MS
-              li
-                a href="#"  Arial
-              li
-                a href="#"  Times New Roman
-            input#togglePaletteOnly type="text"
-
-
-        // textOutline
-        p
-          label for="textOutline"  Add an outline
-        #strokeSelect.dropdown
-          button.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
-            /! No outline
-            span.selection No outline
-            span.caret
-          ul.dropdown-menu
-            li
-              a data-stroke="0" href="#"  No outline
-            li
-              a data-stroke="1" href="#"  Thin outline
-            li
-              a data-stroke="1.5" href="#"  Medium outline
-            li
-              a data-stroke="2" href="#"  Thick outline
-          input#strokePalette type="text"
-
-      //
-      // Image Tab -->
-      //
-
-      #image.tab-pane role='tabpanel' data={tab: true}
-        .drop-container
-          .drop-area
-            .lead.text-center Drag Here to Upload
-            input#upload type='file' accept='image/*' style='display: none'
-            a#fileUpload.btn.btn-default.btn-lg.btn-block Click Here to Upload
-            small
-              em.text-center
-                | By uploading an image you agree that you hold the right to reproduce and sell the design.
-
-      br
-      p
-        a.btn.btn-default data-toggle="collapse" href="#advanceControlz"  Advanced Controls
-
-      #advanceControlz.advanced-controls.collapse
-        button#bringForward.btn.btn-default
-          span.glyphicon.glyphicon-arrow-up
-        button#sendBackwards.btn.btn-default
-          span.glyphicon.glyphicon-arrow-down
-        button#center.btn.btn-default
-          span.glyphicon.glyphicon-screenshot
-        button#delete.btn.btn-default
-          span.glyphicon.glyphicon-trash
-
-        br
-
-        br
-
-        p
-          label
-            span Angle:
-            input#angle-control max="360" min="0" step="5" type="range" value="0"
-          input#angleValue max="360" min="0" step="5" type="number" value="0"
-        p
-          label
-            span Left:
-            input#left-control max="300" min="0" step="5" type="range" value="150"
-          input#leftValue max="300" min="0" step="5" type="number" value="150"
-        p
-          label
-            span Top:
-            input#top-control max="300" min="0" step="5" type="range" value="150"
-          input#topValue max="300" min="0" step="5" type="number" value="150"
-        p
-          label
-            span Scale:
-            input#scale-control max="4" min="0.1" step="0.1" type="range" value="1"
-          input#scaleValue max="4" min="0.1" step="0.1" type="number" value="1"
-
-
-  // Canvas
-  .col-lg-6
-    section.canvas-area
-      canvas#c height="300" style=("border:1px solid #ccc ") width="300"
-
-  /! caseSelector
-  .col-lg-3
-    .well
-      h4 Style and Design
-      /! caseStyle
-      p
-        label for="textOutline"  Change case color
-        br
-        input#caseColor type="text"
-      /! caseList
-      .panel.panel-default
-        /! Default panel contents
-        .panel-heading Panel heading
-        .panel-body
-          p ...
-        // List group
-        ul.list-group
-          - @cases.each do |shell|
-            li.list-group-item
-              span.phone-case data-case-path="#{shell.template.url}" data-case-colors="#{shell.colors.map(&:value)}"
-                .media
-                  .media-left
-                    = image_tag shell.template.url, class: 'media-object', height: '64px'
-                  .media-body
-                    h4.media-heading = shell.title
-                    = "#{shell.unit_min} @ #{number_to_currency shell.unit_cost, precision: 2}"
-          li.list-group-item
-            a.phone-case data-case-path="#{image_path('nexus5x-template.svg')}"
-              .media
-                .media-left
-                  = image_tag image_path('nexus5x-template.svg'), class: 'media-object', height: '64px'
-                .media-body
-                  h4.media-heading Nexus 5X
-                  | ...
-          li.list-group-item
-            .media
-              .media-left
-                a href="#"
-                  img.media-object alt="..." src="https://i.imgur.com/vtKZwB1.png" /
-              .media-body
-                h4.media-heading Ipad Air 2
-          li.list-group-item
-            .media
-              .media-left
-                a href="#"
-                  img.media-object alt="..." src="https://i.imgur.com/IDvo98M.png" /
-              .media-body
-                h4.media-heading Galaxy S6
-                | ...
-      h5 Base Cost @ 50 Units
-      h3 $32.99
- 
-      - order_item_price = 32.99
-
-      = form_for @order_item, remote: true do |f|
-        = f.hidden_field :unit_price, value: order_item_price
-        .input-group
-          = f.number_field :quantity, value: 1, class: 'form-control', min: 1
-          .input-group-btn
-            = f.submit 'Add to cart', class: 'btn btn-primary'
-
-      = link_to 'Create Campaign', new_campaign_path, {id: 'addCart', class: 'btn-lg btn-block btn-danger'}
+  .panel.panel-default
+    .panel-heading 
+      .panel-heading.text-center
+        h4 Design your case below
+        = render "cases/case_editor/case_save_form"
+    .panel-body 
+      .row
+        // controls-->
+        .col-lg-3
+          = render "cases/case_editor/text_and_images"
+        // Canvas
+        .col-lg-6
+          section.canvas-area
+            canvas#c height="300" style=("border:1px solid #ccc ") width="300"
+        /! caseSelector
+        .col-lg-3
+          = render "cases/case_editor/style_and_design", cases: @cases
+    .panel-footer 
+      .row
+        .col-md-8.col-md-offset-2
+          = render "cases/case_editor/campaign_form"
+  
+javascript:
+  $(document).on("ready", function() {
+    CaseCreator.init(#{raw @case.saved_data});
+  })
+  

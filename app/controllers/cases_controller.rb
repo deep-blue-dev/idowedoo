@@ -34,11 +34,24 @@ class CasesController < ApplicationController
   def edit
     @cases = Case.all
     @order_item = OrderItem.new
+    @case = Case.find(params[:id])
+  end
+
+  def update
+    @case = Case.find(params[:id])
+    if @case.update_attributes(case_update_params)
+      flash[:success] = "Case saved."
+      redirect_to edit_case_path(@case)  
+    end
   end
 
   private 
 
   def case_params
     params.require(:case).permit(:title, :template_id)
+  end
+
+  def case_update_params
+    params.require(:case).permit(:saved_data)
   end
 end

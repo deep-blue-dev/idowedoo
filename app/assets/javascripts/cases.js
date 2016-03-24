@@ -1,10 +1,31 @@
 $(document).on('ready page:load', function() {
 
-  if ( currentView('cases', 'new') ) {
-    initialize()
-  }
+  window.CaseCreator = (function () {
 
- function initialize(){
+    // This is the public interface
+    var publicInterface = {
+      init: initialize
+    };
+
+    return publicInterface;
+  }());
+
+ function initialize(currentCase){
+
+    // Initialize the canvas
+    var canvas = this.__canvas = new fabric.Canvas('c');
+    window.canvas = canvas
+
+    if (typeof currentCase != "undefined") {
+      deserializeCanvas(currentCase)
+    }
+
+    $("form.edit_case").on('submit', function(e) {
+      e.preventDefault();
+      var jsonData = serializeCanvas();
+      $("#case_saved_data").val(JSON.stringify(jsonData));
+      this.submit();
+    });
 
    window.debug = true;
 
@@ -21,9 +42,7 @@ $(document).on('ready page:load', function() {
    //
    //////////////////
 
-   // Initialize the canvas
-   var canvas = this.__canvas = new fabric.Canvas('c');
-   window.canvas = canvas
+   
 
 
    fabric.Object.prototype.transparentCorners = false;

@@ -29,7 +29,9 @@ class Case < ActiveRecord::Base
 
   has_and_belongs_to_many :colors
 
-  validates_presence_of :template_id
+  validates_presence_of :template_id, :creator_id
+
+  after_create :setup_json
 
   ## Rails Admin Config
 
@@ -68,6 +70,13 @@ class Case < ActiveRecord::Base
 
   def template
     case_template
+  end
+
+  private
+
+  def setup_json
+    saved_data = {caseTemplateURL: template.url}
+    update_column(:saved_data, saved_data.to_json)
   end
 
 end
