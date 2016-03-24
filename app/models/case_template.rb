@@ -14,7 +14,7 @@ class CaseTemplate < ActiveRecord::Base
   def url
     url = template.url
     if template.url.starts_with?("http://s3.amazonaws.com/idowedo")
-      "http://idowedo.s3-us-west-1.amazonaws.com/" + template.url.split("http://s3.amazonaws.com/idowedo")[1]
+      "//idowedo.s3-us-west-1.amazonaws.com/" + template.url.split("http://s3.amazonaws.com/idowedo")[1]
     end
     url
   end
