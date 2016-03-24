@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# Case Templates
+temp_file = File.new(File.join(Rails.root, 'app', 'assets', 'images', 'nexus5x-template.svg'))
+CaseTemplate.create(name: "Nexus 5X", template: temp_file)
+

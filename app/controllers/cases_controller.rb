@@ -7,6 +7,7 @@ class CasesController < ApplicationController
       @cases = []
     end
     @new_case = Case.new
+    @templates = CaseTemplate.all
   end
 
   def create
@@ -38,6 +39,6 @@ class CasesController < ApplicationController
   private 
 
   def case_params
-    params.require(:case).permit(:title)
+    params.require(:case).permit(:title, :template_id)
   end
 end

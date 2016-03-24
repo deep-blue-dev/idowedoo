@@ -33,3 +33,7 @@ en:
         create:
             success: "New case created."
 
+    views:
+        case_templates:
+            select_prompt: "Select a phone case template"
+
