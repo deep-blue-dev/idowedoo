@@ -25,18 +25,13 @@ class Case < ActiveRecord::Base
   before_validation { self.asset.clear if self.delete_asset == '1' }
 
   belongs_to :brand, inverse_of: :cases
+  belongs_to :case_template, class_name: "CaseTemplate", foreign_key: "template_id"
 
   has_and_belongs_to_many :colors
 
-  has_attached_file :template,
-                    :styles => {
-                        :thumb => '100x100#',
-                        :small  => '150x150>',
-                        :medium => '200x200'}
+  validates_presence_of :template_id, :creator_id
 
-  validates_attachment :template, presence: true,
-                       content_type: { content_type: 'image/svg+xml'}
-
+  after_create :setup_json
 
   ## Rails Admin Config
 
@@ -71,7 +66,18 @@ class Case < ActiveRecord::Base
     configure :unit_cost_currency do
       visible false
     end
+  end
 
+  def template
+    case_template
+  end
+
+  private
+
+  def setup_json
+    saved_data = {caseTemplateURL: template.url}
+    update_column(:saved_data, saved_data.to_json)
   end
 
 end
+  

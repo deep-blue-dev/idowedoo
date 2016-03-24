@@ -19,5 +19,39 @@
 require 'rails_helper'
 
 RSpec.describe Case, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "factory" do
+    let!(:kase) { build(:case) }
+    it "should be valid" do
+      expect(kase).to be_valid
+      expect do
+        kase.save
+      end.to change{ Case.count }.by(1)
+    end
+  end
+
+  describe "creator" do
+    let!(:kase) { build(:case) }
+    let!(:user) { build(:user) }
+    it "should be validated" do
+      kase.creator_id = nil
+      expect(kase).to_not be_valid
+      kase.creator = user
+      expect(kase).to be_valid
+      expect(kase.creator).to eq(user)
+    end
+  end
+
+  describe "saved_data" do
+    let!(:kase) { build(:case) }
+    it "is not valid without template" do
+      kase.case_template = nil
+      expect(kase).to_not be_valid
+    end
+    it "initializes correctly" do
+      expect do
+        kase.save
+      end.to change{ kase.saved_data }
+      expect(kase.saved_data).to eq({caseTemplateURL: kase.template.url}.to_json)
+    end
+  end
 end

@@ -39,4 +39,16 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.paperclip_defaults = {
+    default_style: :original,
+    default_url: "/:attachment/:style/missing.png",
+    restricted_characters: /[&$+,\/:;=?@<>\[\]\{\}\|\\\^~%# ]/,
+    hash_data: ":class/:attachment/:id/:style/:updated_at",
+    interpolator: Paperclip::Interpolations,
+    path: ":rails_root/spec/storage/:class/:attachment/:id/:style/:filename",
+    url_generator: Paperclip::UrlGenerator,
+    validate_media_type: true,
+    check_validity_before_processing: true
+  }
 end

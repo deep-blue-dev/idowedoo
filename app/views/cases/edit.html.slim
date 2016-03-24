@@ -3,6 +3,7 @@
     .panel-heading 
       .panel-heading.text-center
         h4 Design your case below
+        = render "cases/case_editor/case_save_form"
     .panel-body 
       .row
         // controls-->
@@ -14,8 +15,14 @@
             canvas#c height="300" style=("border:1px solid #ccc ") width="300"
         /! caseSelector
         .col-lg-3
-          = render "cases/case_editor/style_and_design"
+          = render "cases/case_editor/style_and_design", cases: @cases
     .panel-footer 
       .row
         .col-md-8.col-md-offset-2
           = render "cases/case_editor/campaign_form"
+
+javascript:
+  $(document).on("ready", function() {
+    CaseCreator.init(#{raw @case.saved_data});
+  })
+  

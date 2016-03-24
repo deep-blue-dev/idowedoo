@@ -1,0 +1,117 @@
+.well
+  // Nav tabs -->
+  ul.nav.nav-tabs role='tablist'
+    li.active role="presentation"
+      a aria-controls="text" data-toggle="tab" href="#text" role="tab"
+        h4 Text
+    li role="presentation"
+      a aria-controls="image" data-toggle="tab" href="#image" role="tab"
+        h4 Images
+
+
+  .tab-content
+    #text.tab-pane.active role='tabpanel'
+
+      // textEnter
+      p
+        label for="textInput"  Enter Text Below
+        .input-group
+          input#textInput.form-control placeholder=("I Do We Do") type="text"
+          span.input-group-btn
+            button#textAdd.btn.btn-default type="button"  Add Text
+      p
+        button#textItalic.btn.btn-default
+          span.glyphicon.glyphicon-italic
+        button#textBold.btn.btn-default
+          span.glyphicon.glyphicon-bold
+
+      // chooseFont
+      p
+        label for="chooseFont"  Choose a font
+        #font_drop.dropdown
+          button#fontFamily.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+            span.selection Helvetica
+            span.caret
+          ul.dropdown-menu
+            li
+              a href="#"  Helvetica
+            li
+              a href="#"  Comic Sans MS
+            li
+              a href="#"  Arial
+            li
+              a href="#"  Times New Roman
+          input#togglePaletteOnly type="text"
+
+
+      // textOutline
+      p
+        label for="textOutline"  Add an outline
+      #strokeSelect.dropdown
+        button.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+          /! No outline
+          span.selection No outline
+          span.caret
+        ul.dropdown-menu
+          li
+            a data-stroke="0" href="#"  No outline
+          li
+            a data-stroke="1" href="#"  Thin outline
+          li
+            a data-stroke="1.5" href="#"  Medium outline
+          li
+            a data-stroke="2" href="#"  Thick outline
+        input#strokePalette type="text"
+
+    //
+    // Image Tab -->
+    //
+
+    #image.tab-pane role='tabpanel' data={tab: true}
+      .drop-container
+        .drop-area
+          .lead.text-center Drag Here to Upload
+          input#upload type='file' accept='image/*' style='display: none'
+          a#fileUpload.btn.btn-default.btn-lg.btn-block Click Here to Upload
+          small
+            em.text-center
+              | By uploading an image you agree that you hold the right to reproduce and sell the design.
+
+    br
+    p
+      a.btn.btn-default data-toggle="collapse" href="#advanceControlz"  Advanced Controls
+
+    #advanceControlz.advanced-controls.collapse
+      button#bringForward.btn.btn-default
+        span.glyphicon.glyphicon-arrow-up
+      button#sendBackwards.btn.btn-default
+        span.glyphicon.glyphicon-arrow-down
+      button#center.btn.btn-default
+        span.glyphicon.glyphicon-screenshot
+      button#delete.btn.btn-default
+        span.glyphicon.glyphicon-trash
+
+      br
+
+      br
+
+      p
+        label
+          span Angle:
+          input#angle-control max="360" min="0" step="5" type="range" value="0"
+        input#angleValue max="360" min="0" step="5" type="number" value="0"
+      p
+        label
+          span Left:
+          input#left-control max="300" min="0" step="5" type="range" value="150"
+        input#leftValue max="300" min="0" step="5" type="number" value="150"
+      p
+        label
+          span Top:
+          input#top-control max="300" min="0" step="5" type="range" value="150"
+        input#topValue max="300" min="0" step="5" type="number" value="150"
+      p
+        label
+          span Scale:
+          input#scale-control max="4" min="0.1" step="0.1" type="range" value="1"
+        input#scaleValue max="4" min="0.1" step="0.1" type="number" value="1"

@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 
   has_one :profile
   has_many :locations, dependent: :destroy
+  has_many :cases, foreign_key: "creator_id"
 
   # before_create :build_default_profile
 

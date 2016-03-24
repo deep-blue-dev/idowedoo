@@ -24,7 +24,7 @@ nav.navbar.navbar-default
         li
           a class="btn" href="#" Track your Order
         li
-          = link_to "Create a new case", new_case_path, class:"btn #{'active' if current_page?(sign_in_path)}"
+          = link_to "Create a new case", cases_path, class:"btn #{'active' if current_page?(sign_in_path)}"
         li
           - if user_signed_in?
             = link_to current_user.email, profile_path

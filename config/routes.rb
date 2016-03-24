@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get   'index', to: 'pages#index', as: :index
   get   'create', to: 'pages#create', as: :create
 
-  resources :cases, only: [:new]
+  resources :cases, only: [:index, :new, :create, :edit, :update]
 
   # Campaigns
   resources :campaigns
@@ -52,7 +52,6 @@ Rails.application.routes.draw do
   resources :order_items
   resources :products
   resources :charges
-  resources :cases, only: [:new, :show, :create]
 
   resource :profile do
     resources :locations

@@ -1,0 +1,20 @@
+= current_user.inspect
+
+- if @cases.any?
+  h1 Your current cases
+  ul
+    - @cases.each do |c|
+      li
+        = link_to c.title, edit_case_path(c)
+- else
+  h1 You have no cases
+
+div.col-md-6.col-md-offset-3
+  h3 Create a new case
+  = form_for @new_case do |f|
+    = f.text_field :title, class: "form-control", placeholder: "Case name"
+    = f.select(:template_id, {}, {prompt: t('views.case_templates.select_prompt')}, class: "form-control") do
+      = options_from_collection_for_select(@templates, 'id', 'name')
+
+    = f.submit "Start designing", class: "form-control btn btn-success"
+  
