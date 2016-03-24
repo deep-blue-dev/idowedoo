@@ -1,9 +1,21 @@
+function serializeCanvas() {
+  var projectJSON = canvas.toJSON();
+  projectJSON.caseTemplateURL = canvas.caseTemplateURL;
+  return projectJSON;
+}
+
+function deserializeCanvas(data) {
+  loadPhoneCase(data.caseTemplateURL);
+  canvas.loadFromJSON(data,canvas.renderAll.bind(canvas));
+}
 //
 // Add Phone Case To Canvas
 //
 
 // Add SVG To Canvas as a mask and center it
 function loadPhoneCase(casePath){
+  // used to serialize phone on save
+  canvas.caseTemplateURL = casePath;
 
   // Use native fabric SVG Loader
   fabric.loadSVGFromURL(casePath, function(objects, options) {
