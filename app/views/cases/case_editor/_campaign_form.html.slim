@@ -1,0 +1,12 @@
+- order_item_price = 32.99
+= form_for @order_item, remote: true do |f|
+  table.table
+    tbody
+      tr
+        td Base Cost @ 50 Units
+        td = number_to_currency(order_item_price)
+      tr
+        td = f.number_field :quantity, value: 1, class: 'form-control', min: 1
+        td = f.submit 'Add to cart', class: 'btn btn-primary'
+      tr
+        td.text-center colspan="2" = link_to 'Create Campaign', new_campaign_path, {id: 'addCart', class: 'btn-lg btn-block btn-danger'}
