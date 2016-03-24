@@ -36,6 +36,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.4.0)
+    annotate (2.7.0)
+      activerecord (>= 3.2, < 6.0)
+      rake (~> 10.4)
     arel (6.0.3)
     autoprefixer-rails (6.2.3)
       execjs
@@ -58,7 +62,8 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (8.2.1)
-    capybara (2.5.0)
+    capybara (2.6.2)
+      addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -78,8 +83,9 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
     daemons (1.2.3)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
-    devise (3.5.3)
+    devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -87,7 +93,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    domain_name (0.5.25)
+    domain_name (0.5.20160128)
       unf (>= 0.0.5, < 1.0.0)
     easypost (2.1.9)
       multi_json (>= 1.3.0)
@@ -95,6 +101,11 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.6.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     figaro (1.1.1)
       thor (~> 0.14)
     font-awesome-rails (4.5.0.0)
@@ -106,7 +117,7 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
-    jbuilder (2.4.0)
+    jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-rails (4.1.0)
@@ -127,7 +138,7 @@ GEM
     mime-types (2.99)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     monetize (1.4.0)
       money (~> 6.7)
     money (6.7.0)
@@ -141,7 +152,7 @@ GEM
     multi_json (1.11.2)
     nested_form (0.3.2)
     netrc (0.11.0)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     paperclip (4.3.0)
@@ -185,7 +196,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
@@ -204,7 +215,7 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
       sass-rails (>= 4.0, < 6)
-    rails_serve_static_assets (0.0.4)
+    rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.4)
     railties (4.2.4)
       actionpack (= 4.2.4)
@@ -219,15 +230,15 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rspec-core (3.4.1)
+    rspec-core (3.4.2)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-mocks (3.4.0)
+    rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-rails (3.4.0)
+    rspec-rails (3.4.2)
       actionpack (>= 3.0, < 4.3)
       activesupport (>= 3.0, < 4.3)
       railties (>= 3.0, < 4.3)
@@ -259,7 +270,7 @@ GEM
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.0)
+    sprockets-rails (3.0.1)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -283,8 +294,8 @@ GEM
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
-    warden (1.2.4)
+    unf_ext (0.0.7.2)
+    warden (1.2.6)
       rack (>= 1.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
@@ -298,6 +309,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   awesome_print
   aws-sdk
   bcrypt (~> 3.1.7)
@@ -307,8 +319,10 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails
+  database_cleaner
   devise
   easypost
+  factory_girl_rails
   figaro
   jbuilder (~> 2.0)
   jquery-rails
@@ -332,4 +346,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
