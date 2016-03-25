@@ -1,16 +1,15 @@
+// Convert canvas into JSON object that can be saved to the DB, and reloaded
 function serializeCanvas() {
   var projectJSON = canvas.toJSON();
   projectJSON.caseTemplateURL = canvas.caseTemplateURL;
   return projectJSON;
 }
 
+// Loading objects onto the canvas from saved JSON object made in serializeCanvas()
 function deserializeCanvas(data) {
   loadPhoneCase(data.caseTemplateURL);
   canvas.loadFromJSON(data,canvas.renderAll.bind(canvas));
 }
-//
-// Add Phone Case To Canvas
-//
 
 // Add SVG To Canvas as a mask and center it
 function loadPhoneCase(casePath){
