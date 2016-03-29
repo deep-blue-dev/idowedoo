@@ -126,17 +126,20 @@ var CaseCreator = (function (mod) {
     mod.stopEvent(e);
  }
 
- mod.addFileToCanvas = function (e){
+  mod.addFileToCanvas = function (e){
 
-   var file = "";
+    var f;
+    var file = "";
 
    if (e.originalEvent.dataTransfer != null){
-     file = URL.createObjectURL(e.originalEvent.dataTransfer.files[0]);
-     window.f = file;
+    f = e.originalEvent.dataTransfer.files[0]
+    file = URL.createObjectURL(f);
    } else if (e.target.files != null){
-     file = URL.createObjectURL(e.target.files[0]);
-     window.f = file;
+    f = e.target.files[0]
+    file = URL.createObjectURL(f);
    }
+
+   console.log('f is', f);
 
    fabric.Image.fromURL(file,
        function(oImg){canvas.add(oImg)},

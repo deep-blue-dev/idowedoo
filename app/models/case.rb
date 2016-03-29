@@ -26,6 +26,7 @@ class Case < ActiveRecord::Base
 
   belongs_to :brand, inverse_of: :cases
   belongs_to :case_template, class_name: "CaseTemplate", foreign_key: "template_id"
+  has_many :images
 
   has_and_belongs_to_many :colors
 

@@ -1,0 +1,10 @@
+<% if remotipart_submitted? %>
+    addImageFromURL("<%= escape_javascript(@image.image.url).gsub('&quot;', "'") %>")
+<% else %>
+    addImageFromURL("<%= escape_javascript(@image.image.url) %>")
+<% end %>
+
+
+
+
+  

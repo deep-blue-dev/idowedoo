@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require bootstrap-sprockets
 //= require spectrum
 //= require fabric-1.5.0.min
@@ -42,3 +43,4 @@ function currentView(controllerString, actionString){
   return ( exists($controller) && exists($action) )
 
 }
+
