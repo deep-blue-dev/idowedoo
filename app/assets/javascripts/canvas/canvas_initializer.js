@@ -1,124 +1,54 @@
-CaseCreator = (function () {
-
-  // This is the public interface
-  var publicInterface = {
-    init: initialize
-  };
-
-  return publicInterface;
-}());
-
 function initialize(currentCase){
+  console.log('init called');
+  // Set the canvas size when window is resized
+  
 
-  // Initialize the canvas
-  var canvas = this.__canvas = new fabric.Canvas('c');
-  window.canvas = canvas
+  //
+  // Text Controls
+  //
 
-  if (typeof currentCase != "undefined") {
-    deserializeCanvas(currentCase)
-  }
+  //  Input
+  //
 
-  $("form.edit_case").on('submit', function(e) {
-    e.preventDefault();
-    var jsonData = serializeCanvas();
-    $("#case_saved_data").val(JSON.stringify(jsonData));
-    this.submit();
+  var $textInput = $('#textInput');
+  var $textAdd = $('#textAdd');
+
+  // Add text from input
+
+
+  $textAdd.on('click', function() {
+
+    // Get text from input
+    var text = $textInput.val();
+
+    // Create Fabric Text Object
+    var fabricText = new fabric.Text( text, {
+      left: fabric.util.getRandomInt(0, 200),
+      top: fabric.util.getRandomInt(0, 400),
+      fontFamily: 'helvetica',
+      angle: 0,
+      fill: '#000000',
+      scaleX: 0.5,
+      scaleY: 0.5,
+      fontWeight: '',
+      hasRotatingPoint: true,
+      lockUniScaling: true,
+      centeredScaling: true
+    });
+    // Add Fabric Text Object to Canvas
+    canvas.add(fabricText);
+    canvas.setActiveObject(fabricText);
+    centerActiveObject();
   });
 
-  $('.tab-content div').click(function (e) {
-    //e.preventDefault();
-    $(this).tab('show');
+  // Set the current value of text object to the input
+  $textInput.keyup(function(){
+    var activeObject = canvas.getActiveObject();
+    if (activeObject && activeObject.type === 'text') {
+      activeObject.text = this.value;
+      canvas.renderAll();
+    }
   });
-
- ///////////////////
- //
- // Builder
- //
- //////////////////
-
- 
-
-
- fabric.Object.prototype.transparentCorners = false;
-
- // Set the canvas size
- updateCanvasSize();
-
- // Load Phone Case from Case Path Selection
- const $caseSelection = $('.phone-case');
- $caseSelection.on('click', function(e){
-
-   // Get casePath from the link
-   const casePath = this.dataset.casePath;
-
-   // Stop the event bubble
-   stopEvent(e);
-
-   // Call loadPhoneCase with the casePath
-   loadPhoneCase(casePath);
-
- });
-
-
- //
- // Resize Canvas Handler
- //
-
- // Set the canvas size when window is resized
- $(window).on('resize', function(){
-   updateCanvasSize();
- });
-
- //
- // Text Controls
- //
-
- //  Input
- //
-
- var $textInput = $('#textInput');
- var $textAdd = $('#textAdd');
-
- // Add text from input
-
-
- $textAdd.on('click', function() {
-
-   // Get text from input
-   var text = $textInput.val();
-
-   // Create Fabric Text Object
-   var fabricText = new fabric.Text( text, {
-     left: fabric.util.getRandomInt(0, 200),
-     top: fabric.util.getRandomInt(0, 400),
-     fontFamily: 'helvetica',
-     angle: 0,
-     fill: '#000000',
-     scaleX: 0.5,
-     scaleY: 0.5,
-     fontWeight: '',
-     hasRotatingPoint: true,
-     lockUniScaling: true,
-     centeredScaling: true
-   });
-   // Add Fabric Text Object to Canvas
-   canvas.add(fabricText);
-   canvas.setActiveObject(fabricText);
-   centerActiveObject();
- });
-
- // Set the current value of text object to the input
- $textInput.keyup(function(){
-   var activeObject = canvas.getActiveObject();
-   if (activeObject && activeObject.type === 'text') {
-     activeObject.text = this.value;
-     canvas.renderAll();
-   }
- });
-
-
- // Text Italize
- //
 
  var $textItalic = $('#textItalic');
 
@@ -305,13 +235,15 @@ function initialize(currentCase){
  // File Picker Dialog
  var $uploadInput = $('#upload');
 
- $('#fileUpload').on('click', function(e){
-   $uploadInput.click();
-   $uploadInput.off().on('change', function(e){
-     addFileToCanvas(e);
-   });
-   stopEvent(e);
- });
+ $('#fileUpload').on('click', handleFileUploadClick);
+
+ function handleFileUploadClick(e) {
+  $uploadInput.click();
+    $uploadInput.off().on('change', function(e){
+      addFileToCanvas(e);
+    });
+    stopEvent(e);
+ }
 
  // Spectrum color picker initializer
  $("#togglePaletteOnly, #strokePalette, #caseColor").spectrum({
