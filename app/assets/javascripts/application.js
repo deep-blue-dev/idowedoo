@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require bootstrap-slider
 //= require spectrum
 //= require fabric-1.5.0.min
 //= require_tree .
