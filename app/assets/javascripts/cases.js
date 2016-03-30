@@ -23,7 +23,18 @@ $(document).on('ready page:load', function() {
     $("form.edit_case").on('submit', function(e) {
       e.preventDefault();
       var jsonData = serializeCanvas();
-      $("#case_saved_data").val(JSON.stringify(jsonData));
+      var pngData = canvas.toDataURL('png');
+      $(".case_saved_data").val(JSON.stringify(jsonData));
+      $(".case_saved_png").val(pngData);
+      this.submit();
+    });
+
+    $("form.new_campaign").on('submit', function(e) {
+      e.preventDefault();
+      var jsonData = serializeCanvas();
+      var pngData = canvas.toDataURL('png');
+      $(".case_saved_data").val(JSON.stringify(jsonData));
+      $(".case_saved_png").val(pngData);
       this.submit();
     });
 

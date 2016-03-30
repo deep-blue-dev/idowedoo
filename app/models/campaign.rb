@@ -19,6 +19,8 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :user
 
+  belongs_to :case
+
   has_many :campaign_case_options, dependent: :destroy
   accepts_nested_attributes_for :campaign_case_options
 

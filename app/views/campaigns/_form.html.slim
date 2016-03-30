@@ -34,6 +34,7 @@
           p
             h4 Sales Goal
             = f.range_field :goal_unit, min: 10, max: 500, step: 10, class: 'input-lg'
+            input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square"
 
             .row
               .col-lg-5
@@ -58,7 +59,7 @@
                     .panel-body
                       .row
                         .col-lg-3.text-center
-                          img.media-object#case-small src="" height='96px'
+                          img.media-object#case-small src =@campaign.case.saved_png height='96px'
                         .col-lg-7
                           h4 Nexus 5x
                           | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
@@ -107,9 +108,4 @@
               = f.submit class:'btn btn-block btn-lg btn-success'
 
   .col-lg-6
-    img#case
-
-
-coffee:
-  $(document).on 'ready page:load', ->
-    $('#case, #case-small').attr('src', localStorage.getItem("imgData"))
+    img src =@campaign.case.saved_png

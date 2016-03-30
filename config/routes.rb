@@ -23,8 +23,12 @@ Rails.application.routes.draw do
   resources :cases, only: [:index, :new, :create, :edit, :update]
 
   # Campaigns
-  resources :campaigns
-  get   'campaigns/case_options'
+  resources :campaigns do
+    collection do
+      post "/setup", to: "campaigns#setup", as: :setup
+    end
+  end
+  get 'campaigns/case_options'
   get   'campaigns/cases_by_brand'
   # get   'campaign', to: 'pages#campaign', as: :campaign
 

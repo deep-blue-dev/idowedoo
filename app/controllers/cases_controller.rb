@@ -33,7 +33,6 @@ class CasesController < ApplicationController
 
   def edit
     @cases = Case.all
-    @order_item = OrderItem.new
     @case = Case.find(params[:id])
   end
 
@@ -52,6 +51,6 @@ class CasesController < ApplicationController
   end
 
   def case_update_params
-    params.require(:case).permit(:saved_data)
+    params.require(:case).permit(:saved_data, :saved_png)
   end
 end

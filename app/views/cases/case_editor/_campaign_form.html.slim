@@ -1,12 +1,10 @@
 - order_item_price = 32.99
-= form_for @order_item, remote: true do |f|
+= form_for Campaign.new, url: setup_campaigns_path, method: :post do |f|
   table.table
     tbody
+      = f.hidden_field :case_id, value: kase.id
+      = hidden_field_tag 'case[saved_data]', nil, class: "case_saved_data"
+      = hidden_field_tag 'case[saved_png]', nil, class: "case_saved_png"
       tr
-        td Base Cost @ 50 Units
-        td = number_to_currency(order_item_price)
-      tr
-        td = f.number_field :quantity, value: 1, class: 'form-control', min: 1
-        td = f.submit 'Add to cart', class: 'btn btn-primary'
-      tr
-        td.text-center colspan="2" = link_to 'Create Campaign', new_campaign_path, {id: 'addCart', class: 'btn-lg btn-block btn-danger'}
+        td.text-center colspan="2" 
+          = f.submit 'Create Campaign', {class: 'btn-lg btn-block btn-danger'}
