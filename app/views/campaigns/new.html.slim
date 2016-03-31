@@ -4,3 +4,10 @@
 == render 'form', form_params
 
 = link_to 'Back', campaigns_path
+
+javascript:
+  CampaignSetup.init({
+    caseMinBasePrice: #{Campaign::MIN_BASE_PRICE},
+    caseRecommendedPrice: #{Campaign::RECOMMENDED_BASE_PRICE},
+    initialGoalValue: #{Campaign::STARTING_GOAL_VALUE}
+  });
