@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get   'create', to: 'pages#create', as: :create
 
   resources :cases, only: [:index, :new, :create, :edit, :update]
-
+  post '/add_image', to: "cases#add_image", as: :image_upload
   # Campaigns
   resources :campaigns
   get   'campaigns/case_options'

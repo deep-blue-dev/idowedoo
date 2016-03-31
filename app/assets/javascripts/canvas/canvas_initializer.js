@@ -1,3 +1,19 @@
+function addImageFromURL(url) {
+
+  fabric.Image.fromURL(url,
+    function(oImg){canvas.add(oImg)},{
+      left: canvas.getWidth()/2,
+      top: canvas.getHeight()/2,
+      angle: 0,
+      hasRotatingPoint: true,
+      //locks aspect ratio & scales from center
+      lockUniScaling: true,
+      centeredScaling: true
+    }
+  );  
+}
+
+
 function initialize(currentCase){
   console.log('init called');
   // Set the canvas size when window is resized

@@ -33,17 +33,17 @@ module Idowedoo
     #     }
     # }
 
-    config.paperclip_defaults = {
-      default_style: :original,
-      default_url: "/:attachment/:style/missing.png",
-      restricted_characters: /[&$+,\/:;=?@<>\[\]\{\}\|\\\^~%# ]/,
-      hash_data: ":class/:attachment/:id/:style/:updated_at",
-      interpolator: Paperclip::Interpolations,
-      path: ":rails_root/spec/storage/:class/:attachment/:id/:style/:filename",
-      url_generator: Paperclip::UrlGenerator,
-      validate_media_type: true,
-      check_validity_before_processing: true
-    }
+    # config.paperclip_defaults = {
+    #   default_style: :original,
+    #   default_url: "/:attachment/:style/missing.png",
+    #   restricted_characters: /[&$+,\/:;=?@<>\[\]\{\}\|\\\^~%# ]/,
+    #   hash_data: ":class/:attachment/:id/:style/:updated_at",
+    #   interpolator: Paperclip::Interpolations,
+    #   path: ":rails_root/spec/storage/:class/:attachment/:id/:style/:filename",
+    #   url_generator: Paperclip::UrlGenerator,
+    #   validate_media_type: true,
+    #   check_validity_before_processing: true
+    # }
 
     config.generators do |g|
       # g.template_engine nil #to skip views
