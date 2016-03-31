@@ -1,0 +1,19 @@
+
+.case-option-color {
+  display: inline-block;
+  border: 1px solid black;
+  height: 22px;
+  width: 22px;
+}
+
+.profit_display {
+  font-size: 18px;
+  margin-bottom: 5px;
+  .text {
+    margin-left: 5px;
+  }
+  #profit_per_case {
+    margin-left: 3px;
+  } 
+}
+  

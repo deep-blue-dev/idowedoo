@@ -3,8 +3,8 @@ class CampaignsController < ApplicationController
   include CampaignsHelper
 
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
-  before_action :set_campaign_length_options, only: [:new, :edit, :update]
-  before_action :set_brands_cases_options, only: [:new, :edit]
+  before_action :set_campaign_length_options, only: [:new, :setup, :edit, :update]
+  before_action :set_brands_cases_options, only: [:new, :setup, :edit]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -21,6 +21,14 @@ class CampaignsController < ApplicationController
   def new
     @campaign = Campaign.new
     @campaign.finish = Date.today + 3.days
+  end
+
+  def setup
+    c = Case.find(params[:campaign][:case_id])
+    c.update_attributes(case_save_params)
+    @campaign = Campaign.new({case_id: params[:campaign][:case_id]})
+    @campaign.finish = Date.today + 3.days
+    render :new
   end
 
   def case_options
@@ -121,6 +129,10 @@ class CampaignsController < ApplicationController
     def set_brands_cases_options
       @brands = Brand.all
       @cases = @brands.first.try(:cases) || []
+    end
+
+    def case_save_params
+      params.require(:case).permit(:saved_png, :saved_data)
     end
 
 end

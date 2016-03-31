@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: case_templates
+#
+#  id                    :integer          not null, primary key
+#  template_file_name    :string
+#  template_content_type :string
+#  template_file_size    :integer
+#  template_updated_at   :datetime
+#  name                  :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
 class CaseTemplate < ActiveRecord::Base
 
   has_many :cases

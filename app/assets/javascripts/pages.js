@@ -9,13 +9,6 @@ $(document).on('ready page:load', function() {
 
    window.debug = true;
 
-   // Tabs
-
-   $('.tab-content div').click(function (e) {
-     //e.preventDefault();
-     $(this).tab('show');
-   });
-
    ///////////////////
    //
    // Builder

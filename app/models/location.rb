@@ -18,6 +18,14 @@
 #  profile_id    :integer
 #  user_title    :string
 #
+# Indexes
+#
+#  index_locations_on_profile_id  (profile_id)
+#
+# Foreign Keys
+#
+#  fk_rails_8c692a6426  (profile_id => profiles.id)
+#
 
 class Location < ActiveRecord::Base
 

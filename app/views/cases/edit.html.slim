@@ -19,7 +19,7 @@
     .panel-footer 
       .row
         .col-md-8.col-md-offset-2
-          = render "cases/case_editor/campaign_form"
+          = render "cases/case_editor/campaign_form", kase: @case
 
 javascript:
   $(document).on("ready", function() {

@@ -17,30 +17,23 @@
 //= require spectrum
 //= require fabric-1.5.0.min
 //= require_tree .
+var Idowedo = Idowedo || {};
+
+// Currently empty, but lets keep stuff namespaced in here
+Idowedo.Main = (function() {
+  return {
+    init: init
+  }
+
+  // Public functions
+
+  function init() {
+  }
+
+  // Private functions
+
+})();
 
 $(document).on("ready", function() {
-  // Init bootstrap tabs
-  $('.tab-content div').click(function (e) {
-    //e.preventDefault();
-    $(this).tab('show');
-  });
+  Idowedo.Main.init();
 })
-
-// dirty implementation of an existential operator
-function exists(object){
-  return (typeof object !== "undefined" && object !== null && object.length > 0)
-}
-
-// Checks what pages we are on so we can conditionally execute code
-
-function currentView(controllerString, actionString){
-
-  // Made this way for clarity, why be clever.
-
-  $controller = $('#' + controllerString);
-  $action = $('.' + actionString);
-
-  return ( exists($controller) && exists($action) )
-
-}
-

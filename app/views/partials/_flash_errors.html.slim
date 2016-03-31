@@ -1,6 +1,7 @@
-- flash.each do |type, message|
-  .alert class="#{flash_class(type)} alert-dismissible"
-    button.close data-dismiss='alert'
-      | &times;
-    strong
-      .text-center= message
+div#flash_messages
+  - flash.each do |type, message|
+    .alert class="#{flash_class(type)} alert-dismissible"
+      button.close data-dismiss='alert'
+        | &times;
+      strong
+        .text-center= message
