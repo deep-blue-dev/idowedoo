@@ -11,11 +11,23 @@
 #  goal_unit   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  case_id     :integer
+#  base_price  :float
+#
+# Indexes
+#
+#  index_campaigns_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_9eb8249bf2  (user_id => users.id)
 #
 
 class Campaign < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
+
+  MIN_BASE_PRICE = 10.00
 
   belongs_to :user
 

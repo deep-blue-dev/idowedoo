@@ -14,6 +14,16 @@
 #  order_status_id :integer
 #  tracking_no     :string
 #
+# Indexes
+#
+#  index_orders_on_case_id  (case_id)
+#  index_orders_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_7b358e1bb1  (case_id => cases.id)
+#  fk_rails_f868b47f6a  (user_id => users.id)
+#
 
 class Order < ActiveRecord::Base
 
