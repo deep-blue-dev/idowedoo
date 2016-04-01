@@ -25,7 +25,9 @@ class CampaignsController < ApplicationController
 
   def setup
     c = Case.find(params[:campaign][:case_id])
-    c.update_attributes(case_save_params)
+    # This will remove values that are nil or "", which may overwrite previously saved on accident
+    case_save_params = case_save_params && case_save_params.delete_if { |key, value| value.blank? }
+    c.update_attributes(case_save_params) if case_save_params
     @campaign = Campaign.new({case_id: params[:campaign][:case_id]})
     @campaign.finish = Date.today + 3.days
     render :new
