@@ -8,7 +8,25 @@ var CaseCreator = (function (mod) {
     mod.setupListeners();
   }
 
-  // Private Functions
+  // functions
+
+  mod.addImageFromURL = function(url) {
+    fabric.Image.fromURL(url,
+      function(oImg){
+        canvas.add(oImg)
+      },
+      {
+        // Place in center of screen
+        left: canvas.getWidth()/2,
+        top: canvas.getHeight()/2,
+        angle: 0,
+        hasRotatingPoint: true,
+        //locks aspect ratio & scales from center
+        lockUniScaling: true,
+        centeredScaling: true
+      }
+    );  
+  }
 
   mod.setupCanvas = function (currentCase) {
     var canvas = this.__canvas = new fabric.Canvas('c');
