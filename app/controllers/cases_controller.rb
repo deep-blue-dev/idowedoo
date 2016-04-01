@@ -18,11 +18,11 @@ class CasesController < ApplicationController
         redirect_to edit_case_path(kase)
       else
         flash[:error] = t("cases_controller.create.error")
-        # render :back
         redirect_to :index
       end
     else
-      ## Allow unauthed users to design case, but they must register to save
+      flash[:danger] = "Please sign in first."
+      redirect_to new_user_session_path
     end
   end
 
@@ -45,13 +45,8 @@ class CasesController < ApplicationController
   end
 
   def add_image
-    puts "\n\n\n #{params} \n\n\n"
-    puts "\n\n\n #{file_upload_params} \n\n\n"
     @image = Image.new(file_upload_params)
     if @image.save
-      puts "\n\n\n #{@image} \n\n\n"
-      puts "\n\n\n #{@image.image} \n\n\n"
-      puts "\n\n\n #{@image.image.url} \n\n\n"
       respond_to do |format|
         format.js
       end
