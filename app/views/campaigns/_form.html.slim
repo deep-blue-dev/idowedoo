@@ -16,7 +16,9 @@
 
 .row
   .col-lg-6
-    = form_for campaign do |f|
+    = form_for campaign, url: campaign.pending? ? campaigns_path : campaign_path(campaign),
+                          method: campaign.pending? ? :post : :patch do |f|
+      = f.hidden_field :id, value: campaign.id
       - if campaign.errors.any?
         #error_explanation
           h2 = "#{pluralize(campaign.errors.count, "error")} prohibited this campaign from being saved:"
@@ -104,7 +106,8 @@
                 = f.select :finish, options_for_select(campaign_length_options, f.object.finish.to_date.to_s), {}, class: 'form-control input-lg'
           .row
             .col-lg-12.center-block style='float: none'
-              = f.submit class:'btn btn-block btn-lg btn-success'
+              - t = campaign.pending? ? 'Create Campaign' : 'Update Campaign'
+              = f.submit t, class:'btn btn-block btn-lg btn-success'
 
   .col-lg-6
     img src =@campaign.case.saved_png

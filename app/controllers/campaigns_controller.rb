@@ -17,27 +17,19 @@ class CampaignsController < ApplicationController
   def show
   end
 
-  # GET /campaigns/new
   def new
-    @campaign = Campaign.new
-    @campaign.finish = Date.today + 3.days
-  end
-
-  def setup
     # Save case design info
     c = Case.find(setup_campaign_params[:case_id])
     # This will remove values that are nil or "", which may overwrite previously saved on accident
     save_params = case_save_params && case_save_params.delete_if { |key, value| value.blank? }
     c.update_attributes(save_params) if case_save_params
-    
+
     # Setup Campaign
-    @campaign = Campaign.new(setup_campaign_params)
+    @campaign = Campaign.new(setup_campaign_params.merge(user: current_user))
     @campaign.finish = Date.today + 3.days
-    if @campaign.save
-      render :new
-    else
+    unless @campaign.save
       flash[:error] = @campaign.errors.full_messages
-      redirect_to :back
+      edit_case_path(c)
     end
   end
 
@@ -66,9 +58,10 @@ class CampaignsController < ApplicationController
   # POST /campaigns
   # POST /campaigns.json
   def create
-    @campaign = Campaign.new(campaign_params)
-    @campaign.user = current_user
+    @campaign = Campaign.find_by(campaign_id_param)
     @campaign.start = Date.today
+    @campaign.pending = false
+    @campaign.update(campaign_params)
 
     respond_to do |format|
       if @campaign.save
@@ -130,6 +123,10 @@ class CampaignsController < ApplicationController
 
     def case_params
       params.require(:case).permit(:id, :brand)
+    end
+
+    def campaign_id_param
+      params.require(:campaign).permit(:id)
     end
 
     def campaign_params

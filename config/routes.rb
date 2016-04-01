@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # Campaigns
   resources :campaigns do
     collection do
-      post "/setup", to: "campaigns#setup", as: :setup
+      post "/new", to: "campaigns#new", as: :new_campaign
     end
   end
   get 'campaigns/case_options'

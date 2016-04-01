@@ -60,6 +60,7 @@ class Campaign < ActiveRecord::Base
   validates_numericality_of :base_price, minimum: MIN_BASE_PRICE,
     too_short: "This base price is below cost, please set it to a minimum of #{MIN_BASE_PRICE}"
 
+  validates_presence_of :user, :case
 
   ## INSTANCE METHODS
 
