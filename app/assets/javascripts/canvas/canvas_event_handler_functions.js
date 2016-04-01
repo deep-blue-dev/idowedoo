@@ -211,5 +211,28 @@ var CaseCreator = (function (mod) {
     }
   }
 
+  mod.handleFileUploadButtonClick = function(e){
+    mod.stopEvent(e);
+    mod.$uploadInput.click();
+    mod.$uploadInput.off().on('change', function(e){
+      var form = $(this).parent("form")[0];
+      var formData = new FormData(form);
+      $.ajax({
+          url: form.action,
+          type: 'POST',
+          data: formData,
+          async: false,
+          success: function (data) {
+          },
+          cache: false,
+          contentType: false,
+          processData: false
+      });
+
+      return false;
+    });
+    mod.stopEvent(e);
+  }
+
   return mod;
 }(CaseCreator || {}));
