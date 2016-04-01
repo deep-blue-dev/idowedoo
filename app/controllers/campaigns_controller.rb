@@ -125,7 +125,7 @@ class CampaignsController < ApplicationController
     end
 
     def campaign_params
-      params.require(:campaign).permit(:title, :description, :start, :finish, :user_id, :goal_unit)
+      params.require(:campaign).permit(:title, :description, :start, :finish, :user_id, :goal_unit, :base_price)
     end
 
     def set_brands_cases_options
