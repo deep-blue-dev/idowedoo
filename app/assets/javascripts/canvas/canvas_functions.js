@@ -104,44 +104,6 @@ var CaseCreator = (function (mod) {
     canvas.calcOffset();
   }
 
-  mod.handleFileUploadClick = function(e) {
-    mod.$uploadInput.click();
-    mod.$uploadInput.off().on('change', function(e){
-      mod.addFileToCanvas(e);
-    });
-    mod.stopEvent(e);
- }
-
-  mod.addFileToCanvas = function (e){
-
-    var f;
-    var file = "";
-
-   if (e.originalEvent.dataTransfer != null){
-    f = e.originalEvent.dataTransfer.files[0]
-    file = URL.createObjectURL(f);
-   } else if (e.target.files != null){
-    f = e.target.files[0]
-    file = URL.createObjectURL(f);
-   }
-
-   console.log('f is', f);
-
-   fabric.Image.fromURL(file,
-       function(oImg){canvas.add(oImg)},
-       {
-         left: fabric.util.getRandomInt(0, 200),
-         top: fabric.util.getRandomInt(0, 400),
-         angle: 0,
-         hasRotatingPoint: true,
-         //locks aspect ratio & scales from center
-         lockUniScaling: true,
-         centeredScaling: true
-       }
-   );
-
- }
-
   mod.initializeSpectrum = function () {
     // Spectrum color picker initializer
     $("#togglePaletteOnly, #strokePalette").spectrum({

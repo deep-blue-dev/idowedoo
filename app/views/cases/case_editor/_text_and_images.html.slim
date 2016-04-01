@@ -68,15 +68,13 @@
     //
 
     #image.tab-pane role='tabpanel' data={tab: true}
-      =form_for :case, remote: true, url: image_upload_path  do |f|
-        =f.file_field :image
-        =f.hidden_field :case_id, value: @case.id
-        =f.submit "submit"
-
+      
+    =form_for :case, remote: true, url: image_upload_path, html: { id: "image_upload_form" } do |f|
+      =f.file_field :image, class: "uploadFileField hidden"
+      =f.hidden_field :case_id, value: @case.id
       .drop-container
         .drop-area
-          .lead.text-center Drag Here to Upload
-          input#upload type='file' accept='image/*' style='display: none'
+          .lead.text-center.dragdrop Drag Here to Upload
           a#fileUpload.btn.btn-default.btn-lg.btn-block Click Here to Upload
           small
             em.text-center

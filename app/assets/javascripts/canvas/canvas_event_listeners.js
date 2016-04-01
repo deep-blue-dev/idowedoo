@@ -4,7 +4,7 @@ var CaseCreator = (function (mod) {
     $(window).on('resize', mod.updateCanvasSize);
     mod.$editCaseForm.on('submit', mod.saveCase);
     mod.$createCampaignForm.on("submit", mod.createCampaign);
-    $('#fileUpload').on('click', mod.handleFileUploadClick);
+    mod.$fileUploadButton.on('click', mod.handleFileUploadButtonClick);
     mod.$textAdd.on('click', mod.handleAddTextClick);
     mod.$center.on('click', mod.centerActiveObject);
     mod.$sendBackwards.on('click', mod.handleSendBackwards);
