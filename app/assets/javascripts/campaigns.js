@@ -112,6 +112,7 @@ CampaignSetup = (function() {
   function setBasePrice(val) {
     if (val < MIN_BASE_PRICE) {
       // if below cost, reset to old value
+      Idowedo.Flash.display("Price is below cost, minimum price is $" + MIN_BASE_PRICE, "danger", 5000);
       setBasePrice(BASE_PRICE);
     } else {
       // else update
