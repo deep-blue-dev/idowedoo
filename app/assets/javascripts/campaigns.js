@@ -36,7 +36,7 @@ CampaignSetup = (function() {
     // Text input to enter goal, should be in sync with slider
     this.$campaignGoalInput     = $(".campaignGoalInput")
     this.$campaignProfitDisplay = $("#campaignProfitDisplay");
-    this.$campaignCaseBasePrice = $("#campaignCaseBasePrice");
+    this.$campaignCaseBasePrice = $("#campaign_base_price");
     this.$profitPerCase         = $("#profit_per_case");
   }
 
