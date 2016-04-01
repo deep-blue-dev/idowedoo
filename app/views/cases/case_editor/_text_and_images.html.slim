@@ -68,6 +68,11 @@
     //
 
     #image.tab-pane role='tabpanel' data={tab: true}
+      =form_for :case, remote: true, url: image_upload_path  do |f|
+        =f.file_field :image
+        =f.hidden_field :case_id, value: @case.id
+        =f.submit "submit"
+
       .drop-container
         .drop-area
           .lead.text-center Drag Here to Upload
