@@ -24,13 +24,21 @@ class CampaignsController < ApplicationController
   end
 
   def setup
-    c = Case.find(params[:campaign][:case_id])
+    # Save case design info
+    c = Case.find(setup_campaign_params[:case_id])
     # This will remove values that are nil or "", which may overwrite previously saved on accident
-    case_save_params = case_save_params && case_save_params.delete_if { |key, value| value.blank? }
-    c.update_attributes(case_save_params) if case_save_params
-    @campaign = Campaign.new({case_id: params[:campaign][:case_id]})
+    save_params = case_save_params && case_save_params.delete_if { |key, value| value.blank? }
+    c.update_attributes(save_params) if case_save_params
+    
+    # Setup Campaign
+    @campaign = Campaign.new(setup_campaign_params)
     @campaign.finish = Date.today + 3.days
-    render :new
+    if @campaign.save
+      render :new
+    else
+      flash[:error] = @campaign.errors.full_messages
+      redirect_to :back
+    end
   end
 
   def case_options
@@ -131,6 +139,10 @@ class CampaignsController < ApplicationController
     def set_brands_cases_options
       @brands = Brand.all
       @cases = @brands.first.try(:cases) || []
+    end
+
+    def setup_campaign_params
+      params.require(:campaign).permit(:case_id)
     end
 
     def case_save_params
