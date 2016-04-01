@@ -17,18 +17,20 @@ class CampaignsController < ApplicationController
   def show
   end
 
-  # GET /campaigns/new
   def new
-    @campaign = Campaign.new
-    @campaign.finish = Date.today + 3.days
-  end
+    # Save case design info
+    c = Case.find(setup_campaign_params[:case_id])
+    # This will remove values that are nil or "", which may overwrite previously saved on accident
+    save_params = case_save_params && case_save_params.delete_if { |key, value| value.blank? }
+    c.update_attributes(save_params) if case_save_params
 
-  def setup
-    c = Case.find(params[:campaign][:case_id])
-    c.update_attributes(case_save_params)
-    @campaign = Campaign.new({case_id: params[:campaign][:case_id]})
+    # Setup Campaign
+    @campaign = Campaign.new(setup_campaign_params.merge(user: current_user))
     @campaign.finish = Date.today + 3.days
-    render :new
+    unless @campaign.save
+      flash[:error] = @campaign.errors.full_messages
+      edit_case_path(c)
+    end
   end
 
   def case_options
@@ -56,9 +58,10 @@ class CampaignsController < ApplicationController
   # POST /campaigns
   # POST /campaigns.json
   def create
-    @campaign = Campaign.new(campaign_params)
-    @campaign.user = current_user
+    @campaign = Campaign.find_by(campaign_id_param)
     @campaign.start = Date.today
+    @campaign.pending = false
+    @campaign.update(campaign_params)
 
     respond_to do |format|
       if @campaign.save
@@ -122,13 +125,21 @@ class CampaignsController < ApplicationController
       params.require(:case).permit(:id, :brand)
     end
 
+    def campaign_id_param
+      params.require(:campaign).permit(:id)
+    end
+
     def campaign_params
-      params.require(:campaign).permit(:title, :description, :start, :finish, :user_id, :goal_unit)
+      params.require(:campaign).permit(:title, :description, :start, :finish, :user_id, :goal_unit, :base_price)
     end
 
     def set_brands_cases_options
       @brands = Brand.all
       @cases = @brands.first.try(:cases) || []
+    end
+
+    def setup_campaign_params
+      params.require(:campaign).permit(:case_id)
     end
 
     def case_save_params

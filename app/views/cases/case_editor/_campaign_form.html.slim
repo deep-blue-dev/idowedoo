@@ -1,5 +1,5 @@
 - order_item_price = 32.99
-= form_for Campaign.new, url: setup_campaigns_path, method: :post do |f|
+= form_for Campaign.new, url: new_campaign_path, method: :post do |f|
   = f.hidden_field :case_id, value: kase.id
   = hidden_field_tag 'case[saved_data]', nil, class: "case_saved_data"
   = hidden_field_tag 'case[saved_png]', nil, class: "case_saved_png"

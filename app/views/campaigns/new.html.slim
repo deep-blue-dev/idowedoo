@@ -1,6 +1,7 @@
 - provide :title, 'New Campaign'
 
-- form_params = {campaign: @campaign, brands: @brands, cases: @cases,             campaign_length_options: @campaign_length_options}
+- form_params = {campaign: @campaign, brands: @brands, cases: @cases,
+  campaign_length_options: @campaign_length_options}
 == render 'form', form_params
 
 = link_to 'Back', campaigns_path

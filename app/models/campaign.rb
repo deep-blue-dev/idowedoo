@@ -13,6 +13,7 @@
 #  updated_at  :datetime         not null
 #  case_id     :integer
 #  base_price  :float
+#  pending     :boolean          default(TRUE)
 #
 # Indexes
 #
@@ -38,7 +39,12 @@ class Campaign < ActiveRecord::Base
 
   STARTING_GOAL_VALUE = 20
 
+
+  ## CALLBACKS
+
+  before_validation :set_base_price, on: :create
   
+
   ## ASSOCIATIONS
 
   belongs_to :user
@@ -54,10 +60,17 @@ class Campaign < ActiveRecord::Base
   validates_numericality_of :base_price, minimum: MIN_BASE_PRICE,
     too_short: "This base price is below cost, please set it to a minimum of #{MIN_BASE_PRICE}"
 
+  validates_presence_of :user, :case
 
   ## INSTANCE METHODS
 
   def length
     distance_of_time_in_words(self.start, self.finish)
   end
+
+  private
+
+    def set_base_price
+      update_attribute(:base_price, RECOMMENDED_BASE_PRICE)
+    end
 end
