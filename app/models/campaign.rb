@@ -13,6 +13,7 @@
 #  updated_at  :datetime         not null
 #  case_id     :integer
 #  base_price  :float
+#  pending     :boolean          default(TRUE)
 #
 # Indexes
 #
@@ -38,7 +39,12 @@ class Campaign < ActiveRecord::Base
 
   STARTING_GOAL_VALUE = 20
 
+
+  ## CALLBACKS
+
+  before_validation :set_base_price, on: :create
   
+
   ## ASSOCIATIONS
 
   belongs_to :user
@@ -60,4 +66,10 @@ class Campaign < ActiveRecord::Base
   def length
     distance_of_time_in_words(self.start, self.finish)
   end
+
+  private
+
+    def set_base_price
+      update_attribute(:base_price, RECOMMENDED_BASE_PRICE)
+    end
 end
