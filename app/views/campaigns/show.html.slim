@@ -1,24 +1,18 @@
 p#notice = notice
 
-p
-  strong Title:
-  = @campaign.title
-p
-  strong Description:
-  = @campaign.description
-p
-  strong Start:
-  = @campaign.start
-p
-  strong Finish:
-  = @campaign.finish
-p
-  strong User:
-  = @campaign.user
-p
-  strong Goal unit:
-  = @campaign.goal_unit
+div.row
+  div.col-md-4
+    img.media-object#case-small src =@campaign.case.saved_png height='250px'
 
-= link_to 'Edit', edit_campaign_path(@campaign)
-'|
-= link_to 'Back', campaigns_path
+  div.col-md-8
+    h3 = @campaign.title
+
+    p = @campaign.description
+
+    div
+      = render "share_icons", campaign: @campaign
+
+    - if current_user.present? and @campaign.user == current_user
+      = render "campaign_owner", campaign: @campaign
+    - else
+      = render "campaign_visitor", campaign: @campaign

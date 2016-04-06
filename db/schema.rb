@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216074100) do
+ActiveRecord::Schema.define(version: 20160401090914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,24 +36,37 @@ ActiveRecord::Schema.define(version: 20160216074100) do
     t.datetime "finish"
     t.integer  "user_id"
     t.integer  "goal_unit"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "case_id"
+    t.float    "base_price"
+    t.boolean  "pending",     default: true
   end
 
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
-  create_table "cases", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "unit_min"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+  create_table "case_templates", force: :cascade do |t|
     t.string   "template_file_name"
     t.string   "template_content_type"
     t.integer  "template_file_size"
     t.datetime "template_updated_at"
-    t.integer  "unit_cost_cents",       default: 0,     null: false
-    t.string   "unit_cost_currency",    default: "USD", null: false
+    t.string   "name"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "cases", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "unit_min"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "unit_cost_cents",    default: 0,     null: false
+    t.string   "unit_cost_currency", default: "USD", null: false
     t.integer  "brand_id"
+    t.integer  "creator_id"
+    t.integer  "template_id"
+    t.text     "saved_data"
+    t.text     "saved_png"
   end
 
   add_index "cases", ["brand_id"], name: "index_cases_on_brand_id", using: :btree
@@ -74,7 +87,18 @@ ActiveRecord::Schema.define(version: 20160216074100) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "landingemails", force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
+    t.string   "filename"
+    t.integer  "case_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "landing_emails", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

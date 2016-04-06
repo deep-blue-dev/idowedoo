@@ -12,6 +12,7 @@ var CaseCreator = (function (mod) {
   }
 
   mod.createCampaign = function(e) {
+    console.log('creating');
     mod.stopEvent(e);
     var jsonData = mod.serializeCanvas();
     $(".case_saved_data").val(JSON.stringify(jsonData));

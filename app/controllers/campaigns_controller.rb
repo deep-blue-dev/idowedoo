@@ -77,6 +77,7 @@ class CampaignsController < ApplicationController
   # PATCH/PUT /campaigns/1
   # PATCH/PUT /campaigns/1.json
   def update
+    save_case_data
     respond_to do |format|
       if @campaign.update(campaign_params)
         format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
@@ -117,6 +118,14 @@ class CampaignsController < ApplicationController
         @campaign_length_options << date_time_options(day)
       end
 
+    end
+
+    def save_case_data
+      # Save case design info
+      c = Case.find(setup_campaign_params[:case_id])
+      # This will remove values that are nil or "", which may overwrite previously saved on accident
+      save_params = case_save_params && case_save_params.delete_if { |key, value| value.blank? }
+      c.update_attributes(save_params) if case_save_params
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -324,6 +324,7 @@ DEPENDENCIES
   easypost
   factory_girl_rails
   figaro
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   money-rails
@@ -335,6 +336,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails_12factor
   rails_admin
+  remotipart
   rspec-rails
   sass-rails
   slim-rails

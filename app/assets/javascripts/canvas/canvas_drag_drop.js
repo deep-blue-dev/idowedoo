@@ -1,3 +1,6 @@
+// Some code taken from this tutorial
+// https://css-tricks.com/drag-and-drop-file-uploading/
+
 var CaseCreator = (function (mod) {
   var $droparea;
   var $form;
@@ -10,7 +13,7 @@ var CaseCreator = (function (mod) {
     }
 
     function init() {
-      
+
       return true;
       setupVars();
 
@@ -47,7 +50,7 @@ var CaseCreator = (function (mod) {
           } else {
             console.log('dropped submit');
           }
-          
+
           // if ($form.hasClass('is-uploading')) return false;
 
           // $form.addClass('is-uploading').removeClass('is-error');

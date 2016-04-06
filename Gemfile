@@ -25,6 +25,7 @@ gem 'aws-sdk' # AWS
 gem 'money-rails'
 gem 'annotate' # Add model DB data to app/models/*.rb file
 gem 'remotipart'
+gem 'font-awesome-rails'
 
 ### Assets
 
