@@ -1,4 +1,17 @@
-
+.campaign_link_div {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+.campaign_show {
+  .image_center {
+    img {
+      display: block;
+      margin: 0 auto;  
+    }
+  }
+}
 .case-option-color {
   display: inline-block;
   border: 1px solid black;

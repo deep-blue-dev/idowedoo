@@ -40,6 +40,11 @@ class Campaign < ActiveRecord::Base
   STARTING_GOAL_VALUE = 20
 
 
+  ## Scopes
+
+  scope :available, -> { where(pending: false) }
+
+
   ## CALLBACKS
 
   before_validation :set_base_price, on: :create
@@ -66,6 +71,23 @@ class Campaign < ActiveRecord::Base
 
   def length
     distance_of_time_in_words(self.start, self.finish)
+  end
+
+  def sale_price
+    if base_price and base_price > MIN_BASE_PRICE
+      return base_price
+    else
+      return RECOMMENDED_BASE_PRICE
+    end
+  end
+
+  def days_left
+    left = ((finish - Time.now) / 1.days).ceil
+    if left > 0
+      return left
+    else
+      return 0
+    end
   end
 
   private
