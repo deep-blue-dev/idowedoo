@@ -1,15 +1,15 @@
 p#notice = notice
 
 div.row
-  div.col-md-4
-    img.media-object#case-small src =@campaign.case.saved_png height='250px'
+  div.col-md-8.image_center
+    img.media-object#case-small src =@campaign.case.saved_png height='450px'
 
-  div.col-md-8
+  div.col-md-4
     h3 = @campaign.title
 
     p = @campaign.description
 
-    div
+    div.row
       = render "share_icons", campaign: @campaign
 
     - if current_user.present? and @campaign.user == current_user

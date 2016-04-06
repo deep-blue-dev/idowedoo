@@ -1,1 +1,8 @@
-button.btn.btn-success Purchase
+div.row
+  div.text-center
+    - if campaign.available_for_purchase?
+      = link_to new_order_path(campaign_id: campaign.id) do
+        button.btn.btn-success.btn-wide.btn-lg Purchase
+    - else
+      button.btn.btn-danger.btn-wide.btn-lg disabled=true
+        | This campaign has finished

@@ -90,6 +90,14 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def available_for_purchase?
+    not pending and not finished
+  end
+
+  def finished
+    Time.now > finish
+  end
+
   private
 
     def set_base_price

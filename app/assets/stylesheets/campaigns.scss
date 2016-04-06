@@ -4,13 +4,17 @@
     text-decoration: none;
   }
 }
-.campaign_show {
-  .image_center {
-    img {
-      display: block;
-      margin: 0 auto;  
-    }
+.image_center {
+  img {
+    display: block;
+    margin: 0 auto;  
   }
+}
+.btn-wide {
+  width: 100%;
+}
+.campaign_show {
+  
 }
 .case-option-color {
   display: inline-block;
