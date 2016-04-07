@@ -35,13 +35,13 @@
         #goal.tab-pane.fade.in.active role="tabpanel"
           p
             h4 Sales Goal
-            = f.range_field :goal_unit, min: 10, max: 500, step: 2, data: { initial: 10}, class: 'input-lg campaignGoalSlider'
+            = f.range_field :goal_unit, min: 10, max: 500, step: 2, data: { initial: 10 }, class: 'input-lg campaignGoalSlider cancelSubmit'
             
             .row
               .col-lg-5
                 .input-group.input-group-lg
                   span.input-group-addon # of Units
-                  input class= 'form-control col-sm-10 campaignGoalInput'
+                  input class= 'form-control col-sm-10 campaignGoalInput cancelSubmit'
               .col-lg-7
                 | Your goal is the number of units you’re aiming to sell,
                 |  but we’ll print your campaign as long as you sell enough to generate a profit.
@@ -74,7 +74,7 @@
                           | dolorem doloremque earum expedita laborum maiores minus nulla sit.
 
                         .col-lg-2
-                          = f.text_field :base_price, class: "input-md form-control", value: "#{Campaign::RECOMMENDED_BASE_PRICE}"
+                          = f.text_field :base_price, class: "input-md form-control cancelSubmit", value: "#{Campaign::RECOMMENDED_BASE_PRICE}"
             .row
               .col-lg-8.center-block style='float: none'
                 a.btn.btn-lg.btn-block.btn-success data-toggle="tab" href="#describe" Next
@@ -89,11 +89,11 @@
               .form-group
                 label for="inputHelpBlock" Campaign Title
                 span id="helpBlock" class="help-block" Summarize your campaign in 40 characters or less.
-                = f.text_field :title, {class:'form-control', placeholder:'Campaign Title'}
+                = f.text_field :title, {class:'form-control cancelSubmit', placeholder:'Campaign Title'}
               .form-group
                 = f.label :description
                 span id="helpBlock" class="help-block" Summarize your campaign in 40 characters or less.
-                = f.text_area :description, cols: 40, rows: 3, class: 'form-control'
+                = f.text_area :description, cols: 40, rows: 3, class: 'form-control cancelSubmit'
               .form-group
                 label for="inputHelpBlock" Tag
                 span id="helpBlock" class="help-block"
