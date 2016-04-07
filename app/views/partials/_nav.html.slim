@@ -11,18 +11,8 @@ nav.navbar.navbar-default
       = link_to 'I Do We Do', root_path, class: 'navbar-brand'
 
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        form.navbar-form.navbar-left role="search"
-          .form-group
-            input type="text" class="form-control" placeholder="Search"
-
-          button.btn.btn-default type="submit" Submit
 
       ul.nav.navbar-nav.navbar-right
-        li
-          = link_to 'Learn More', :learn, class:"btn #{'active' if current_page?(learn_path)}"
-        li
-          a class="btn" href="#" Track your Order
         li
           = link_to "Create a new case", cases_path, class:"btn #{'active' if current_page?(sign_in_path)}"
         li
@@ -33,6 +23,6 @@ nav.navbar.navbar-default
         li
           = render 'partials/cart_text'
         li
-          = link_to "Products", campaigns_path, class:"btn btn-link"
+          = link_to "View all cases", campaigns_path, class:"btn btn-link"
 
 
