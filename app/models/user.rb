@@ -15,6 +15,7 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  admin                  :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -39,6 +40,10 @@ class User < ActiveRecord::Base
 
   # before_create :build_default_profile
 
+  def admin?
+    admin
+  end
+
   private
 
   def build_default_profile
@@ -54,7 +59,5 @@ class User < ActiveRecord::Base
     # Or add the child's errors to the User model's error array of the :base
     # error item
   end
-
-
 
 end

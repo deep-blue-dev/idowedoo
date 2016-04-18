@@ -1,6 +1,16 @@
 
 RailsAdmin.config do |config|
 
+  config.authorize_with do
+    if current_user.nil?
+      flash[:error] = "Sign in to view this page."
+      redirect_to main_app.user_session_path
+    elsif current_user.present? and !current_user.admin?
+      flash[:error] = "You are not authorized to access this page."
+      redirect_to main_app.root_path
+    end
+  end
+
   ### Popular gems integration
 
   ## == Devise ==
