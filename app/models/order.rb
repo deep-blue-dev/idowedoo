@@ -2,17 +2,16 @@
 #
 # Table name: orders
 #
-#  id              :integer          not null, primary key
-#  user_id         :integer
-#  case_id         :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  subtotal        :decimal(, )
-#  tax             :decimal(, )
-#  shipping        :decimal(, )
-#  total_price     :decimal(, )
-#  order_status_id :integer
-#  tracking_no     :string
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  case_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  subtotal    :decimal(, )
+#  tax         :decimal(, )
+#  shipping    :decimal(, )
+#  total_price :decimal(, )
+#  tracking_no :string
 #
 # Indexes
 #
@@ -27,13 +26,11 @@
 
 class Order < ActiveRecord::Base
 
-  before_create :set_order_status
   before_save :update_subtotal
   before_save :tracking
 
   belongs_to :user
   belongs_to :case
-  belongs_to :order_status
   has_many :order_items
   has_many :locations
 
@@ -83,10 +80,6 @@ class Order < ActiveRecord::Base
   end
 
   private
-
-  def set_order_status
-    self.order_status_id = 1
-  end
 
   def update_subtotal
     self[:subtotal] = subtotal
