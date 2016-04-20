@@ -67,6 +67,8 @@ class Campaign < ActiveRecord::Base
 
   validates_presence_of :user, :case
 
+  validates :case_id, uniqueness: true, presence: true
+
   ## INSTANCE METHODS
 
   def length

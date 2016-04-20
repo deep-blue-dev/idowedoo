@@ -1,24 +1,30 @@
 p#notice = notice
 
-div.row
-  div.col-md-8.image_center
+div.row.campaign_case_item
+  div.col-md-5.image_center
     img.media-object#case-small src =@campaign.case.saved_png height='450px'
 
-  div.col-md-4
-    h3 = @campaign.title
+  div.col-md-7
+    .campaign_title = @campaign.title
 
-    p = @campaign.description
+    .campaign_description = @campaign.description
 
-    div.row
-      = render "share_icons", campaign: @campaign
 
     div.row
       div.text-center
         - if @campaign.available_for_purchase?
-          = link_to new_order_path(campaign_id: @campaign.id) do
-            button.btn.btn-success.btn-wide.btn-lg Purchase
+          = form_for Order.new do |f|
+            = f.text_field :order_status_id
+            = f.hidden_field :campaign_id, value: @campaign.id
+            = f.button "Purchase", class: "btn btn-success btn-wide btn-lg"              
+
+            
         - else
           button.btn.btn-danger.btn-wide.btn-lg disabled=true
             | This campaign has finished
+
+    div.row
+      = render "share_icons", campaign: @campaign
+
     - if current_user.present? and @campaign.user == current_user
       = render "campaign_owner", campaign: @campaign
