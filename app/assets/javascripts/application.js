@@ -29,6 +29,7 @@ Idowedo.Main = (function() {
 
   function init() {
     setupListeners();
+    campaignShow();
   }
 
   // Private functions
@@ -39,6 +40,61 @@ Idowedo.Main = (function() {
         return false;
       }
     });
+  }
+
+  // Campaign Functions
+
+  function campaignShow() {
+    campaignPurchaseButton();
+    campaignCountdown();
+  }
+
+  function campaignPurchaseButton() {
+    var $span = $("#purchase_button_span");
+    $("#order_num_items").on("change", function(e) {
+      var numToPurchase = parseInt($(e.target).val());
+      if (numToPurchase == 1) {
+        $span.text("1 case");
+      } else if (numToPurchase > 1) {
+        $span.text(numToPurchase + " cases");
+      }
+    }).trigger("change");
+  }
+
+  function campaignCountdown() {
+    var endtime = $("#campaign_countdown").data("endtime"); 
+    initializeClock("campaign_countdown", endtime);
+  }
+
+  function getTimeRemaining(endtime){
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor( (t/1000) % 60 );
+    var minutes = Math.floor( (t/1000/60) % 60 );
+    var hours = Math.floor( (t/(1000*60*60)) % 24 );
+    var days = Math.floor( t/(1000*60*60*24) );
+    return {
+      'total': t,
+      'days': days,
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds
+    };
+  }
+
+  function initializeClock(id, endtime){
+    var clock = document.getElementById(id);
+    var timeinterval = setInterval(function(){
+      var t = getTimeRemaining(endtime);
+      clock.innerHTML = '<div class="heading">Time Remaining:</div> <ul>' + 
+                          '<li>' + t.days + '<span>Days</span></li>' +
+                          '<li>' + t.hours + '<span>Hours</span></li>' +
+                          '<li>' + t.minutes + '<span>Minutes</span></li>' +
+                          '<li>' + t.seconds + '<span>Seconds</span></li>' +
+                        '</ul>';
+      if(t.total<=0){
+        clearInterval(timeinterval);
+      }
+    },1000);
   }
 
 })();

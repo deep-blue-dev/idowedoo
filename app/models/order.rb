@@ -12,6 +12,7 @@
 #  shipping    :decimal(, )
 #  total_price :decimal(, )
 #  tracking_no :string
+#  num_items   :integer          default(1)
 #
 # Indexes
 #

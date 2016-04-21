@@ -7,6 +7,12 @@ div.row.campaign_case_item
   div.col-md-7
     .campaign_title = @campaign.title
 
+    .campaign_stats.clearfix
+      .stats#campaign_countdown data-endtime=@campaign.finish
+        .header
+          | Time Remaining:
+        = @campaign.days_left.to_s + " days"
+
     .campaign_description = @campaign.description
 
 
@@ -14,11 +20,12 @@ div.row.campaign_case_item
       div.text-center
         - if @campaign.available_for_purchase?
           = form_for Order.new do |f|
-            / = f.text_field :num_to_order
             = f.hidden_field :campaign_id, value: @campaign.id
-            = f.button "Purchase", class: "btn btn-success btn-wide btn-lg"              
+            = f.select(:num_items, (1..10).to_a, {}, { :class => 'form-control' })
+            = f.button :purchase, class: "btn btn-success btn-wide btn-lg" do
+              | Purchase 
+              span#purchase_button_span
 
-            
         - else
           button.btn.btn-danger.btn-wide.btn-lg disabled=true
             | This campaign has finished
