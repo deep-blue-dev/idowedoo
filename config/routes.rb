@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root  'pages#coming_soon'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # Devise
@@ -12,13 +10,13 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy', as: :sign_out
   end
 
-  # Pages
-  get '/coming_soon', to: 'pages#coming_soon', as: :coming_soon
-  post '/landing_email', to: 'pages#landing_email', as: :landing_email_subscribe
-  get   'learn', to: 'pages#learn', as: :learn
-  get   'cart', to: 'pages#cart', as: :cart
-  get   'index', to: 'pages#index', as: :index
-  get   'create', to: 'pages#create', as: :create
+
+  root  'static_pages#coming_soon'
+
+
+  # StaticPages
+  get '/coming_soon', to: 'static_pages#coming_soon', as: :coming_soon
+  post '/landing_email', to: 'static_pages#landing_email', as: :landing_email_subscribe
 
   resources :cases, only: [:index, :new, :create, :edit, :update]
   post '/add_image', to: "cases#add_image", as: :image_upload
@@ -30,7 +28,6 @@ Rails.application.routes.draw do
   end
   get 'campaigns/case_options'
   get   'campaigns/cases_by_brand'
-  # get   'campaign', to: 'pages#campaign', as: :campaign
 
   # Cart Stuff
   get   'carts/address'
