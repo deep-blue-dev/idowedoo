@@ -22,6 +22,7 @@
 #  status             :integer          default(0)
 #  stripe_customer_id :string
 #  stripe_charge_id   :string
+#  paid               :boolean          default(FALSE)
 #
 # Indexes
 #
