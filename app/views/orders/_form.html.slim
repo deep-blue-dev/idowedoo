@@ -1,0 +1,56 @@
+= form_for order do |f|
+  = f.hidden_field :campaign_id, value: @campaign.id
+  = f.hidden_field :stripe_token, value: nil
+  = f.hidden_field :email, value: nil
+  = f.select(:num_items, (1..10).to_a, {}, { :class => 'form-control' })
+
+  div class="collapse" id="step_2_panel"
+
+
+    h2 Address
+    / address-line1 input
+    .control-group
+      label.control-label Address Line 1
+      .controls
+        = f.text_field :address_1, class: "form-control input-xlarge", placeholder: "address line 1"
+          p.help-block Street address, P.O. box, company name, c/o
+    / address-line2 input
+    .control-group
+      label.control-label Address Line 2
+      .controls
+        = f.text_field :address_2, class: "form-control input-xlarge", placeholder: "address line 2"
+          p.help-block Apartment, suite , unit, building, floor, etc.
+    / city input
+    .control-group
+      label.control-label City / Town
+      .controls
+        = f.text_field :address_city, class: "form-control input-xlarge", placeholder: "city"
+          p.help-block
+    / region input
+    .control-group
+      label.control-label State / Province / Region
+      .controls
+        #state_input_field
+        p.help-block
+        script#state_input_template type="javascript/template"
+          = f.text_field :address_state, class: "form-control input-xlarge", placeholder: "state / province / region"
+        script#state_select_template type="javascript/template"
+          = f.select(:address_state, us_state_select_list, {}, class: 'form-control')
+    / postal-code input
+    .control-group
+      label.control-label Zip / Postal Code
+      .controls
+        = f.text_field :address_zip, class: "form-control input-xlarge", placeholder: "zip or postal code"
+          p.help-block
+    / country select
+    .control-group
+      label.control-label Country
+      .controls
+        / = f.select(:num_items, (1..10).to_a, {}, { :class => 'form-control' })
+        = f.select :address_country, countries_select_list, {}, class: "form-control input-xlarge"
+    
+
+
+  = f.button :purchase, class: "btn btn-success btn-wide btn-lg submit_purchase_button" do
+    | Purchase 
+    span#purchase_button_span.step1

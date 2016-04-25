@@ -1,9 +1,9 @@
 class ChargesController < ApplicationController
 
-  before_action :set_current_order, only: [:charge]
+  # before_action :set_current_order, only: [:charge]
 
-  def index
-  end
+  # def index
+  # end
 
   def charge
 
@@ -29,17 +29,17 @@ class ChargesController < ApplicationController
 
   private
 
-  def set_current_order
-    @order = current_order
+  # def set_current_order
+  #   @order = current_order
 
-    current_order.subtotal = 12341267
+  #   current_order.subtotal = 12341267
 
-    @subtotal = current_order.subtotal.to_f
-    @subtotal_tax = current_order.tax.to_f
-    @shipping = nil
-    @order_total = @subtotal + @subtotal_tax + @shipping.to_f
+  #   @subtotal = current_order.subtotal.to_f
+  #   @subtotal_tax = current_order.tax.to_f
+  #   @shipping = nil
+  #   @order_total = @subtotal + @subtotal_tax + @shipping.to_f
 
-  end
+  # end
 
 
 end

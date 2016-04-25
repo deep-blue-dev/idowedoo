@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :user do
-    email "user#{SecureRandom.hex(10)}@test.com"
+    sequence :email do |i|
+      "user#{i}#{SecureRandom.hex(10)}@test.com"
+    end
     password "Password"
   end
 end

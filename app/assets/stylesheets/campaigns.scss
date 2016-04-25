@@ -56,7 +56,14 @@
     margin-bottom: 25px;
     .heading {
       font-size: 16px;
-      margin: 10px 0;
+      margin: 10px 0 20px;
+    }
+  }
+
+  .campaign_price {
+    #case_price_span {
+      letter-spacing: 1.5px;
+      font-size: 16px;
     }
   }
 

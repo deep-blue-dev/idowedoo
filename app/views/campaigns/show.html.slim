@@ -9,22 +9,20 @@ div.row.campaign_case_item
 
     .campaign_stats.clearfix
       .stats#campaign_countdown data-endtime=@campaign.finish
-        .header
+        .heading
           | Time Remaining:
-        = @campaign.days_left.to_s + " days"
+        div.label.label-success.label-lg
+          = @campaign.days_left.to_s + " days"
 
     .campaign_description = @campaign.description
 
-
+    .campaign_price 
+      h4 Case Price: <span id="case_price_span" class="label label-success" data-case_price="#{@campaign.base_price}">#{number_to_currency @campaign.base_price}</span>
+      
     div.row
       div.text-center
         - if @campaign.available_for_purchase?
-          = form_for Order.new do |f|
-            = f.hidden_field :campaign_id, value: @campaign.id
-            = f.select(:num_items, (1..10).to_a, {}, { :class => 'form-control' })
-            = f.button :purchase, class: "btn btn-success btn-wide btn-lg" do
-              | Purchase 
-              span#purchase_button_span
+          = render "orders/form", order: Order.new
 
         - else
           button.btn.btn-danger.btn-wide.btn-lg disabled=true
@@ -35,3 +33,12 @@ div.row.campaign_case_item
 
     - if current_user.present? and @campaign.user == current_user
       = render "campaign_owner", campaign: @campaign
+
+
+
+javascript:
+  $(document).ready(function() {
+    Idowedo.CampaignPurchase.init();
+  });
+
+script src="https://checkout.stripe.com/checkout.js"
