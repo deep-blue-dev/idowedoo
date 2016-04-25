@@ -34,6 +34,8 @@ class Case < ActiveRecord::Base
 
   has_and_belongs_to_many :colors
 
+  has_one :campaign
+
   validates_presence_of :template_id, :creator_id
 
   after_create :setup_json

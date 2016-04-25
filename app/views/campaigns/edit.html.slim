@@ -10,5 +10,5 @@ javascript:
   CampaignSetup.init({
     caseMinBasePrice: #{Campaign::MIN_BASE_PRICE},
     caseRecommendedPrice: #{@campaign.base_price},
-    initialGoalValue: #{@campaign.goal_unit}
+    initialGoalValue: #{@campaign.goal_unit || Campaign::STARTING_GOAL_VALUE}
   });

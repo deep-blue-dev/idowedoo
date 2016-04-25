@@ -1,2 +1,36 @@
-h1 Orders#show
-p Find me in app/views/orders/show.html.slim
+div.order_confirmation_page
+  h1 Thank you for your order!
+  h3 Your order has been successfully processed and charged
+
+  table.table
+    thead
+      tr
+        td item
+        td
+        td number
+        td
+        td cost
+        td
+        td total
+    tbody
+      tr
+        td 
+          img.media-object#case-small src =@campaign.case.saved_png height='150px'
+        td = link_to @campaign.title, campaign_path(@campaign)
+        td = @order.num_items
+        td x
+        td = number_to_currency @campaign.base_price
+        td = "="
+        td.text-right = number_to_currency @order.total_price
+      tr.total_row
+        td.text-right colspan="5"
+        td Total
+        td.text-right.grand_total = number_to_currency @order.total_price
+
+  div.row
+    = render "campaigns/share_icons", campaign: @campaign
+
+  div.powered_by_stripe
+    span.text
+      | Powered by 
+    i.fa.fa-cc-stripe.fa-2x

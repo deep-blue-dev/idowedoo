@@ -28,9 +28,18 @@ Idowedo.Main = (function() {
   // Public functions
 
   function init() {
+    setupListeners();
   }
 
   // Private functions
+  function setupListeners() {
+    $("input.cancelSubmit").on("keypress", function(e) {
+      if (e.which == 13) {
+        $(this).blur();
+        return false;
+      }
+    });
+  }
 
 })();
 

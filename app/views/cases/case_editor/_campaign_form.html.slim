@@ -1,7 +1,15 @@
-- order_item_price = 32.99
-= form_for Campaign.new, url: new_campaign_path, method: :post do |f|
-  = f.hidden_field :case_id, value: kase.id
-  = hidden_field_tag 'case[saved_data]', nil, class: "case_saved_data"
-  = hidden_field_tag 'case[saved_png]', nil, class: "case_saved_png"
-  div.text-center colspan="2" 
-    = f.submit 'Create Campaign', {class: 'btn-lg btn-block btn-danger'}
+- campaign = kase.campaign
+- if campaign.present?
+  = form_for campaign do |f|
+    = f.hidden_field :case_id, value: kase.id
+    = hidden_field_tag 'case[saved_data]', nil, class: "case_saved_data"
+    = hidden_field_tag 'case[saved_png]', nil, class: "case_saved_png"
+    div.text-center colspan="2" 
+      = f.submit 'Go To Campaign', {class: 'btn-lg btn-block btn-danger'}
+- else
+  = form_for Campaign.new, url: new_campaign_path, method: :post do |f|
+    = f.hidden_field :case_id, value: kase.id
+    = hidden_field_tag 'case[saved_data]', nil, class: "case_saved_data"
+    = hidden_field_tag 'case[saved_png]', nil, class: "case_saved_png"
+    div.text-center colspan="2" 
+      = f.submit 'Create Campaign', {class: 'btn-lg btn-block btn-danger'}

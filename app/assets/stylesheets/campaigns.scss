@@ -1,4 +1,21 @@
-
+.campaign_link_div {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+.image_center {
+  img {
+    display: block;
+    margin: 0 auto;  
+  }
+}
+.btn-wide {
+  width: 100%;
+}
+.campaign_show {
+  
+}
 .case-option-color {
   display: inline-block;
   border: 1px solid black;
@@ -17,3 +34,82 @@
   } 
 }
   
+
+.campaign_case_item {
+  .campaign_title {
+    font-size: 36px;
+    margin: 10px 0;
+    line-height: 1.1;
+    font-weight: 500;
+    font-family: Georgia, serif;
+  }
+  .campaign_description {
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.5;
+    font-style: normal;
+    font-family: Helvetica, sans-serif;
+    margin: 30px 0;
+  }
+
+  .campaign_stats {
+    margin-bottom: 25px;
+    .heading {
+      font-size: 16px;
+      margin: 10px 0 20px;
+    }
+  }
+
+  .campaign_price {
+    #case_price_span {
+      letter-spacing: 1.5px;
+      font-size: 16px;
+    }
+  }
+
+  .share_icons {
+    .heading {
+      display: inline;
+      margin-right: 25px;
+    }
+    .share_icon {
+      margin: 50px 25px;
+    }
+  }
+
+  .stats {
+    padding: 1.5em / 2;
+    margin-bottom: 20px;
+    ul {
+      padding: 0;
+    }
+    li {
+      border-right: 1px solid transparentize(#333, 0.8);
+      color: lighten(#477dca, 10%);;
+      display: inline;
+      float: left;
+      font-size: 1.2em;
+      line-height: 1.1em;
+      padding: 0 0.7em;
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+
+    span {
+      color: #333;
+      display: block;
+      font-size: 0.7em;
+      font-weight: normal;
+    }
+  }
+}
+
+
+
+
+

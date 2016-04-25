@@ -1,24 +1,44 @@
 p#notice = notice
 
-p
-  strong Title:
-  = @campaign.title
-p
-  strong Description:
-  = @campaign.description
-p
-  strong Start:
-  = @campaign.start
-p
-  strong Finish:
-  = @campaign.finish
-p
-  strong User:
-  = @campaign.user
-p
-  strong Goal unit:
-  = @campaign.goal_unit
+div.row.campaign_case_item
+  div.col-md-5.image_center
+    img.media-object#case-small src =@campaign.case.saved_png height='450px'
 
-= link_to 'Edit', edit_campaign_path(@campaign)
-'|
-= link_to 'Back', campaigns_path
+  div.col-md-7
+    .campaign_title = @campaign.title
+
+    .campaign_stats.clearfix
+      .stats#campaign_countdown data-endtime=@campaign.finish
+        .heading
+          | Time Remaining:
+        div.label.label-success.label-lg
+          = @campaign.days_left.to_s + " days"
+
+    .campaign_description = @campaign.description
+
+    .campaign_price 
+      h4 Case Price: <span id="case_price_span" class="label label-success" data-case_price="#{@campaign.base_price}">#{number_to_currency @campaign.base_price}</span>
+      
+    div.row
+      div.text-center
+        - if @campaign.available_for_purchase?
+          = render "orders/form", order: Order.new
+
+        - else
+          button.btn.btn-danger.btn-wide.btn-lg disabled=true
+            | This campaign has finished
+
+    div.row
+      = render "share_icons", campaign: @campaign
+
+    - if current_user.present? and @campaign.user == current_user
+      = render "campaign_owner", campaign: @campaign
+
+
+
+javascript:
+  $(document).ready(function() {
+    Idowedo.CampaignPurchase.init();
+  });
+
+script src="https://checkout.stripe.com/checkout.js"

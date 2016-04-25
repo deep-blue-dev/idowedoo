@@ -1,7 +1,7 @@
 var CaseCreator = (function (mod) {
 
   mod.setupVars = function () {
-    mod.$createCampaignForm = $("form#new_campaign");
+    mod.$createCampaignForm = $("form.new_campaign, form.edit_campaign");
     mod.$editCaseForm = $("form.edit_case");
     mod.$fileUploadButton = $('#fileUpload');
     mod.$uploadInput = $('.uploadFileField');

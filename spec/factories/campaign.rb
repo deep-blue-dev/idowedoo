@@ -20,5 +20,7 @@ FactoryGirl.define do
     start DateTime.now
     finish DateTime.now + 7.days
     goal_unit 10_000
+    case_id { create(:case).id }
+    user_id { create(:user).id }
   end
 end
