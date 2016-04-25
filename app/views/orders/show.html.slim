@@ -27,6 +27,9 @@ div.order_confirmation_page
         td Total
         td.text-right.grand_total = number_to_currency @order.total_price
 
+  div.row
+    = render "campaigns/share_icons", campaign: @campaign
+
   div.powered_by_stripe
     span.text
       | Powered by 
