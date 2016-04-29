@@ -11,7 +11,6 @@ Idowedo.CampaignPurchase = (function() {
   // Public functions
 
   function init() {
-    console.log('initing');
     // Setup vars
     $purchaseButtonSpan = $("#purchase_button_span");
     casePrice = parseFloat($("#case_price_span").data("case_price"));
@@ -35,31 +34,44 @@ Idowedo.CampaignPurchase = (function() {
         $("#order_stripe_token").val(token.id);
         $("#order_email").val(token.email);
         // submit the form
-        console.log('serial ', $("form#new_order").serialize());
         $("form#new_order").submit();
       }
     });
 
-    $('.submit_purchase_button').on('click', function(e) {
-      
-      e.preventDefault();
-      
-      var price, desc;
+    // $('.submit_purchase_button').on('click', function(e) {
+    $('form#new_order').on('submit', function(e) {
+      if ($(this).find("#order_stripe_token").val().length > 0) {
+        // form is valid and has a stripe token, do nothing and 
+        // allow the form to submit
+        return true;
+      } else {
+        // Form is not yet finished, stop form from validating
+        e.preventDefault();
+        //  and move to the next step
 
-      if ($purchaseButtonSpan.hasClass("step1")) {
-        // The button requires two clicks
-        $purchaseButtonSpan.removeClass("step1").addClass("step2").text("Charge my card and send me my cases!");
-        // Open up the second part of the form
-        $("#step_2_panel").collapse('show');
-      } else if ($purchaseButtonSpan.hasClass("step2")) {
-        var price = currentTotalPrice() * 100;
-        var desc = 'Purchasing ' + numToPurchase + ' cases from "' + campaignName + '" campaign.';
-        // Open Checkout with further options:
-        handler.open({
-          name: 'Idowedo',
-          description: desc,
-          amount: price
-        });
+        
+        var price, desc;
+
+        if ($purchaseButtonSpan.hasClass("step1")) {
+          // The button requires two clicks
+          $purchaseButtonSpan.removeClass("step1").addClass("step2").text("Charge my card and send me my cases!");
+          // Open up the second part of the form
+          $("#step_2_panel").collapse('show');
+          // Focus the first form input
+          $("form#new_order").find(".focus_on_show").focus();
+        } else if ($purchaseButtonSpan.hasClass("step2")) {
+          $form = $(this);
+          if (formIsValid($form)) {
+            var price = currentTotalPrice() * 100;
+            var desc = 'Purchasing ' + numToPurchase + ' cases from "' + campaignName + '" campaign.';
+            // Open Checkout with further options:
+            handler.open({
+              name: 'Idowedo',
+              description: desc,
+              amount: price
+            });
+          }
+        }
       }
     });
 
@@ -146,6 +158,31 @@ Idowedo.CampaignPurchase = (function() {
       $inputEl.empty().html(selectTemplate);
     } else {
       $inputEl.empty().html(inputTemplate);
+    }
+  }
+
+  function formIsValid($form) {
+    var numMissing = 0;
+    var $formErrors = $(".form_errors");
+    $formErrors.empty();
+    $(".will_validate").each(function(i, elem) {
+      var $elem = $(elem);
+      var attr = $elem.data("attr-name");
+      $(".ermess").remove();
+      if ($elem.val().length <= 0 && $elem.hasClass("required")) {
+        $elem.before("<div style='color:red;' class='ermess'>Please fill in "+ attr +"</div>").removeClass("noError").addClass("hasError");
+        numMissing += 1;
+      } else {
+        $elem.removeClass("hasError").addClass("noError");
+      }
+    });
+    if (numMissing == 0) {
+      return true;
+    } else {
+      var numFields = (numMissing == 1) ? "1 field" : numMissing + " fields"
+      var message = "Please fill in all the required fields. You are missing " + numFields;
+      $formErrors.append("<li>" + message + "</li>");
+      return false;
     }
   }
 })();

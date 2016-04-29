@@ -109,7 +109,17 @@
   }
 }
 
+form#new_order {
+  .hasError {
+    box-shadow: 0 0 3px red !important;
+  }
+  .noError {
+    box-shadow: 0 0 3px green !important;
+  }
+}
 
-
-
-
+.form_errors {
+  li {
+    color: red;
+  }
+}

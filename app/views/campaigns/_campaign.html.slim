@@ -1,13 +1,27 @@
-= link_to campaign_path(campaign), class: "campaign_link_div" do
-  div.well.campaign_show  
+div.well.campaign_show  
+  
+  / Progress
+  div.campaign_progress
+    div = campaign.goal_ratio
+    div.progress
+      div.progress-bar aria-valuenow="60" style="width: #{campaign.goal_pct_int}%;"
+      
+  / Days Left
+  div.campaign_days_left
     - if campaign.days_left > 0
       div.label.label-success
         = campaign.days_left.to_s + " days left"
     - else
       div.label.label-danger
         | finished
+  
+  / Image
+  div.campaign_image
     div.text-center.image_center
       img.media-object#case-small src =campaign.case.saved_png height='250px'
+  
+  / Price
+  div.campaign_price
     div.text-center
       h3 = campaign.title
       h4 = number_to_currency campaign.sale_price

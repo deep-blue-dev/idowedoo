@@ -1,3 +1,4 @@
 - @campaigns.each do |campaign|
-  div.col-md-4
-    = render 'campaigns/campaign', campaign: campaign
+  = link_to campaign_path(campaign), class: "campaign_link_div" do
+    div.col-md-4
+      = render 'campaigns/campaign', campaign: campaign

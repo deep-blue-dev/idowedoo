@@ -1,6 +1,8 @@
 div.order_confirmation_page
   h1 Thank you for your order!
-  h3 Your order has been successfully processed and charged
+  h4 Your order has been successfully processed and charged
+  h3 Order Confirmation: #{@order.token}
+  p Please save this for your records. We will need it in case there are any issues creating or shipping your case.
 
   table.table
     thead

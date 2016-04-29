@@ -1,18 +1,23 @@
-- if @cases.any?
-  h1 Your current cases
-  ul
-    - @cases.each do |c|
-      li
-        = link_to c.title, edit_case_path(c)
-- else
-  h1 You have no cases
+div.row
+  div.text-center
+    h3 Create a new case
 
-div.col-md-6.col-md-offset-3
-  h3 Create a new case
   = form_for @new_case do |f|
-    = f.text_field :title, class: "form-control", placeholder: "Case name"
-    = f.select(:template_id, {}, {prompt: t('views.case_templates.select_prompt')}, class: "form-control") do
-      = options_from_collection_for_select(@templates, 'id', 'name')
+    div.col-md-5
+      = f.text_field :title, class: "form-control", placeholder: "Case name"
+    div.col-md-5
+      = f.select(:template_id, {}, {prompt: t('views.case_templates.select_prompt')}, class: "form-control") do
+        = options_from_collection_for_select(@templates, 'id', 'name')
+    div.col-md-2
+      = f.submit "Start designing", class: "form-control btn btn-success"
 
-    = f.submit "Start designing", class: "form-control btn btn-success"
-  
+/ Existing cases
+div.row
+  - if @cases.any?
+    h3 Your current cases
+    - @cases.each do |kase|
+      div.col-md-4
+        = link_to edit_case_path(kase) do
+          = render 'cases/case_view', kase: kase
+  - else
+    h1 You have no cases

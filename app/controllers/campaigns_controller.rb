@@ -27,6 +27,7 @@ class CampaignsController < ApplicationController
     # Setup Campaign
     @campaign = Campaign.new(setup_campaign_params.merge(user: current_user))
     @campaign.finish = Date.today + 3.days
+    puts "\n\n\n #{@campaign.inspect} \n\n\n"
     unless @campaign.save
       flash[:error] = @campaign.errors.full_messages
       edit_case_path(c)

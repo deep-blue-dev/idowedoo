@@ -14,6 +14,7 @@
 #  case_id     :integer
 #  base_price  :float
 #  pending     :boolean          default(TRUE)
+#  num_sold    :integer          default(0)
 #
 # Indexes
 #
@@ -38,6 +39,8 @@ class Campaign < ActiveRecord::Base
   RECOMMENDED_BASE_PRICE = 15.00
 
   STARTING_GOAL_VALUE = 20
+
+  MIN_GOAL_UNIT = 10
 
 
   ## Scopes
@@ -65,9 +68,20 @@ class Campaign < ActiveRecord::Base
   validates_numericality_of :base_price, minimum: MIN_BASE_PRICE,
     too_short: "This base price is below cost, please set it to a minimum of #{MIN_BASE_PRICE}"
 
+  validates_numericality_of :goal_unit, minimum: MIN_GOAL_UNIT, allow_nil: true,
+    too_short: "This goal is too small, please set it to a minimum of #{MIN_GOAL_UNIT}"
+
   validates_presence_of :user, :case
 
   validates :case_id, uniqueness: true, presence: true
+
+  ## Class Methods
+
+  def self.new(params = {})
+    default_params = {goal_unit: STARTING_GOAL_VALUE, base_price: RECOMMENDED_BASE_PRICE}
+    params = default_params.merge(params)
+    super(params)
+  end
 
   ## INSTANCE METHODS
 
@@ -98,6 +112,26 @@ class Campaign < ActiveRecord::Base
 
   def finished
     Time.now > finish
+  end
+
+  # goal_unit
+  # num_sold
+
+  # Integer out of 100
+  def goal_pct_int
+    (num_sold.to_f / goal_unit * 100).to_i
+  end
+
+  def goal_ratio(delimiter = " / ")
+    "#{num_sold}#{delimiter}#{goal_unit}"
+  end
+
+  def new_order_created
+    # When a new order is created this method is called.
+    # Here we can update the number of cases sole
+    cases_sold = Order.num_bought_for(self)
+    puts "\n\n\n Called update goal status \n #{cases_sold} cases sold \n\n"
+    update_attribute(:num_sold, cases_sold)
   end
 
   private

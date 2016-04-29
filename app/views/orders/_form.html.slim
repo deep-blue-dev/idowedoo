@@ -1,4 +1,6 @@
 = form_for order do |f|
+  ul.form_errors
+
   = f.hidden_field :campaign_id, value: @campaign.id
   = f.hidden_field :stripe_token, value: nil
   = f.hidden_field :email, value: nil
@@ -12,19 +14,19 @@
     .control-group
       label.control-label Address Line 1
       .controls
-        = f.text_field :address_1, class: "form-control input-xlarge", placeholder: "address line 1"
+        = f.text_field :address_1, class: "form-control input-xlarge will_validate required focus_on_show", placeholder: "address line 1", data: { :"attr-name" => "address" }
           p.help-block Street address, P.O. box, company name, c/o
     / address-line2 input
     .control-group
       label.control-label Address Line 2
       .controls
-        = f.text_field :address_2, class: "form-control input-xlarge", placeholder: "address line 2"
+        = f.text_field :address_2, class: "form-control input-xlarge will_validate optional", placeholder: "address line 2"
           p.help-block Apartment, suite , unit, building, floor, etc.
     / city input
     .control-group
       label.control-label City / Town
       .controls
-        = f.text_field :address_city, class: "form-control input-xlarge", placeholder: "city"
+        = f.text_field :address_city, class: "form-control input-xlarge will_validate required", placeholder: "city", data: { :"attr-name" => "city" }
           p.help-block
     / region input
     .control-group
@@ -33,21 +35,21 @@
         #state_input_field
         p.help-block
         script#state_input_template type="javascript/template"
-          = f.text_field :address_state, class: "form-control input-xlarge", placeholder: "state / province / region"
+          = f.text_field :address_state, class: "form-control input-xlarge will_validate required", placeholder: "state / province / region", data: { :"attr-name" => "state" }
         script#state_select_template type="javascript/template"
-          = f.select(:address_state, us_state_select_list, {}, class: 'form-control')
+          = f.select(:address_state, us_state_select_list, {}, class: 'form-control will_validate required', data: { :"attr-name" => "state" })
     / postal-code input
     .control-group
       label.control-label Zip / Postal Code
       .controls
-        = f.text_field :address_zip, class: "form-control input-xlarge", placeholder: "zip or postal code"
+        = f.text_field :address_zip, class: "form-control input-xlarge will_validate required", placeholder: "zip or postal code", data: { :"attr-name" => "Zip / Postal Code" }
           p.help-block
     / country select
     .control-group
       label.control-label Country
       .controls
         / = f.select(:num_items, (1..10).to_a, {}, { :class => 'form-control' })
-        = f.select :address_country, countries_select_list, {}, class: "form-control input-xlarge"
+        = f.select :address_country, countries_select_list, {}, class: "form-control input-xlarge will_validate required", data: { :"attr-name" => "Country" }
     
 
 

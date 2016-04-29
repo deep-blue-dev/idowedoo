@@ -66,6 +66,8 @@ class Order < ActiveRecord::Base
     4 => "Complete"
   }
 
+  # Validations
+
   belongs_to :user
   belongs_to :stripe_customer
   has_one :stripe_charge
@@ -74,6 +76,10 @@ class Order < ActiveRecord::Base
   validates_presence_of :num_items, :email, :stripe_token, :campaign_id,
                         :address_1, :address_city, :address_state, :address_zip, :address_country
 
+  # This will return the total number of cases bought for a given campaign
+  def self.num_bought_for(campaign)
+    where(campaign_id: campaign.id, paid: true).sum(:num_items)
+  end
 
   def order_status
     STATUS_VALUES[status]
@@ -92,6 +98,7 @@ class Order < ActiveRecord::Base
     # If stripe charge was created and charged, update 
     if charge.persisted? and charge.success
       update_attribute(:paid, true)
+      campaign.new_order_created
       return true
     else
       return false
@@ -101,4 +108,5 @@ class Order < ActiveRecord::Base
   def stripe_charge_description
     "Purchase #{num_items} '#{campaign.title}' cases"
   end
+
 end
